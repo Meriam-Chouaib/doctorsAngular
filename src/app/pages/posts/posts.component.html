@@ -22,14 +22,16 @@
   </div>
   <div class="container-posts">
     <div class="add-post">
-      <button (click)="openDialogAddPost()" class="btn-add-post" *ngIf="isLogged">add post</button>
+      <button (click)="openDialogAddPost('Add post','Add')" class="btn-add-post" *ngIf="isLogged">add post</button>
     </div>
 
     <div *ngFor="  let item of postsData; let i=index">
-      <app-post [title]="item.title" [message]="item.message"
+      <app-post [title]="item.title"
+                [message]="item.message"
                 [name]="item.user.name"
-                [image]="item.user.picture"
+                [picture]="item.user.picture"
                 [date]="item.date"
+                [_id]="item._id"
 
       ></app-post>
       <!--      [comments]="item.comments"-->

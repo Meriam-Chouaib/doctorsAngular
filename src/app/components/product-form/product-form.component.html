@@ -9,17 +9,17 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input formControlName="title" matInput placeholder="title" [(ngModel)]="title" [value]="title" id="title">
+        <input formControlName="title" matInput placeholder="title" [(ngModel)]="product.title" [value]="title" id="title">
       </mat-form-field>
 
       <mat-form-field appearance="outline" color="primary">
         <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description" [(ngModel)]="description" id="description"></textarea>
+        <textarea matInput formControlName="description" [(ngModel)]="product.description" id="description"></textarea>
       </mat-form-field>
 
       <mat-form-field appearance="outline" color="primary">
         <mat-label>Price</mat-label>
-        <input matInput formControlName="price" [(ngModel)]="price" id="price">
+        <input matInput formControlName="price" [(ngModel)]="product.price" id="price">
       </mat-form-field>
       <mat-dialog-actions align="end" class="btns">
         <button mat-button mat-dialog-close class="btn-cancel" type="submit">Cancel</button>

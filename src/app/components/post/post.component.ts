@@ -4,6 +4,8 @@ import{Comment} from '../../models/Comment'
 import {PostFormComponent} from "../post-form/post-form.component";
 import {successResult} from "../../../helper/success-result";
 import {MatDialog} from "@angular/material/dialog";
+import { NzMessageService } from 'ng-zorro-antd/message';
+
 let edit : boolean=true;
 @Component({
   selector: 'app-post',
@@ -21,11 +23,15 @@ export class PostComponent implements OnInit {
   @Input()  message: string = '';
   @Input() date: string = '';
   @Input() comments:   Comment [] = [];
-  @Input() id: number = 0;
+  @Input() _id: number = 0;
   @Input() likes: number = 0;
   // @Input() user: User ;
   @Input() name: string = '';
-  @Input() image: string | undefined = '';
+  @Input() picture: string | undefined = '';
+
+
+
+
 
 
 
@@ -62,19 +68,25 @@ export class PostComponent implements OnInit {
     this.likes = this.likes-1;
     console.log(this.likes)
   }
-  editPost(id:number){
-    console.log("edit"+id)
-  }
-  deletePost(id:number){
-    console.log("delete Post"+id)
-  }
-  openDialogAddPost(): void {
 
-    const dialogRef = this.dialog.open(PostFormComponent);
+  deletePost(_id:number){
+    console.log("delete",_id);
+
+  }
+  openDialogAddPost(titleForm:string,btnName:string,_id:number): void {
+
+
+
+    const dialogRef = this.dialog.open(PostFormComponent, {
+
+      data: {titleForm: titleForm,btnName:btnName,_id:_id}
+    });
 
     dialogRef.afterClosed().subscribe(result => {
 
       new successResult(true, result, 1, "success")
     });
   }
+
+
 }

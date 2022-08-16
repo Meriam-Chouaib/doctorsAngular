@@ -13,9 +13,11 @@ import{Comment} from "./Comment"
 //
 // }
 export class Post {
-  message : string = '';
+  _id: number=0;
   title: string='';
-    _id?: string='0';
+  message : string = '';
+
+
 //   title: string;
   user?: User;
 

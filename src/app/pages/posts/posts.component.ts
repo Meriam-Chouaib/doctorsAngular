@@ -16,7 +16,6 @@ let titleForm : string;
 
 export class PostsComponent implements OnInit {
 postsData = posts;
-
 @Input() isLogged:boolean=true;
 
   constructor(public dialog: MatDialog,) { }
@@ -25,10 +24,13 @@ postsData = posts;
     console.log(this.postsData[0].comments)
 
   }
-  openDialogAddPost(): void {
-    titleForm = "add post";
+  openDialogAddPost(titleForm:string,btnName:string): void {
+    console.log(titleForm)
     edit = false;
-    const dialogRef = this.dialog.open(PostFormComponent);
+    const dialogRef = this.dialog.open(PostFormComponent, {
+
+      data: {titleForm: titleForm,btnName:btnName}
+    });
 
     dialogRef.afterClosed().subscribe(result => {
 

@@ -1,32 +1,44 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
+import { DatePipe } from '@angular/common';
+
 import {FormBuilder, FormGroup, Validators, FormControl, NgForm} from "@angular/forms";
 import {fakeData} from "../../data/data";
 import {successResult} from "../../../helper/success-result";
 import {posts} from "../../data/data"
 
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import {Post} from "../../models/Post";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-post-form',
   templateUrl: './post-form.component.html',
-  styleUrls: ['./post-form.component.scss']
+  styleUrls: ['./post-form.component.scss'],
+  providers:[DatePipe]
 })
 export class PostFormComponent implements OnInit {
 
-  edit : boolean = false;
-  item : Post | undefined;
-  btnName : string = "add";
 
- id: number = 0;
- modelTitle: string = 'Add post';
+  item : Post | undefined;
+  btnName : string = "";
+titleMod:String="";
+ _id: number = 0;
+
+
+
 
   post = new Post();
 
   postsData = posts;
+  // myDate = new Date();
 
-  @Input() titleForm: string = '';
+  @Input() title: string = '';
+  @Input() message: string = '';
+  @Input() picture: string = '';
+  @Input() modelTitle: string = '';
+
+
+
 
 
   @Output() onSubmit = new EventEmitter();
@@ -34,9 +46,27 @@ export class PostFormComponent implements OnInit {
 
 
 
-  constructor(private formBuilder : FormBuilder) {}
+  constructor(private formBuilder : FormBuilder,private datePipe: DatePipe,@Inject(MAT_DIALOG_DATA) public data: any) {
+    // this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+
+  }
 
   ngOnInit(): void {
+
+    console.log(this.data.titleForm)
+    this.titleMod = this.data.titleForm;
+    this.btnName = this.data.btnName;
+    this._id=this.data._id;
+
+      let index :  number = this.postsData.findIndex(i => (i._id == this.data._id) );
+      console.log(this.postsData[index])
+      this.post.title=this.postsData[index].title;
+      this.post.message=this.postsData[index].message;
+      this.post.picture=this.postsData[index].picture;
+
+
+
+
 
 
   }
@@ -64,9 +94,21 @@ export class PostFormComponent implements OnInit {
   }
 
   handleOk(form: NgForm) {
-    console.log(form.value)
-    this.postsData.push(form.value);
+
+
+     this.post._id=this.postsData.length++;
+    this.post.title=form.value.title.toString();
+    this.post.message=form.value.message.toString();
+    this.post.picture=form.value.picture.toString();
+    console.log(this.post)
+     // @ts-ignore
+    this.postsData.push(this.post);
     console.log(this.postsData)
+
+    this._id=this.post._id;
+
+
+
   }
   handleChange(info: NzUploadChangeParam): void {
     if (info.file.status !== 'uploading') {
@@ -81,25 +123,7 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-  onAddPost() {
 
-
-   // this.postsData.push(this.post);
-
-
-
-//old method
-//     let index = form.getRawValue().index
-//     console.log(form.value)
-//     if(index != null) {
-//       this.postsData[index] = form.value
-//     } else {
-//       this.postsData.push(form.value)
-//       console.log("new data",this.postsData)
-//
-//     }
-//     this.form.reset() // reset form to empty
-  }
 
 
 

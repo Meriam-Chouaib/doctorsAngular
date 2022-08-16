@@ -107,8 +107,8 @@ export const users = [
   },
 ]
 export const posts = [{
-  _id: '1',
-  title: 'A question to ask',
+  _id: 0,
+  title: 'A question to ask 1',
   user: {
     _id: '1',
     name: 'Emily',
@@ -136,7 +136,7 @@ export const posts = [{
     // user: User;
     // date:Date;
   },{
-    _id:'1',
+    _id:1,
     subject:'yous sjsjjsjsjs',
     user:  {
       _id: '2',
@@ -155,8 +155,8 @@ export const posts = [{
   }],
 },
   {
-    _id: '1',
-    title: 'A question to ask',
+    _id: 1,
+    title: 'A question to ask 2',
     user: {
       _id: '1',
       name: 'Emily',
@@ -202,8 +202,8 @@ export const posts = [{
     picture:"ilagg.jog"
   }
   ,{
-    _id: '1',
-    title: 'A question to ask',
+    _id: 2,
+    title: 'A question to ask 3',
     user: {
       _id: '1',
       name: 'Emily',
@@ -215,7 +215,7 @@ export const posts = [{
     message: 'what can i do if something like this happen..',
     date: "05/08/2022",
     comments: [{
-      _id:'1',
+      _id:4,
       subject:'yous sjsjjsjsjs',
       user:  {
         _id: '2',
