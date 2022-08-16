@@ -1,0 +1,40 @@
+<div class="products-part">
+  <div class="search-add-product-part">
+    <div>
+
+      <nz-input-group [nzSuffix]="suffixIconSearch" class="search">
+        <input type="text" nz-input placeholder="input search text"/>
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search" class="icon-search"></i>
+      </ng-template>
+    </div>
+    <div class="btn-pos">
+      <button class="btn-add-product" (click)="openDialogAddProduct()">+</button>
+    </div>
+  </div>
+
+
+  <div class="products">
+    <!--  <li *ngFor="let item of fakeData | slice:0:3; let i=index" class="dropdown-item" (click)="onClick(item)">{{item.text}}</li>-->
+    <!--  <div *ngFor="let item of fakeData let i = index" >-->
+
+    <div *ngFor="  let item of slicedPage; let i=index">
+      <div class="product">
+<!--        <div class="btn-display">-->
+<!--                <button (click)="deleteProduct(item._id)" class="btn-delete">-->
+
+<!--          <mat-icon>cancel</mat-icon>-->
+<!--        </button>-->
+<!--        </div>-->
+        <app-product [description]="item.description" [title]="item.title" [price]="item.price" [id]="i" class="product-position"></app-product>
+      </div>
+
+    </div>
+
+  </div>
+  <div class=pagination>
+    <nz-pagination [nzPageIndex]="pgNmbr" [nzTotal]="productsData.length" [nzPageSize]="6" (nzPageIndexChange)="onChange($event)" id="demo"></nz-pagination>
+  </div>
+
+</div>

@@ -1,0 +1,9 @@
+.doctors{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  .docter-item{
+    margin: 15px;
+  }
+}

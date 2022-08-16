@@ -1,0 +1,42 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  align-items: center;
+
+  .form-center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    mat-form-field {
+      width: 25vw;
+    }
+
+    .btn-center-form {
+      width: 100%;
+      justify-content: space-evenly;
+
+      .btn-connect {
+        background: black;
+        color: white;
+        padding: 5px 20px;
+        border-radius: 6px;
+      }
+      .btn-connect:hover {
+  opacity: 0.8;
+      }
+
+      .link-register{
+        margin-left: 2px;
+        text-decoration: none;
+        color: black;
+        font-family: cursive;
+        font-weight: 700;
+        font-size: 16px;
+      }
+    }
+  }
+
+
+}

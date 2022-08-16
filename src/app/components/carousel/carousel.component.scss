@@ -1,0 +1,44 @@
+.carrousel {
+  [nz-carousel-content] {
+    text-align: center;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 160px;
+    background: transparent;
+    color: #fff;
+    overflow: hidden;
+    border-radius: 11px;
+
+    .img-carousel {
+      object-fit: cover;
+      width: 73%;
+      height: 100%;
+
+    }
+
+    .ant-carousel {
+      .slick-dots li button {
+        background: #dbb7a9 !important;
+
+      }
+
+      .slick-dots li.slick-active button {
+        background: green !important;
+      }
+
+      .slick-initialized.slick-slider {
+        .slick-list {
+          height: 250px;
+        }
+      }
+
+
+    }
+
+  }
+}
+
+
+

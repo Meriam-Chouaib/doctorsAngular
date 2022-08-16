@@ -1,0 +1,80 @@
+<div class="post-container">
+
+  <!--  <p><label class="label-item">Title : </label>{{title}}</p>-->
+  <!--  <p><label class="label-item">Description : </label>{{description}} </p>-->
+
+  <div class="user-name-img">
+    <img class="user-img" nzSrc="{{image}}" alt="" nz-image>
+    <p class="user-name"> {{name}}</p>
+
+
+  </div>
+  <div class="post">
+    <div class="contenu-post">
+      <p class="post-text title">{{title}}</p>
+      <p class="post-text">{{message}}</p>
+      <p class="post-text date">{{date}}</p>
+      <img nzSrc="" class="post-img" nz-image>
+      <p>{{comments}}</p>
+    </div>
+    <div class="actions-post">
+      <button  (click)="openDialogAddPost()" >
+
+      <span class="material-symbols-outlined">
+      edit
+      </span>
+      </button>
+      <button (click)="deletePost(1)">
+      <span class="material-symbols-outlined">
+        delete
+        </span>
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="nb-reactions">
+    <div><p>{{likes}} likes</p></div>
+    <div><p>{{comments.length}} comments</p></div>
+    <p></p>
+  </div>
+  <!--  <app-reactions   ></app-reactions>-->
+  <div class="reactions">
+    <button (click)="addLike()">
+
+  <span class="material-symbols-outlined">
+thumb_up
+</span>
+    </button>
+    <button (click)="removeLike()">
+    <span class="material-symbols-outlined">
+thumb_down
+</span>
+    </button>
+    <span class="material-symbols-outlined" (click)="displayComments()">
+comment
+</span>
+
+
+  </div>
+
+  <div class="comments-container" *ngIf="this._isShown">
+    <div class="comments">
+      <div class="comment">
+        <!--        @Input() subject: string = '';-->
+        <!--        @Input()  user: string = '';-->
+        <!--        @Input() date: string = '';-->
+        <!--        <div *ngFor="  let item of comments; let i=index">-->
+
+        <app-comment></app-comment>
+        <!--      </div>-->
+      </div>
+    </div>
+    <div class="add-comment">
+      <app-add-comment></app-add-comment>
+    </div>
+  </div>
+
+</div>

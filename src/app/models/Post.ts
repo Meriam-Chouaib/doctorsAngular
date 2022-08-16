@@ -15,7 +15,7 @@ import{Comment} from "./Comment"
 export class Post {
   message : string = '';
   title: string='';
-    _id: string='0';
+    _id?: string='0';
 //   title: string;
   user?: User;
 
@@ -23,4 +23,5 @@ export class Post {
   picture?: string;
   comments?:Comment[];
   likes?:number;
+
 }

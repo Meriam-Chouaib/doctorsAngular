@@ -1,0 +1,78 @@
+.about {
+  background-color: white;
+  .part1 {
+    .about-text1 {
+      font-size: 45px;
+      line-height: normal;
+      font-family: 'Roboto';
+      text-align: center;
+      padding: 32px 35px;
+      color: #00213d;
+
+      .subtext1 {
+        color: #b0c9e8;
+      }
+    }
+
+    .about-text2 {
+      font-size: 27px;
+      color: #e5b7aa;
+      line-height: normal;
+      font-weight: 400;
+    }
+
+    .part1-1 {
+      text-align: center;
+    }
+  }
+
+  .separator {
+    border-bottom: 2px solid #b0c9e8;
+
+    text-align: center;
+    align-items: center;
+    padding: 4px 0px;
+    display: flex;
+    margin: 0px 39%;
+
+    justify-content: center;
+  }
+
+  .part2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 0px;
+
+    .vision-mission {
+      margin: 0px 10px;
+      .vision-mission-img-text{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .vision-mission-img {
+          height: 70px;
+          width: 70px;
+        }
+        p{
+          color: #002039;
+          margin: 0px;
+          font-size: 18px;
+          font-weight: 500;
+
+        }
+      }
+      .vision-mission-txt{
+        font-size: 20px;
+        color: #b0c9e8;
+        line-height: normal;
+        text-align: center;
+        font-weight: 500;
+      }
+
+
+
+    }
+  }
+
+}

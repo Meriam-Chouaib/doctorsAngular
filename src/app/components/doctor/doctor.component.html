@@ -1,0 +1,9 @@
+<div class="doctor">
+  <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
+    <nz-card-meta nzTitle="{{name}}" nzDescription="{{speciality}}"></nz-card-meta>
+  </nz-card>
+
+  <ng-template #coverTemplate class="doctor-img-pos">
+    <img alt="example" src="{{picture}}" class="doctor-img"/>
+  </ng-template>
+</div>

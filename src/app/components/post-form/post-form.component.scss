@@ -1,0 +1,40 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  align-items: center;
+
+  .form-center {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    mat-form-field {
+      width: 25vw;
+
+    }
+
+    .btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .btn-add {
+        background-color: #e39872;
+        color: wheat;
+      }
+      .btn-add:hover{
+        opacity: 0.8;
+      }
+
+      .btn-cancel {
+        background-color: #01182a;
+        color: wheat;
+      }
+      .btn-cancel:hover{
+        opacity: 0.8;
+      }
+    }
+  }
+}

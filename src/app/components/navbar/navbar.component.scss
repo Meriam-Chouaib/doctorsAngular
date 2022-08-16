@@ -1,0 +1,42 @@
+.navbar-header {
+  //padding: 9px 0px;
+  //display: flex;
+  //align-items: center;
+  //justify-content: space-between;
+  //font-size: 16px;
+  //font-weight: 600;
+  //font-family: inherit;
+
+  padding: 9px 13px;
+  border-radius: 15px;
+  display: flex;
+  margin-bottom: 14px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  background-color: white;
+  font-weight: 600;
+  font-family: inherit;
+
+
+.logo{
+  color: #001f3b;;
+
+  font-size: 36px;
+  font-family: 'Indie Flower', cursive;
+
+}
+.nav-header{
+  a{
+    color: #001f3b;;
+    font-weight: 500;
+    font-size: 17px;
+  }
+
+  .btn-login:hover{
+    cursor:pointer;
+  }
+
+}
+}
+

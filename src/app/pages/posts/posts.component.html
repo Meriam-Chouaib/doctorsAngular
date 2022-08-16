@@ -1,0 +1,67 @@
+<div class="posts-page">
+
+
+  <div class="left-side" >
+
+    <div class="user-img-name">
+
+      <img src="http://kapitalis.com/tunisie/wp-content/uploads/2020/05/A.-L.-A..jpg">
+      <p>Ala Chehidi</p>
+
+    </div>
+
+
+    <ul>
+      <li><label class="item-label">Username :</label> Ala</li>
+      <li><label class="item-label">Email :</label> Ala@gmail.com</li>
+      <li><label class="item-label">Adress :</label> Sousse 5012</li>
+    </ul>
+    <button class="edit-informations">
+      Edit informations
+    </button>
+  </div>
+  <div class="container-posts">
+    <div class="add-post">
+      <button (click)="openDialogAddPost()" class="btn-add-post" *ngIf="isLogged">add post</button>
+    </div>
+
+    <div *ngFor="  let item of postsData; let i=index">
+      <app-post [title]="item.title" [message]="item.message"
+                [name]="item.user.name"
+                [image]="item.user.picture"
+                [date]="item.date"
+
+      ></app-post>
+      <!--      [comments]="item.comments"-->
+
+    </div>
+
+
+  </div>
+  <div class="right-side">
+    <div class="rs-raiting">
+      <h2>Add your feed </h2>
+      <nz-rate [ngModel]="2.5" nzAllowHalf></nz-rate>
+    </div>
+    <!--  <video src="https://www.youtube.com/watch?v=h9sEVtoq-o4&list=RDMM&start_radio=1&rv=osCw73O_WMo" type="video/mp4" ></video>-->
+
+    <p class="rs-question">You want us to talk about :</p>
+    <ul>
+      <li><span class="material-symbols-outlined">
+check_box_outline_blank
+</span>
+        Covid
+      </li>
+      <li><span class="material-symbols-outlined">
+check_box_outline_blank
+</span> Advices for women
+      </li>
+      <li><span class="material-symbols-outlined">
+check_box_outline_blank
+</span> Take care of skin
+      </li>
+    </ul>
+
+
+  </div>
+</div>

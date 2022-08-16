@@ -1,0 +1,57 @@
+
+.product {
+  background-color: #f7f7f7;
+  font-size: 14px;
+  padding: 8px 18px;
+  border-radius: 7px;
+  margin: 0 7px;
+  color: #001f3b;
+  width: 256px;
+  font-family: inherit;
+
+  .label-item {
+    font-weight: 700;
+    font-size: 15px;
+    padding: 0px 9px;
+    color: #001f3b;
+
+  }
+
+  .btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+
+    .btn-edit, .btn-delete {
+      background-color: transparent;
+      color: #703f68;
+      border: none;
+      display: none;
+
+
+    }
+  }
+}
+.product:hover{
+  opacity: 0.5;
+
+    background-color: #282f367a;
+  filter: blur(0px);
+  .btns {
+    .btn-edit, .btn-delete {
+      display:block;
+      color: #000000;
+    }}
+  }
+
+
+
+
+
+
+
+

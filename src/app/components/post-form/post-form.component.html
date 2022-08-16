@@ -1,0 +1,54 @@
+.
+<mat-dialog-content class="mat-typography">
+  <div class="form">
+
+
+    <form  #form="ngForm" (submit)="submit();"  class="form-center">
+      <h2 mat-dialog-title> {{modelTitle}}</h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input name="title" matInput placeholder="title"  [(ngModel)]="post.title"  id="title" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Message</mat-label>
+        <textarea  matInput name="message" placeholder="message" [(ngModel)]="post.message" id="message" required></textarea>
+      </mat-form-field>
+
+
+      <nz-upload
+        nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        [nzHeaders]="{ authorization: 'authorization-text' }"
+        (nzChange)="handleChange($event)"
+        id="picture"
+        name="picture"
+        matInput
+
+
+      >
+        <button nz-button>
+          <i nz-icon nzType="upload"></i>
+          add picture to your post
+        </button>
+      </nz-upload>
+      <mat-dialog-actions align="end" class="btns">
+        <button mat-button mat-dialog-close class="btn-cancel" type="submit">Cancel</button>
+<!--        <button mat-button [mat-dialog-close]="true" type="submit" (click)="handleOk()" cdkFocusInitial class="btn-add" [disabled]="!form.valid">-->
+<!--add-->
+<!--          {{btnName}}-->
+<!--        </button>-->
+       <button mat-button [mat-dialog-close]="true" type="submit" (click)="handleOk(form)" cdkFocusInitial class="btn-add" [disabled]="!form.valid">
+<!--          {{btnName}}-->
+      Add
+       </button>
+      </mat-dialog-actions>
+<!--      </ng-container>-->
+    </form>
+
+
+  </div>
+
+</mat-dialog-content>
+
+

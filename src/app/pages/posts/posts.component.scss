@@ -1,0 +1,123 @@
+.posts-page {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  justify-content: center;
+
+  .left-side {
+    width: 37%;
+    padding: 13px 13px;
+    background-color: white;
+    margin: 8px 12px;
+    height: 100vh;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+    .user-img-name {
+      p {
+        font-size: 16px;
+        font-weight: 700;
+        font-family: 'Roboto';
+        padding-top: 13px;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48
+      }
+    }
+
+    img {
+      object-fit: cover;
+      width: 60px;
+      height: 60px;
+      border-radius: 33px;
+    }
+    ul{
+      list-style-type: none;
+      li{
+        padding: 10px 0px;
+        font-weight: 500;
+        .item-label{
+          font-weight: bold;
+        }
+      }
+
+    }
+    .edit-informations{
+      border: none;
+      background-color: #aec7e5;
+      padding: 8px 16px;
+      border-radius: 11px;
+      color: #012039;
+      font-weight: 500;
+    }
+    .edit-informations:hover{
+      background-color: #aec7e58c;
+    }
+  }
+
+  .container-posts {
+    width: 100%;
+    .add-post{
+      background-color: white;
+      padding: 9px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 8px;
+      .btn-add-post{
+        border: none;
+        background-color: #002b4b;
+        color: wheat;
+        padding: 8px 13px;
+        font-weight: 500;
+        border-radius: 14px;
+
+      }
+      .btn-add-post:hover{
+     opacity: 0.8;
+
+      }
+    }
+
+  }
+
+  .right-side {
+    width: 30%;
+    padding: 13px 13px;
+    background-color: white;
+    margin: 8px 12px;
+    height: 100vh;
+    border-radius: 20px;
+
+    .rs-raiting {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 14px 0px;
+
+    }
+    .rs-question{
+      border-bottom: 1px solid #dfcdcd;
+      padding-bottom: 4px;
+    }
+ul{
+  list-style-type: none;
+  padding: 0px;
+}
+    img {
+      object-fit: cover;
+      width: 60px;
+      height: 60px;
+      border-radius: 33px;
+    }
+  }
+}

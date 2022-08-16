@@ -1,0 +1,28 @@
+
+<mat-dialog-content class="mat-typography">
+  <div class="form">
+    <h2 mat-dialog-title>Authentification</h2>
+    <form [formGroup]="loginForm" class="form-center">
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input formControlName="username" matInput placeholder="Username">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput placeholder="Password" formControlName="password">
+      </mat-form-field>
+      <mat-dialog-actions align="end" class="btn-center-form">
+
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect" (click)="login()" >Connect</button>
+        <!--<button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect" (click)="openDialogRegister()" >Register</button>-->
+
+      </mat-dialog-actions>
+
+    </form>
+  </div>
+
+</mat-dialog-content>
+
+

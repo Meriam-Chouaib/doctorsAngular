@@ -1,0 +1,21 @@
+<div class="product product-hover">
+  <div class="btns">
+    <button  class="btn-edit" (click)="openDialogEditProduct(id)" >
+
+      <mat-icon>edit</mat-icon>
+
+    </button>
+    <button (click)="deleteProduct(_id)" class="btn-delete">
+
+      <mat-icon>cancel</mat-icon>
+    </button>
+
+  </div>
+  <p><label class="label-item">Title : </label>{{title}}</p>
+  <p><label class="label-item">Description : </label>{{description}} </p>
+  <p><label class="label-item">Price : </label>{{price}}</p>
+
+
+  </div>
+
+
