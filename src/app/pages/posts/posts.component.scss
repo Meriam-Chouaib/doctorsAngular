@@ -64,6 +64,16 @@
 
   .container-posts {
     width: 100%;
+    .search-add-post-part{
+      display: flex;
+      background-color: white;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 7px;
+      border-radius: 20px;
+.search{
+  border-radius: 20px;
+}
     .add-post{
       background-color: white;
       padding: 9px;
@@ -85,6 +95,7 @@
      opacity: 0.8;
 
       }
+    }
     }
 
   }

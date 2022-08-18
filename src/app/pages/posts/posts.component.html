@@ -21,9 +21,21 @@
     </button>
   </div>
   <div class="container-posts">
-    <div class="add-post">
-      <button (click)="openDialogAddPost('Add post','Add')" class="btn-add-post" *ngIf="isLogged">add post</button>
+    <div class="search-add-post-part">
+      <div>
+
+        <nz-input-group [nzSuffix]="suffixIconSearch" class="search" >
+          <input type="text" nz-input placeholder="input search text"/>
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <i nz-icon nzType="search" class="icon-search"></i>
+        </ng-template>
+      </div>
+      <div class="add-post">
+        <button (click)="openDialogAddPost('Add post','Add',-1)" class="btn-add-post" *ngIf="isLogged">add post</button>
+      </div>
     </div>
+
 
     <div *ngFor="  let item of postsData; let i=index">
       <app-post [title]="item.title"
@@ -48,22 +60,16 @@
     <!--  <video src="https://www.youtube.com/watch?v=h9sEVtoq-o4&list=RDMM&start_radio=1&rv=osCw73O_WMo" type="video/mp4" ></video>-->
 
     <p class="rs-question">You want us to talk about :</p>
-    <ul>
-      <li><span class="material-symbols-outlined">
+
+
+    <ul *ngFor="  let item of talkData" >
+      <li ><span nz-checkbox class="material-symbols-outlined">
 check_box_outline_blank
 </span>
-        Covid
-      </li>
-      <li><span class="material-symbols-outlined">
-check_box_outline_blank
-</span> Advices for women
-      </li>
-      <li><span class="material-symbols-outlined">
-check_box_outline_blank
-</span> Take care of skin
+        {{item}}
       </li>
     </ul>
 
 
-  </div>
+</div>
 </div>

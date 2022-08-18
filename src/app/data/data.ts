@@ -251,3 +251,4 @@ export const posts = [{
     }],
   }
 ]
+export const talkAbout =["covid","Advices for women","take care of skin"];

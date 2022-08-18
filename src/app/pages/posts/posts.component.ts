@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {posts} from "../../data/data";
+import{talkAbout} from "../../data/data";
 import {ProductFormComponent} from "../../components/product-form/product-form.component";
 import {successResult} from "../../../helper/success-result";
 
@@ -16,20 +17,22 @@ let titleForm : string;
 
 export class PostsComponent implements OnInit {
 postsData = posts;
+talkData = talkAbout;
 @Input() isLogged:boolean=true;
 
   constructor(public dialog: MatDialog,) { }
 
   ngOnInit(): void {
-    console.log(this.postsData[0].comments)
+    // console.log(this.postsData[0].comments)
+    console.log(this.talkData)
 
   }
-  openDialogAddPost(titleForm:string,btnName:string): void {
+  openDialogAddPost(titleForm:string,btnName:string,_id:number): void {
     console.log(titleForm)
     edit = false;
     const dialogRef = this.dialog.open(PostFormComponent, {
 
-      data: {titleForm: titleForm,btnName:btnName}
+      data: {titleForm: titleForm,btnName:btnName,_id:-1}
     });
 
     dialogRef.afterClosed().subscribe(result => {

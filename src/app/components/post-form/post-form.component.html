@@ -38,7 +38,7 @@
 <!--add-->
 <!--          {{btnName}}-->
 <!--        </button>-->
-       <button mat-button [mat-dialog-close]="true" type="submit" (click)="handleOk(form)" cdkFocusInitial class="btn-add" [disabled]="!form.valid">
+       <button mat-button [mat-dialog-close]="true" type="submit" (click)="handleOk(form,post._id)" cdkFocusInitial class="btn-add" [disabled]="!form.valid">
 <!--          {{btnName}}-->
          {{this.btnName}}
        </button>

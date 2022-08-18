@@ -55,7 +55,8 @@ import { PostFormComponent } from './components/post-form/post-form.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import {NzModalModule} from "ng-zorro-antd/modal";
-
+import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
+import {StoreModule} from "@ngrx/store";
 
 @NgModule({
   imports: [
@@ -89,7 +90,9 @@ import {NzModalModule} from "ng-zorro-antd/modal";
     NzRateModule,
     NzUploadModule,
     NzImageModule,
-    NzModalModule
+    NzModalModule,
+    NzPopconfirmModule,
+    StoreModule
 
 
   ],
