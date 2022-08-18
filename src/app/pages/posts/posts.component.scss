@@ -9,13 +9,14 @@
     width: 37%;
     padding: 13px 13px;
     background-color: white;
-    margin: 8px 12px;
+    margin: 0px 12px 0px 0px;
     height: 100vh;
     border-radius: 20px;
     display: flex;
     align-items: center;
 
     flex-direction: column;
+
     .user-img-name {
       p {
         font-size: 16px;
@@ -23,12 +24,12 @@
         font-family: 'Roboto';
         padding-top: 13px;
       }
+
       .material-symbols-outlined {
-        font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 48
+        font-variation-settings: 'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
       }
     }
 
@@ -38,18 +39,22 @@
       height: 60px;
       border-radius: 33px;
     }
-    ul{
+
+    ul {
       list-style-type: none;
-      li{
+
+      li {
         padding: 10px 0px;
         font-weight: 500;
-        .item-label{
+
+        .item-label {
           font-weight: bold;
         }
       }
 
     }
-    .edit-informations{
+
+    .edit-informations {
       border: none;
       background-color: #aec7e5;
       padding: 8px 16px;
@@ -57,45 +62,51 @@
       color: #012039;
       font-weight: 500;
     }
-    .edit-informations:hover{
+
+    .edit-informations:hover {
       background-color: #aec7e58c;
     }
   }
 
   .container-posts {
     width: 100%;
-    .search-add-post-part{
+
+    .search-add-post-part {
       display: flex;
       background-color: white;
       align-items: center;
       justify-content: space-between;
       padding-left: 7px;
       border-radius: 20px;
-.search{
-  border-radius: 20px;
-}
-    .add-post{
-      background-color: white;
-      padding: 9px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      margin-top: 8px;
-      .btn-add-post{
-        border: none;
-        background-color: #002b4b;
-        color: wheat;
-        padding: 8px 13px;
-        font-weight: 500;
-        border-radius: 14px;
 
+      .search {
+        border-radius: 20px;
       }
-      .btn-add-post:hover{
-     opacity: 0.8;
 
+      .add-post {
+        background-color: white;
+        padding: 9px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 8px;
+
+        .btn-add-post {
+          border: none;
+          background-color: #002b4b;
+          color: wheat;
+          padding: 8px 13px;
+          font-weight: 500;
+          border-radius: 14px;
+
+        }
+
+        .btn-add-post:hover {
+          opacity: 0.8;
+
+        }
       }
-    }
     }
 
   }
@@ -104,7 +115,7 @@
     width: 30%;
     padding: 13px 13px;
     background-color: white;
-    margin: 8px 12px;
+    margin: 0px 0px 0px 12px;
     height: 100vh;
     border-radius: 20px;
 
@@ -116,14 +127,17 @@
       padding: 14px 0px;
 
     }
-    .rs-question{
+
+    .rs-question {
       border-bottom: 1px solid #dfcdcd;
       padding-bottom: 4px;
     }
-ul{
-  list-style-type: none;
-  padding: 0px;
-}
+
+    ul {
+      list-style-type: none;
+      padding: 0px;
+    }
+
     img {
       object-fit: cover;
       width: 60px;

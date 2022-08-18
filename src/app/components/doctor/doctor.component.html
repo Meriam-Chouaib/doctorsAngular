@@ -1,9 +1,28 @@
-<div class="doctor">
+<div class="doctor-container">
+
+  <div class="doctor">
+    <div class="actions-post">
+      <button (click)="openDialogAddDoctor('Edit doctor','edit',_id)" class="btn-act">
+
+      <span class="material-symbols-outlined">
+      edit
+      </span>
+      </button>
+      <button (click)="deletePost(_id)" nz-popconfirm  class="btn-act" nzPopconfirmTitle="Are you sure?" [nzPopconfirmShowArrow]="false">
+      <span class="material-symbols-outlined" >
+        delete
+        </span>
+      </button>
+    </div>
+
   <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
-    <nz-card-meta nzTitle="{{name}}" nzDescription="{{speciality}}"></nz-card-meta>
+    <nz-card-meta nzTitle="{{name}}" nzDescription="Speciality: {{speciality}}"></nz-card-meta>
+    <nz-card-meta  nzDescription=" {{description}}"></nz-card-meta>
+
   </nz-card>
 
   <ng-template #coverTemplate class="doctor-img-pos">
-    <img alt="example" src="{{picture}}" class="doctor-img"/>
+    <img alt="{{name}}" nzSrc="{{picture}}" class="doctor-img" nz-image/>
   </ng-template>
+  </div>
 </div>

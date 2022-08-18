@@ -1,4 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {PostFormComponent} from "../post-form/post-form.component";
+import {successResult} from "../../../helper/success-result";
+import {MatDialog} from "@angular/material/dialog";
+import {LoginComponent} from "../../auth/login/login.component";
 
 @Component({
   selector: 'app-doctor',
@@ -8,11 +12,35 @@ import {Component, Input, OnInit} from '@angular/core';
 export class DoctorComponent implements OnInit {
   @Input() name: string = '';
   @Input()  speciality:string = '';
+  @Input()  description:string = '';
   @Input() picture: string | null= '';
-  @Input() id: number = 0;
-  constructor() { }
+  @Input() _id: number = 0;
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+  openDialogAddDoctor(titleForm: string, btnName: string, _id: number): void {
+
+    const dialogRef = this.dialog.open(LoginComponent, {
+
+      data: {titleForm: titleForm, btnName: btnName, _id: _id}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      new successResult(true, result, 1, "success")
+    });
+  }
+  deletePost(_id: number) {
+    console.log("delete", _id);
+    // let index: number = this.postsData.findIndex(i => (i._id == _id));
+    //
+    // if (index !== -1) {
+    //   this.postsData.splice(_id, 1);
+    //   console.log(this.postsData)
+    // }
+
+
   }
 
 }

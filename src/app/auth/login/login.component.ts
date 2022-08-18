@@ -1,5 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {RegisterComponent} from "../register/register.component";
 import {ProductsService} from "../../services/product-service/products.service";
 import {AuthService} from "../../services/auth-service/auth.service";
@@ -7,6 +7,7 @@ import {successResult} from "../../../helper/success-result";
 import {error} from "@angular/compiler/src/util";
 import {users} from "../../data/data";
 import {User} from "../../models/User";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-login',
@@ -14,20 +15,36 @@ import {User} from "../../models/User";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @Output() user = new EventEmitter<User>();
+  btnName: string = "";
+  titleMod: string = "";
 
-  loginForm !: FormGroup;
   private dialog: any;
 
+  user = new User();
   usersData = users;
 
-  constructor(private formBuilder: FormBuilder, private api: AuthService,) {
+  @Input() name: string = '';
+  @Input() username: string = '';
+
+  @Input() speciality: string = '';
+
+  @Output() onCancel = new EventEmitter();
+
+  constructor(private api: AuthService, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
-    this.validator();
-    this.usersData;
-
+    //this.validator();
+    this.titleMod = this.data.titleForm;
+    this.btnName = this.data.btnName;
+    console.log(this.usersData)
+    console.log(this.data._id    )
+    let index: number = this.usersData.findIndex(i => (i._id == this.data._id));
+    console.log(index)
+    console.log(this.usersData[index])
+    this.user.username = this.usersData[index].username.toString();
+    this.user.speciality = this.usersData[index].speciality;
+    console.log(this.usersData)
   }
 
   /*openDialogRegister(): void {
@@ -37,40 +54,45 @@ export class LoginComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }*/
-  validator() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+  // validator() {
+  //   this.loginForm = this.formBuilder.group({
+  //     username: ['', Validators.required],
+  //     password: ['', Validators.required],
+  //
+  //   })
+  // }
 
-    })
+  cancel() {
+    this.onCancel.emit();
   }
 
 
+  login(loginForm: NgForm): any {
 
-  login(): any {
+    let isLogged: boolean;
+    let index: number = this.usersData.findIndex(i => (i.username == loginForm.value.username) && (i.password == loginForm.value.password));
+    if (loginForm.valid) {
+      if (index != -1) {
+        try {
+          let user = this.usersData[index];
+          isLogged = true;
+          // this.user.emit(user)
 
-    let isLogged:boolean;
-    let index :  number = this.usersData.findIndex(i => (i.username == this.loginForm.value.username) && (i.password == this.loginForm.value.password));
-    if (this.loginForm.valid && index != -1) {
-      try {
-        let user: any = this.usersData[index];
-        isLogged = true;
-        this.user.emit(user)
+          console.log("success", user)
+          //this.api.signIn(this.loginForm.value)
 
-        console.log("success",user)
+        } catch (e) {
+          return new successResult(false, [], 0, "failed")
+          console.log(successResult)
+        }
 
-
-        //this.api.signIn(this.loginForm.value)
-
-       //  return new successResult(true, this.usersData[index], 1, "success")
-
-      } catch (e) {
-        return new successResult(false, [], 0, "failed")
+      } else {
+        console.log("add user", loginForm.value)
       }
-
     } else {
       isLogged = false;
-      console.log("no user", this.loginForm.value)
+      console.log("form no valid", loginForm.value)
+      console.log("form valid", loginForm.valid)
     }
   };
 }

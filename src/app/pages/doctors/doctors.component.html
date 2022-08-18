@@ -1,7 +1,28 @@
-<div class="doctors">
-  <div *ngFor="  let item of usersData; let i=index" class="docter-item">
 
-  <app-doctor [name]="item.name" [speciality]="item.speciality" [picture]="item.picture"   ></app-doctor>
+
+
+<div class="search-add-product-part">
+  <div>
+
+    <nz-input-group [nzSuffix]="suffixIconSearch" class="search">
+      <input type="text" nz-input placeholder="input search text"/>
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search" class="icon-search"></i>
+    </ng-template>
+  </div>
+  <div class="btn-pos">
+    <button class="btn-add-product" (click)="openDialogAddDoctor('Add doctor','Add',-1)" >+</button>
   </div>
 </div>
+<div class="doctors">
+
+  <div *ngFor="  let item of usersData; let i=index" class="docter-item">
+
+  <app-doctor [name]="item.name"  [speciality]="item.speciality" [picture]="item.picture" [_id]="item._id" >
+
+  </app-doctor>
+  </div>
+</div>
+
 

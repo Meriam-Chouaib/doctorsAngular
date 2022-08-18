@@ -6,7 +6,15 @@
 @import "~ng-zorro-antd/button/style/index.min.css";  /* Import one component's styles */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-image: url(https://chorus.stimg.co/22530745/merlin_57006531.jpg?fit=crop&crop=faces);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 36px 0px;
+}
 :host {
   display: flex;
   flex-direction: column;

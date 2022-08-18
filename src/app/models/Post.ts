@@ -1,29 +1,18 @@
 import {User} from "./User";
-import{Comment} from "./Comment"
+import {Comment} from "./Comment"
 
-// export interface Post {
-//   _id?: string;
-//   title: string;
-//   user?: User;
-//   message : string;
-//   date?:Date;
-//   picture?: string;
-//   comments?:Comment[];
-//   likes?:number;
-//
-// }
 export class Post {
-  _id: number=0;
-  title: string='';
-  message : string = '';
+  _id: number = 0;
+  title: string = '';
+  message: string = '';
 
 
 //   title: string;
   user?: User;
 
-  date?:Date;
+  date?: Date;
   picture?: string;
-  comments?:Comment[];
-  likes?:number;
+  comments?: Comment[];
+  likes?: number;
 
 }

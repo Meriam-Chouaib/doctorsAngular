@@ -16,8 +16,11 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  openDialogLogin(): void {
-    const dialogRef = this.dialog.open(LoginComponent);
+  openDialogLogin(titleForm:string,btnName:string): void {
+    const dialogRef = this.dialog.open(LoginComponent,{
+
+      data: {titleForm: titleForm,btnName:btnName}
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       new successResult(true, result, 1, "success")

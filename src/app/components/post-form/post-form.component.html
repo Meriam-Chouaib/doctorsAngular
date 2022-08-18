@@ -4,46 +4,31 @@
     <h2 mat-dialog-title> {{this.titleMod}}</h2>
 
 
-    <form  #form="ngForm" (submit)="submit();"  class="form-center">
+    <form #form="ngForm" (submit)="submit();" class="form-center">
 
       <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
-        <input name="title" matInput placeholder="title"  [(ngModel)]="post.title"  id="title" required>
+        <input name="title" matInput placeholder="title" [(ngModel)]="post.title" id="title" required>
       </mat-form-field>
 
       <mat-form-field appearance="outline" color="primary">
         <mat-label>Message</mat-label>
-        <textarea  matInput name="message" placeholder="message" [(ngModel)]="post.message" id="message" required></textarea>
+        <textarea matInput name="message" placeholder="message" [(ngModel)]="post.message" id="message"
+                  required></textarea>
       </mat-form-field>
 
-<input type="file"   name="picture" [(ngModel)]="post.picture"  id="picture">
-<!--      <nz-upload-->
-<!--        nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"-->
-<!--        [nzHeaders]="{ authorization: 'authorization-text' }"-->
-<!--        (nzChange)="handleChange($event)"-->
-<!--       -->
-<!--        name="picture"-->
-<!--        matInput-->
+      <input type="file" name="picture" [(ngModel)]="post.picture" id="picture">
 
-
-<!--      >-->
-<!--        <button nz-button>-->
-<!--          <i nz-icon nzType="upload"></i>-->
-<!--          add picture to your post-->
-<!--        </button>-->
-<!--      </nz-upload>-->
       <mat-dialog-actions align="end" class="btns">
         <button mat-button mat-dialog-close (click)="cancel()" class="btn-cancel" type="submit">Cancel</button>
-<!--        <button mat-button [mat-dialog-close]="true" type="submit" (click)="handleOk()" cdkFocusInitial class="btn-add" [disabled]="!form.valid">-->
-<!--add-->
-<!--          {{btnName}}-->
-<!--        </button>-->
-       <button mat-button [mat-dialog-close]="true" type="submit" (click)="handleOk(form,post._id)" cdkFocusInitial class="btn-add" [disabled]="!form.valid">
-<!--          {{btnName}}-->
-         {{this.btnName}}
-       </button>
+
+        <button mat-button [mat-dialog-close]="true" type="submit" (click)="handleOk(form,post._id)" cdkFocusInitial
+                class="btn-add" [disabled]="!form.valid">
+
+          {{this.btnName}}
+        </button>
       </mat-dialog-actions>
-<!--      </ng-container>-->
+
     </form>
 
 

@@ -1,9 +1,45 @@
+
+
+
+.search-add-product-part {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0px 11px 0px;
+
+  .search {
+    box-shadow: #5d6466 2px 3px 14px 0px;
+
+    border-radius: 10px;
+    border: solid 1px #9b9b9b38;
+  }
+
+  .icon-search {
+    color: #163d64;
+  }
+
+  .btn-pos {
+
+
+    .btn-add-product {
+      color: #163d64;
+      padding: 6px 12px;
+      font-size: 24px;
+      font-weight: 500;
+      border-radius: 19px;
+      border: none;
+    }
+  }
+}
 .doctors{
   display: flex;
   flex-direction: row;
   width: 100%;
+  justify-content: center;
   flex-wrap: wrap;
+
   .docter-item{
     margin: 15px;
   }
 }
+

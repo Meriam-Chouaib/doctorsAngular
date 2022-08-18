@@ -21,7 +21,7 @@ export class PostFormComponent implements OnInit {
 
   item: Post | undefined;
   btnName: string = "";
-  titleMod: String = "";
+  titleMod: string = "";
   _id: number = 0;
 
 
@@ -40,7 +40,7 @@ export class PostFormComponent implements OnInit {
   @Output() onCancel = new EventEmitter();
 
 
-  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor( private datePipe: DatePipe, @Inject(MAT_DIALOG_DATA) public data: any) {
     // this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
 
   }

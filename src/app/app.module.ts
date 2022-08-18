@@ -56,7 +56,11 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
-import {StoreModule} from "@ngrx/store";
+import {StoreModule, MetaReducer} from "@ngrx/store";
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { DoctorFormComponent } from './components/doctor-form/doctor-form.component';
+
 
 @NgModule({
   imports: [
@@ -92,7 +96,9 @@ import {StoreModule} from "@ngrx/store";
     NzImageModule,
     NzModalModule,
     NzPopconfirmModule,
-    StoreModule
+    StoreModule,
+    EffectsModule,
+    StoreDevtoolsModule
 
 
   ],
@@ -117,6 +123,7 @@ import {StoreModule} from "@ngrx/store";
     AddCommentComponent,
     FooterComponent,
     PostFormComponent,
+    DoctorFormComponent,
 
 
   ],

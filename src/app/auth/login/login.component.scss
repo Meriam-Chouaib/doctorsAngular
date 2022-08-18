@@ -18,16 +18,26 @@
       justify-content: space-evenly;
 
       .btn-connect {
-        background: black;
-        color: white;
-        padding: 5px 20px;
+
+        background-color:#e39872;
+        color: wheat;
+
+        padding: 2px 20px;
         border-radius: 6px;
       }
       .btn-connect:hover {
   opacity: 0.8;
       }
+      .btn-cancel{
+        padding: 2px 20px;
+        background-color: #01182a;
+        color: wheat;
 
-      .link-register{
+      }
+      .btn-cancel:hover{
+      }
+
+        .link-register{
         margin-left: 2px;
         text-decoration: none;
         color: black;
