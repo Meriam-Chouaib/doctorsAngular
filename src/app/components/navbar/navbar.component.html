@@ -28,11 +28,18 @@
           <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
           </li>
+          <li class="nav-item" *ngIf="isLogged">
+            <a class="nav-link" href="/about">{{this.user.name}}</a>
+          </li>
+          <li class="nav-item" *ngIf="isLogged">
+            <img nzSrc="{{this.user.picture}}" class="user-img" nz-image>
 
-          <li class="nav-item">
+          </li>
+
+          <li class="nav-item" *ngIf="!isLogged">
           <a class="nav-link btn-login" (click)="openDialogLogin('Sign in','Connect')">Login</a>
         </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="!isLogged">
             <a class="nav-link btn-login" (click)="openDialogLogin('Sign up','Confirm')">Register</a>
           </li>
 

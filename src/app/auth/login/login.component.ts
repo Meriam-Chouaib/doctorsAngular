@@ -20,20 +20,23 @@ export class LoginComponent implements OnInit {
 
   private dialog: any;
 
-  user = new User();
+  //user = new User();
   usersData = users;
 
+  @Input() public user: User=new User();
   @Input() name: string = '';
   @Input() username: string = '';
 
   @Input() speciality: string = '';
 
   @Output() onCancel = new EventEmitter();
+  @Output() sendUser: EventEmitter<any> = new EventEmitter();
 
   constructor(private api: AuthService, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
+    console.log(this.user)
     //this.validator();
     this.titleMod = this.data.titleForm;
     this.btnName = this.data.btnName;
@@ -76,10 +79,12 @@ export class LoginComponent implements OnInit {
         try {
           let user = this.usersData[index];
           isLogged = true;
-          // this.user.emit(user)
+
 
           console.log("success", user)
           //this.api.signIn(this.loginForm.value)
+
+          this.sendUser.emit(user);
 
         } catch (e) {
           return new successResult(false, [], 0, "failed")

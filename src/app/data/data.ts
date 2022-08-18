@@ -107,6 +107,14 @@ export const users = [
     speciality: 'gynecologist',
     picture: 'https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q='
   },
+  {
+    _id: 8,
+    name: 'aaa',
+    username: 'aaa',
+    password: 'aaa',
+    speciality: 'gynecologist',
+    picture: 'https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q='
+  },
 ]
 export const posts = [{
   _id: 0,
