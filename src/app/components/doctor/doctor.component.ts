@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PostFormComponent} from "../post-form/post-form.component";
 import {successResult} from "../../../helper/success-result";
 import {MatDialog} from "@angular/material/dialog";
-import {LoginComponent} from "../../auth/login/login.component";
+import {LoginComponent} from "../login/login.component";
 
 @Component({
   selector: 'app-doctor',

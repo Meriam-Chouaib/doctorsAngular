@@ -3,8 +3,7 @@ import {fakeData, users} from '../../data/data'
 import {PostFormComponent} from "../../components/post-form/post-form.component";
 import {MatDialog} from "@angular/material/dialog";
 import {successResult} from "../../../helper/success-result";
-import {DoctorFormComponent} from "../../components/doctor-form/doctor-form.component";
-import {LoginComponent} from "../../auth/login/login.component";
+import {LoginComponent} from "../../components/login/login.component";
 @Component({
   selector: 'app-doctors',
   templateUrl: './doctors.component.html',

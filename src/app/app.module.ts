@@ -20,11 +20,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProductsService} from "./services/product-service/products.service";
 import {HttpClient} from "@angular/common/http";
 import {HttpClientModule} from "@angular/common/http";
-import { LoginComponent } from './auth/login/login.component';
-import {AppRoutingModule} from "./app-routing.module";
+import { LoginComponent } from './components/login/login.component';
+import {AppRoutingModule} from "./config/route/app-routing.module";
 import { HomeComponent } from './pages/home/home.component';
 import {MatListModule} from "@angular/material/list";
-import { RegisterComponent } from './auth/register/register.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductComponent } from './components/product/product.component';
@@ -59,7 +58,6 @@ import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {StoreModule, MetaReducer} from "@ngrx/store";
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { DoctorFormComponent } from './components/doctor-form/doctor-form.component';
 
 
 @NgModule({
@@ -108,7 +106,6 @@ import { DoctorFormComponent } from './components/doctor-form/doctor-form.compon
     ProductFormComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent,
     NavbarComponent,
     ProductComponent,
     ListProductsComponent,
@@ -123,7 +120,6 @@ import { DoctorFormComponent } from './components/doctor-form/doctor-form.compon
     AddCommentComponent,
     FooterComponent,
     PostFormComponent,
-    DoctorFormComponent,
 
 
   ],

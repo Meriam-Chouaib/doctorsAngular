@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {LoginComponent} from "../../auth/login/login.component";
+import {LoginComponent} from "../login/login.component";
 import {successResult} from "../../../helper/success-result";
 import {MatDialog} from "@angular/material/dialog";
 import {User} from "../../models/User";

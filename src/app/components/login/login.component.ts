@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
-import {RegisterComponent} from "../register/register.component";
 import {ProductsService} from "../../services/product-service/products.service";
 import {AuthService} from "../../services/auth-service/auth.service";
 import {successResult} from "../../../helper/success-result";
@@ -8,6 +7,8 @@ import {error} from "@angular/compiler/src/util";
 import {users} from "../../data/data";
 import {User} from "../../models/User";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../ngrx/states/app.state";
 
 @Component({
   selector: 'app-login',
@@ -32,12 +33,12 @@ export class LoginComponent implements OnInit {
   @Output() onCancel = new EventEmitter();
   @Output() sendUser: EventEmitter<any> = new EventEmitter();
 
+  // constructor(private api: AuthService, @Inject(MAT_DIALOG_DATA) public data: any,public store: Store<AppState>) {
   constructor(private api: AuthService, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
-    console.log(this.user)
-    //this.validator();
+
     this.titleMod = this.data.titleForm;
     this.btnName = this.data.btnName;
     console.log(this.usersData)
