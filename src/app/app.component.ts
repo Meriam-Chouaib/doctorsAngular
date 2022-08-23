@@ -6,6 +6,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {ProductModel} from "./models/Product";
 import {successResult} from "../helper/success-result";
 import {Store} from "@ngrx/store";
+// import * as fromStore from '@app/state';
 
 
 @Component({

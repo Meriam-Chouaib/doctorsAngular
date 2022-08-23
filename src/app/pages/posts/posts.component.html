@@ -1,29 +1,31 @@
 <div class="posts-page">
 
 
-  <div class="left-side" >
+  <div class="left-side" *ngIf="this.user._id!=-1">
 
     <div class="user-img-name">
 
-      <img src="http://kapitalis.com/tunisie/wp-content/uploads/2020/05/A.-L.-A..jpg">
-      <p>Ala Chehidi</p>
+      <img nzSrc="{{this.user.picture}}" class="user-img" nz-image>
+
+      <p>{{this.user.username}}</p>
 
     </div>
 
 
-    <ul>
-      <li><label class="item-label">Username :</label> Ala</li>
-      <li><label class="item-label">Email :</label> Ala@gmail.com</li>
-      <li><label class="item-label">Adress :</label> Sousse 5012</li>
+    <ul >
+      <li><label class="item-label">Username :</label> {{this.user.username}}</li>
+      <li><label class="item-label">name :</label>{{this.user.name}}</li>
+      <li><label class="item-label"> Description:</label> {{this.user.description}}</li>
+<!--      <li><label class="item-label"> My posts:</label> {{this.user.description}}</li>-->
+
     </ul>
-    <button class="edit-informations">
+    <button class="edit-informations" (click)="openDialogLogin('Edit informations','Confirm')">
       Edit informations
     </button>
   </div>
   <div class="container-posts">
     <div class="search-add-post-part">
       <div>
-
         <nz-input-group [nzSuffix]="suffixIconSearch" class="search" >
           <input type="text" nz-input placeholder="input search text"/>
         </nz-input-group>

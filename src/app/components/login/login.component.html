@@ -1,37 +1,63 @@
 <mat-dialog-content class="mat-typography">
   <div class="form">
     <h2 mat-dialog-title>{{this.titleMod}}</h2>
-    <form #loginForm="ngForm" class="form-center" (click)="this.titleMod!='Sign in'?login(loginForm):login(loginForm)">
+    <form #loginForm="ngForm" class="form-center">
 
 
-      <mat-form-field appearance="outline"  *ngIf="this.titleMod!='Sign in'&&this.titleMod!='Edit doctor'" >
+      <mat-form-field appearance="outline" *ngIf="this.titleMod!='Sign in'&&this.titleMod!='Edit doctor'">
         <mat-label>Name</mat-label>
         <input name="name" matInput placeholder="Name" [(ngModel)]="user.name">
       </mat-form-field>
-      <mat-form-field appearance="outline"  *ngIf="this.titleMod!='Add doctor'">
+      <mat-form-field appearance="outline" *ngIf="this.titleMod!='Add doctor'">
         <mat-label>Username</mat-label>
         <input name="username" matInput placeholder="Username" [(ngModel)]="user.username">
       </mat-form-field>
+      <mat-form-field appearance="outline" *ngIf="!this.titleMod.localeCompare('Edit informations')">
+        <mat-label>Description</mat-label>
+        <input name="description" matInput placeholder="Description" [(ngModel)]="user.description">
+      </mat-form-field>
+
       <mat-form-field appearance="outline" *ngIf="this.titleMod=='Add doctor'||this.titleMod=='Edit doctor'">
         <mat-label>speciality</mat-label>
         <input name="speciality" matInput placeholder="speciality" [(ngModel)]="user.speciality">
       </mat-form-field>
-      <mat-form-field appearance="outline" *ngIf="this.titleMod!='Add doctor'&&this.titleMod!='Edit doctor'">
+      <mat-form-field appearance="outline"
+                      *ngIf="!this.titleMod.localeCompare('Sign in')|| !this.titleMod.localeCompare('Sign up')">
         <mat-label>Password</mat-label>
         <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="user.password">
       </mat-form-field>
       <mat-form-field appearance="outline" *ngIf="this.titleMod=='Sign up'">
         <mat-label>Confirm password</mat-label>
-        <input type="password" matInput placeholder="Confirm password" name="confirmPassword" [(ngModel)]="user.password">
+        <input type="password" matInput placeholder="Confirm password" name="confirmPassword"
+               [(ngModel)]="user.password">
       </mat-form-field>
-<!--      <input type="file" name="picture" [(ngModel)]="user.picture" id="picture" *ngIf="this.titleMod=='Sign up'||'Add doctor'">-->
-      <input type="file" name="picture" [(ngModel)]="user.picture" id="picture" *ngIf="this.titleMod!='Sign in'&&this.titleMod!='Edit doctor'">
+      <!--      <input type="file" name="picture" [(ngModel)]="user.picture" id="picture" *ngIf="this.titleMod=='Sign up'||'Add doctor'">-->
+      <input type="file" name="picture" [(ngModel)]="user.picture" id="picture"
+             *ngIf="this.titleMod!='Sign in'&&this.titleMod!='Edit doctor'">
 
       <mat-dialog-actions align="end" class="btn-center-form">
 
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect" [disabled]="!loginForm.valid" >  {{this.btnName}}</button>
-<!--        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect" [disabled]="!loginForm.valid">  {{this.btnName}}</button>-->
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-cancel" (click)="cancel()">  cancel</button>
+        <!--        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect"-->
+        <!--                [disabled]="!loginForm.valid">  {{this.btnName}}</button>-->
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect"
+                (click)="signUp(loginForm)"
+                [disabled]="!loginForm.valid"
+                *ngIf="!this.titleMod.localeCompare('Sign up')"> Add
+        </button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect"
+                [disabled]="!loginForm.valid"
+                *ngIf="!this.titleMod.localeCompare('Sign in')"
+                type="submit"
+                (click)="signIn(loginForm)"> Connect
+        </button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect"
+                [disabled]="!loginForm.valid" *ngIf="!this.titleMod.localeCompare('Edit informations')" type="submit"
+                (click)="signIn(loginForm)"> Confirm
+        </button>
+
+        <!--        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect" [disabled]="!loginForm.valid">  {{this.btnName}}</button>-->
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-cancel" (click)="cancel()"> cancel
+        </button>
         <!--<button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect" (click)="openDialogRegister()" >Register</button>-->
 
       </mat-dialog-actions>

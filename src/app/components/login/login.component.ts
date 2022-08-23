@@ -18,13 +18,15 @@ import {AppState} from "../../ngrx/states/app.state";
 export class LoginComponent implements OnInit {
   btnName: string = "";
   titleMod: string = "";
+  isLogged: boolean = false;
 
   private dialog: any;
 
-  //user = new User();
+  user = new User();
+
   usersData = users;
 
-  @Input() public user: User=new User();
+  // @Input() public user: User = new User("","","");
   @Input() name: string = '';
   @Input() username: string = '';
 
@@ -34,21 +36,14 @@ export class LoginComponent implements OnInit {
   @Output() sendUser: EventEmitter<any> = new EventEmitter();
 
   // constructor(private api: AuthService, @Inject(MAT_DIALOG_DATA) public data: any,public store: Store<AppState>) {
+  private loginForm: NgForm | undefined;
+
   constructor(private api: AuthService, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
 
-    this.titleMod = this.data.titleForm;
-    this.btnName = this.data.btnName;
-    console.log(this.usersData)
-    console.log(this.data._id    )
-    let index: number = this.usersData.findIndex(i => (i._id == this.data._id));
-    console.log(index)
-    console.log(this.usersData[index])
-    this.user.username = this.usersData[index].username.toString();
-    this.user.speciality = this.usersData[index].speciality;
-    console.log(this.usersData)
+    this.getUserAndUpdate();
   }
 
   /*openDialogRegister(): void {
@@ -66,39 +61,40 @@ export class LoginComponent implements OnInit {
   //   })
   // }
 
+  getUserAndUpdate() {
+    this.titleMod = this.data.titleForm;
+    this.btnName = this.data.btnName;
+    // console.log(this.usersData)
+    // console.log(this.data._id)
+    let index: number = this.usersData.findIndex(i => (i._id == this.data._id));
+    console.log(index)
+    console.log(this.usersData[index])
+    this.user.username = this.usersData[index].username.toString();
+    this.user.speciality = this.usersData[index].speciality;
+    console.log(this.usersData)
+  }
+
   cancel() {
     this.onCancel.emit();
   }
 
-
-  login(loginForm: NgForm): any {
-
-    let isLogged: boolean;
-    let index: number = this.usersData.findIndex(i => (i.username == loginForm.value.username) && (i.password == loginForm.value.password));
-    if (loginForm.valid) {
-      if (index != -1) {
-        try {
-          let user = this.usersData[index];
-          isLogged = true;
+  signIn(loginForm: NgForm): any {
+    this.loginForm = loginForm;
+    this.api.signIn(this.loginForm.value);
+    console.log("from login component", this.api.getUSerFromStorage());
+    this.user = this.api.getUSerFromStorage();
+    console.log("user recuperé", this.user)
+    this.user.isLogged = true;
 
 
-          console.log("success", user)
-          //this.api.signIn(this.loginForm.value)
-
-          this.sendUser.emit(user);
-
-        } catch (e) {
-          return new successResult(false, [], 0, "failed")
-          console.log(successResult)
-        }
-
-      } else {
-        console.log("add user", loginForm.value)
-      }
-    } else {
-      isLogged = false;
-      console.log("form no valid", loginForm.value)
-      console.log("form valid", loginForm.valid)
-    }
   };
+
+  signUp(loginForm: NgForm): any {
+    this.loginForm = loginForm;
+    this.api.signUp(this.loginForm.value)
+
+
+  }
+
 }
+

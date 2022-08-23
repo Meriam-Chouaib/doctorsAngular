@@ -63,7 +63,8 @@ export const users = [
     password: 'title1',
     speciality: 'generalist',
     picture: 'https://scontent.ftun10-1.fna.fbcdn.net/v/t1.6435-9/42349682_1876342722402756_6822042279629291520_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=_z9xK4DRYyYAX-ZjzjO&tn=BSDXf1nn5-zV1p6W&_nc_ht=scontent.ftun10-1.fna&oh=00_AT83_rc1lAgqt3FM4otCEudrg3FVGaVqjBwZ10y67-cTVA&oe=63196EA5',
-    description:'You can switch back to English at any time. More languages coming soon.'
+    description:'You can switch back to English at any time. More languages coming soon.',
+
   },
   {
     _id: 2,
@@ -113,7 +114,8 @@ export const users = [
     username: 'aaa',
     password: 'aaa',
     speciality: 'gynecologist',
-    picture: 'https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q='
+    picture: 'https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q=',
+    description:'You can switch back to English at any time. More languages coming soon.',
   },
 ]
 export const posts = [{
