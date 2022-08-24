@@ -12,11 +12,11 @@ import {Router} from '@angular/router';
 import {NgForm} from "@angular/forms";
 import {successResult} from "../../../helper/success-result";
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  endpoint: string = 'http://localhost:3000';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   usersData = users;
   currentUser = {};
@@ -51,33 +51,35 @@ export class AuthService {
     let index: number = this.usersData.findIndex(i => (i.username == loginForm.username) && (i.password == loginForm.password));
     if (index != -1) {
       try {
-       this.user = this.usersData[index];
+        this.user = this.usersData[index];
         this.user.isLogged = true;
         console.log("success from service", this.user)
-       this.setUserToStorage(this.user)
+        this.setUserToStorage(this.user)
       } catch (e) {
-        console.log('password or username failed')
+        console.log('password or username failed', e)
       }
 
     }
 
+
   };
 
-  getUSerFromStorage(){
+  getUSerFromStorage() {
 
     let storageProfileString = localStorage.getItem("profile");
     if (storageProfileString != null) {
       this.user = JSON.parse(storageProfileString);
       console.log("from storage", this.user)
-return this.user;
+      return this.user;
     }
     return this.user;
   }
 
-  setUserToStorage(loginForm: User){
+  setUserToStorage(loginForm: User) {
     this.user = loginForm;
     localStorage.setItem("profile", JSON.stringify(this.user));
   }
+
 
   getToken() {
     return localStorage.getItem('access_token');
@@ -89,12 +91,13 @@ return this.user;
   }
 
 
-   doLogout() {
-     let removeToken = localStorage.removeItem('access_token');
-     if (removeToken == null) {
+  doLogout() {
+    let removeToken = localStorage.removeItem('access_token');
+    if (removeToken == null) {
       this.router.navigate(['log-in']);
     }
   }
+
   // Error
   handleError(error: HttpErrorResponse) {
     let msg = '';
@@ -108,6 +111,36 @@ return this.user;
     return throwError(msg);
   }
 
+  deletUser(_id: number) {
+    console.log("delete", _id);
+    let index: number = this.usersData.findIndex(i => (i._id == _id));
+
+    if (index !== -1) {
+      this.usersData.splice(_id, 1);
+      console.log(this.usersData)
+    }
+  }
+
+  getUsers() {
+    return this.usersData
+  }
+
+  updateUser(loginForm: User) {
+    let index: number = this.usersData.findIndex(i => (i.username == loginForm.username) && (i.password == loginForm.password));
+    if (index != -1) {
+      try {
+        loginForm.username != null && ((this.usersData[index].username = loginForm.username) && (this.user.username = loginForm.username));
+        loginForm.name != null && ((this.usersData[index].name = loginForm.name) && (this.user.name = loginForm.name));
+        loginForm.description != null && ((this.usersData[index].description = loginForm.description) && (this.user.description = loginForm.description));
+
+
+        this.setUserToStorage(this.user)
+      } catch (e) {
+        console.log('password or username failed', e)
+      }
+
+    }
+  }
 
   //use the back
   // signIn(user: User) {

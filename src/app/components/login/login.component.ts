@@ -1,14 +1,11 @@
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
-import {ProductsService} from "../../services/product-service/products.service";
+import {NgForm} from "@angular/forms";
 import {AuthService} from "../../services/auth-service/auth.service";
 import {successResult} from "../../../helper/success-result";
 import {error} from "@angular/compiler/src/util";
-import {users} from "../../data/data";
 import {User} from "../../models/User";
+
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {Store} from "@ngrx/store";
-import {AppState} from "../../ngrx/states/app.state";
 
 @Component({
   selector: 'app-login',
@@ -24,9 +21,8 @@ export class LoginComponent implements OnInit {
 
   user = new User();
 
-  usersData = users;
+  usersData = this.AuthService.getUsers();
 
-  // @Input() public user: User = new User("","","");
   @Input() name: string = '';
   @Input() username: string = '';
 
@@ -35,10 +31,9 @@ export class LoginComponent implements OnInit {
   @Output() onCancel = new EventEmitter();
   @Output() sendUser: EventEmitter<any> = new EventEmitter();
 
-  // constructor(private api: AuthService, @Inject(MAT_DIALOG_DATA) public data: any,public store: Store<AppState>) {
   private loginForm: NgForm | undefined;
 
-  constructor(private api: AuthService, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor( @Inject(MAT_DIALOG_DATA) public data: any, private AuthService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -46,28 +41,13 @@ export class LoginComponent implements OnInit {
     this.getUserAndUpdate();
   }
 
-  /*openDialogRegister(): void {
-    const dialogRef = this.dialog.open(RegisterComponent);
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }*/
-  // validator() {
-  //   this.loginForm = this.formBuilder.group({
-  //     username: ['', Validators.required],
-  //     password: ['', Validators.required],
-  //
-  //   })
-  // }
-
   getUserAndUpdate() {
     this.titleMod = this.data.titleForm;
     this.btnName = this.data.btnName;
     // console.log(this.usersData)
     // console.log(this.data._id)
     let index: number = this.usersData.findIndex(i => (i._id == this.data._id));
-    console.log(index)
+    console.log(this.data._id)
     console.log(this.usersData[index])
     this.user.username = this.usersData[index].username.toString();
     this.user.speciality = this.usersData[index].speciality;
@@ -80,9 +60,9 @@ export class LoginComponent implements OnInit {
 
   signIn(loginForm: NgForm): any {
     this.loginForm = loginForm;
-    this.api.signIn(this.loginForm.value);
-    console.log("from login component", this.api.getUSerFromStorage());
-    this.user = this.api.getUSerFromStorage();
+    this.AuthService.signIn(this.loginForm.value);
+    console.log("from login component", this.AuthService.getUSerFromStorage());
+    this.user = this.AuthService.getUSerFromStorage();
     console.log("user recuperé", this.user)
     this.user.isLogged = true;
 
@@ -91,10 +71,22 @@ export class LoginComponent implements OnInit {
 
   signUp(loginForm: NgForm): any {
     this.loginForm = loginForm;
-    this.api.signUp(this.loginForm.value)
+    this.AuthService.signUp(this.loginForm.value)
 
 
   }
 
+  EditDoctor(loginForm: NgForm) {
+
+    console.log(this.usersData)
+    console.log(this.data._id)
+    let index: number = this.usersData.findIndex(i => (i._id == this.data._id));
+    console.log(index)
+    console.log(this.usersData[index])
+    this.usersData[index].name = loginForm.value.username;
+    this.usersData[index].speciality = loginForm.value.speciality;
+
+    console.log("docter updated", this.usersData[index])
+  }
 }
 

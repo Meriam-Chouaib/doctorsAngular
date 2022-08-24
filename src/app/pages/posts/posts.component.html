@@ -27,10 +27,13 @@
     <div class="search-add-post-part">
       <div>
         <nz-input-group [nzSuffix]="suffixIconSearch" class="search" >
-          <input type="text" nz-input placeholder="input search text"/>
+          <input type="text" name="search" id="search"  nz-input placeholder="input search text"/>
         </nz-input-group>
         <ng-template #suffixIconSearch>
-          <i nz-icon nzType="search" class="icon-search"></i>
+          <button (click)="getPostsByKeywords()" class="icon-search">
+            <i nz-icon nzType="search" ></i>
+          </button>
+
         </ng-template>
       </div>
       <div class="add-post">
@@ -62,16 +65,26 @@
     <!--  <video src="https://www.youtube.com/watch?v=h9sEVtoq-o4&list=RDMM&start_radio=1&rv=osCw73O_WMo" type="video/mp4" ></video>-->
 
     <p class="rs-question">You want us to talk about :</p>
+    <input type="text" class="talk-input">
 
 
-    <ul *ngFor="  let item of talkData" >
-      <li ><span nz-checkbox class="material-symbols-outlined">
-check_box_outline_blank
-</span>
-        {{item}}
-      </li>
-    </ul>
+<!--    <ul *ngFor="  let item of talkData" >-->
+<!--      <li >-->
+<!--        {{item}}-->
+<!--        <span nz-checkbox class="material-symbols-outlined">-->
+<!--check_box_outline_blank-->
+<!--</span>-->
+<!--      </li>-->
+<!--    </ul>-->
+    <div *ngFor="  let item of talkData" class="check-item">
+
+
+        <label for="{{item}}">   {{item}}</label>
+      <input class="check-item-input" type="checkbox" id=" {{item}}" name="   {{item}}">
+    </div>
+
 
 
 </div>
+
 </div>

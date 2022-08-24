@@ -37,13 +37,13 @@
   </div>
   <!--  <app-reactions   ></app-reactions>-->
   <div class="reactions">
-    <button (click)="addLike()">
+    <button (click)="addLike(_id)" class="like">
 
-  <span class="material-symbols-outlined">
+  <span class="material-symbols-outlined" >
 thumb_up
 </span>
     </button>
-    <button (click)="removeLike()">
+    <button (click)="removeLike()" class="like">
     <span class="material-symbols-outlined">
 thumb_down
 </span>

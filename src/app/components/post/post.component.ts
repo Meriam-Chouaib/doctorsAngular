@@ -5,9 +5,9 @@ import {PostFormComponent} from "../post-form/post-form.component";
 import {successResult} from "../../../helper/success-result";
 import {MatDialog} from "@angular/material/dialog";
 import {NzMessageService} from 'ng-zorro-antd/message';
-import {posts} from "../../data/data";
+import {AuthService} from "../../services/auth-service/auth.service";
+import {PostService} from "../../services/post-service/post.service";
 
-let edit: boolean = true;
 
 @Component({
   selector: 'app-post',
@@ -16,7 +16,7 @@ let edit: boolean = true;
 })
 
 export class PostComponent implements OnInit {
-  postsData = posts;
+  postsData = this.PostService.getPosts();
 
   @Input()
   _isShown: boolean = false;
@@ -46,15 +46,9 @@ export class PostComponent implements OnInit {
   @Output()
   correctChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  // cancel(): void {
-  //   this.nzMessageService.info('click cancel');
-  // }
-  //
-  // confirm(): void {
-  //   this.nzMessageService.info('click confirm');
-  // }
 
-  constructor(public dialog: MatDialog) {
+
+  constructor(public dialog: MatDialog,private PostService: PostService) {
   }
 
   ngOnInit(): void {
@@ -66,9 +60,8 @@ export class PostComponent implements OnInit {
     this._isShown = !this._isShown;
   }
 
-  addLike() {
-    this.likes = this.likes + 1;
-    console.log(this.likes)
+  addLike(_id:number) {
+this.PostService.addLike();
   }
 
   removeLike() {

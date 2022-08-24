@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {posts} from "../../data/data";
 import{talkAbout} from "../../data/data";
 import {ProductFormComponent} from "../../components/product-form/product-form.component";
 import {successResult} from "../../../helper/success-result";
@@ -9,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {PostFormComponent} from "../../components/post-form/post-form.component";
 import {User} from "../../models/User";
 import {LoginComponent} from "../../components/login/login.component";
+import {PostService} from "../../services/post-service/post.service";
 let edit : boolean;
 let titleForm : string;
 @Component({
@@ -20,12 +20,12 @@ let titleForm : string;
 
 export class PostsComponent implements OnInit {
   user = new User();
-postsData = posts;
+postsData = this.postService.getPosts();
 talkData = talkAbout;
 
 @Input() isLogged:boolean=true;
 
-  constructor(public dialog: MatDialog,private api: AuthService) { }
+  constructor(public dialog: MatDialog,private api: AuthService,private postService:PostService) { }
 
   ngOnInit(): void {
     // console.log(this.postsData[0].comments)
@@ -48,6 +48,7 @@ talkData = talkAbout;
     });
 
   }
+
   openDialogLogin(titleForm:string,btnName:string): void {
     console.log(this.user)
     const dialogRef = this.dialog.open(LoginComponent,{
@@ -60,15 +61,14 @@ talkData = talkAbout;
       console.log(receivedUser)
       this.user = receivedUser;
       this.isLogged=true;
-
-
     })
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   new successResult(true, result, 1, "success")
-    // });
   }
-  getPostsByKeywords(word:string){
-    // this.api.
+  getPostsByKeywords(){
+    const input = document.getElementById('search') as HTMLInputElement | null;
+    const searchKey = input?.value;
+    console.log("from posts page",searchKey)
+  this.postsData = this.postService.getPostsByKeywords(searchKey)
+
   }
 }

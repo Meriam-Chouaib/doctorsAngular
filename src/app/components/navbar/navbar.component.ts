@@ -14,10 +14,12 @@ import {AuthService} from "../../services/auth-service/auth.service";
 export class NavbarComponent implements OnInit {
   user = new User();
 
-  constructor(public dialog: MatDialog,private api: AuthService) { }
+  constructor(public dialog: MatDialog,private authService: AuthService) {
+    // this.user=this.authService.getUSerFromStorage();
+  }
 
   ngOnInit(): void {
-    this.user=this.api.getUSerFromStorage();
+    this.user=this.authService.getUSerFromStorage();
   }
   openDialogLogin(titleForm:string,btnName:string): void {
     console.log(titleForm)

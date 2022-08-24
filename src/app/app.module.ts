@@ -58,6 +58,7 @@ import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {StoreModule, MetaReducer} from "@ngrx/store";
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TalkAboutComponent } from './components/talk-about/talk-about.component';
 
 
 @NgModule({
@@ -120,6 +121,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AddCommentComponent,
     FooterComponent,
     PostFormComponent,
+    TalkAboutComponent,
 
 
   ],

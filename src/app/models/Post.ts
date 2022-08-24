@@ -13,6 +13,6 @@ export class Post {
   date?: Date;
   picture?: string;
   comments?: Comment[];
-  likes?: number;
+  liked?: boolean;
 
 }

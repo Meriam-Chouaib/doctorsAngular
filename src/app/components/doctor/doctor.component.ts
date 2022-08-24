@@ -3,6 +3,7 @@ import {PostFormComponent} from "../post-form/post-form.component";
 import {successResult} from "../../../helper/success-result";
 import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent} from "../login/login.component";
+import {AuthService} from "../../services/auth-service/auth.service";
 
 @Component({
   selector: 'app-doctor',
@@ -15,7 +16,7 @@ export class DoctorComponent implements OnInit {
   @Input()  description:string = '';
   @Input() picture: string | null= '';
   @Input() _id: number = 0;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,private api: AuthService,) { }
 
   ngOnInit(): void {
   }
@@ -31,8 +32,9 @@ export class DoctorComponent implements OnInit {
       new successResult(true, result, 1, "success")
     });
   }
-  deletePost(_id: number) {
+  deleteUSer(_id: number) {
     console.log("delete", _id);
+    this.api.deletUser(_id);
     // let index: number = this.postsData.findIndex(i => (i._id == _id));
     //
     // if (index !== -1) {
