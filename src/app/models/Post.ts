@@ -8,11 +8,14 @@ export class Post {
 
 
 //   title: string;
-  user?: User;
+  user?: User ;
 
   date?: Date;
   picture?: string;
   comments?: Comment[];
-  liked?: boolean;
+  liked: boolean=false;
+  likes:number=0;
+  dislikes:number=0;
+  disliked:boolean=false;
 
 }

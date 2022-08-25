@@ -20,7 +20,7 @@ let titleForm : string;
 
 export class PostsComponent implements OnInit {
   user = new User();
-postsData = this.postService.getPosts();
+postsData:any = this.postService.getPosts();
 talkData = talkAbout;
 
 @Input() isLogged:boolean=true;

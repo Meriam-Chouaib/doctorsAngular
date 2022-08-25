@@ -51,15 +51,43 @@ export class PostService {
   }
   getPostById(idPost:number){
     let index: number = this.postsData.findIndex(i => (i._id == idPost));
-    console.log(this.postsData[index])
+     // console.log(this.postsData[index])
     this.post.title = this.postsData[index].title;
     this.post.message = this.postsData[index].message;
     this.post.picture = this.postsData[index].picture;
+    this.post._id = idPost;
+
     return this.post;
   }
-  addLike(){
-    this.getPostById(this.post._id).liked = !this.getPostById(this.post._id).liked;
+  addLike(_id:number){
+    console.log("fromservice",_id)
+     this.getPostById(_id).liked = !this.getPostById(_id).liked;
+    if(this.getPostById(_id).liked==true){
+      this.getPostById(_id).likes ++;
+      console.log(  this.getPostById(_id))
+
+    }
+    else{
+      this.getPostById(_id).likes --;
+    }
+
+
   }
+  addDislike(_id:number){
+    console.log("fromservice",_id)
+     this.getPostById(_id).disliked = !this.getPostById(_id).disliked;
+    if(this.getPostById(_id).liked==true){
+      this.getPostById(_id).likes ++;
+      console.log(  this.getPostById(_id))
+
+    }
+    else{
+      this.getPostById(_id).likes --;
+    }
+
+
+  }
+
 
 
 }

@@ -5,7 +5,7 @@
 
   <div class="user-name-img">
     <img class="user-img" nzSrc="{{picture}}" alt="{{title}}" nz-image>
-    <p class="user-name"> {{name}}</p>
+    <p class="user-name"> {{name }}</p>
   </div>
   <div class="post">
     <div class="contenu-post">
@@ -31,19 +31,19 @@
     </div>
   </div>
   <div class="nb-reactions">
-    <div><p>{{likes}} likes</p></div>
-    <div><p>{{comments.length}} comments</p></div>
+    <div><p>{{getLikes(_id)}} Likes</p></div>
+    <div><p>{{getDislikes(_id)}} Dislikes</p></div>
+    <div><p>{{comments.length}} Comments</p></div>
     <p></p>
   </div>
   <!--  <app-reactions   ></app-reactions>-->
   <div class="reactions">
-    <button (click)="addLike(_id)" class="like">
-
-  <span class="material-symbols-outlined" >
-thumb_up
-</span>
+    <button (click)="addLike(_id,getIdUser())"  class="  like dislike-color" >
+        <span class="material-symbols-outlined" >
+      thumb_up
+      </span>
     </button>
-    <button (click)="removeLike()" class="like">
+    <button (click)="addDislike(_id,getIdUser())" class="like">
     <span class="material-symbols-outlined">
 thumb_down
 </span>

@@ -165,6 +165,9 @@ export const posts = [{
     // date:Date;
     picture:"ilagg.jog"
   }],
+  liked:false,
+  likes:10,
+  dislikes:0
 },
   {
     _id: 1,
@@ -211,7 +214,11 @@ export const posts = [{
       // user: User;
       // date:Date;
     }],
-    picture:"ilagg.jog"
+    picture:"ilagg.jog",
+    liked:false,
+    likes:11,
+    dislikes:0
+
   }
   ,{
     _id: 2,
@@ -261,6 +268,10 @@ export const posts = [{
       // date:Date;
       picture:"ilagg.jog"
     }],
+    picture:"ilddagg.jog",
+    liked:true,
+    likes:12,
+    dislikes:0
   }
 ]
 export const talkAbout =["covid","Advices for women","take care of skin","covid","Advices for women","take care of skin"];

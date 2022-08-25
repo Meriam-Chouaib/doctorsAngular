@@ -25,12 +25,15 @@ export class PostComponent implements OnInit {
   @Input() message: string = '';
   @Input() date: string = '';
   @Input() comments: Comment [] = [];
-  @Input() _id: number = 0;
-  @Input() likes: number = 0;
+  @Input() _id:number=0;
+  @Input() liked: boolean = false;
+  @Input() user: User = new User();
+
+  @Input() likes: number =  0;
+  @Input() dislikes: number =  0;
   // @Input() user: User ;
   @Input() name: string = '';
   @Input() picture: string | undefined = '';
-
 
   private isShownChange: any;
 
@@ -48,25 +51,55 @@ export class PostComponent implements OnInit {
 
 
 
-  constructor(public dialog: MatDialog,private PostService: PostService) {
+  constructor(public dialog: MatDialog,private PostService: PostService,private AuthService:AuthService) {
   }
-
+   // likes:number=this.PostService.getPostById(this._id).likes;
   ngOnInit(): void {
     console.log(this.isShown);
     console.log(this.comments)
+    this.likes=  this.PostService.getPostById(this._id).likes;
+    this.dislikes=  this.PostService.getPostById(this._id).dislikes;
+
+  }
+  getIdUser(){
+return this.AuthService.getUSerFromStorage()._id;
   }
 
   displayComments() {
     this._isShown = !this._isShown;
   }
 
-  addLike(_id:number) {
-this.PostService.addLike();
-  }
+  addLike(_id:number,idUser:number) {
 
+    this.liked = this.PostService.getPostById(_id).liked;
+
+    this.liked = this.PostService.getPostById(_id).liked
+    this.PostService.addLike(_id);
+    console.log("from post",_id)
+    console.log(this.liked)
+    this.PostService.getPostById(_id)
+  }
+  addDislike(_id:number,idUser:number) {
+
+    this.dislikes = this.PostService.getPostById(_id).dislikes;
+
+    this.dislikes = this.PostService.getPostById(_id).dislikes
+    this.PostService.addLike(_id);
+    console.log("from post",_id)
+    console.log(this.liked)
+    this.PostService.getPostById(_id)
+  }
+getLikes(_id:number){
+    return this.PostService.getPostById(_id).likes
+}
+  getDislikes(_id:number){
+    return this.PostService.getPostById(_id).dislikes
+  }
+getIsLiked(_id:number){
+    return this.PostService.getPostById(_id).liked
+}
   removeLike() {
-    this.likes = this.likes - 1;
-    console.log(this.likes)
+this.likes=this.likes --;
   }
 
   deletePost(_id: number) {
