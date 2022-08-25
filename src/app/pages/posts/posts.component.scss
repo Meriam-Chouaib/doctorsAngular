@@ -137,15 +137,25 @@
       padding-bottom: 4px;
 
     }
-.talk-input{
-  border-radius: 18px;
-  padding: 4px 11px;
-  margin: 10px 0px 10px 0px;
-  border: none;
-  box-shadow: 0px 1px 8px -2px #000000;
-  :focus-visible{
-    border:none    }
-}
+    .talk-div{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .talk-input{
+        border-radius: 18px;
+        padding: 4px 11px;
+        margin: 10px 0px 10px 0px;
+        border: none;
+        box-shadow: 0px 1px 8px -2px #000000;
+        :focus-visible{
+          border:none    }
+      }
+      .btn-add-talk:hover{
+
+        cursor: pointer;
+      }
+    }
+
 
 
     ul {

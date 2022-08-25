@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {users} from '../../data/data'
+import {talkAbout, users} from '../../data/data'
 import {posts} from '../../data/data'
 import {User} from '../../models/User'
 import {Observable, throwError} from 'rxjs';
@@ -22,6 +22,7 @@ export class PostService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   usersData = users;
   postsData = posts;
+  talksData = talkAbout;
   currentUser = {};
   post: Post = new Post();
 
@@ -55,20 +56,32 @@ export class PostService {
     this.post.title = this.postsData[index].title;
     this.post.message = this.postsData[index].message;
     this.post.picture = this.postsData[index].picture;
+    this.post.likes = this.postsData[index].likes;
+    this.post.dislikes = this.postsData[index].dislikes;
+    this.post.liked = this.postsData[index].liked;
+    this.post.disliked = this.postsData[index].disliked;
     this.post._id = idPost;
 
     return this.post;
   }
-  addLike(_id:number){
+  addLike(_id:number,liked:boolean){
     console.log("fromservice",_id)
-     this.getPostById(_id).liked = !this.getPostById(_id).liked;
-    if(this.getPostById(_id).liked==true){
-      this.getPostById(_id).likes ++;
-      console.log(  this.getPostById(_id))
+    this.post = this.getPostById(_id)
+
+    if( this.post.liked==true){
+
+    this.post.likes++;
+      console.log(  this.post.liked,this.post.likes)
+      this.post.liked = !liked;
 
     }
     else{
-      this.getPostById(_id).likes --;
+      this.post.likes= this.getPostById(_id).likes -1;
+
+      console.log(  this.post.liked,this.post.likes)
+      this.post.liked = true;
+      this.post.liked = !liked;
+
     }
 
 
@@ -76,18 +89,25 @@ export class PostService {
   addDislike(_id:number){
     console.log("fromservice",_id)
      this.getPostById(_id).disliked = !this.getPostById(_id).disliked;
-    if(this.getPostById(_id).liked==true){
-      this.getPostById(_id).likes ++;
+    if(this.getPostById(_id).disliked==true){
+      this.getPostById(_id).dislikes++;
       console.log(  this.getPostById(_id))
 
     }
     else{
-      this.getPostById(_id).likes --;
+      this.getPostById(_id).dislikes --;
     }
 
 
   }
-
-
+  getLikes(){
+    return this.post.likes;
+  }
+getTalks(){
+    return this.talksData;
+}
+addTalk(talk:string){
+    this.talksData.push(talk);
+}
 
 }

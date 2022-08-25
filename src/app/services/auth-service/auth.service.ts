@@ -35,6 +35,7 @@ export class AuthService {
     this.user._id = this.usersData.length++;
     this.user.speciality = undefined;
     this.user.description = undefined;
+    this.user.isAdmin = false;
 
     console.log(this.user)
 

@@ -72,25 +72,28 @@ return this.AuthService.getUSerFromStorage()._id;
   addLike(_id:number,idUser:number) {
 
     this.liked = this.PostService.getPostById(_id).liked;
-
-    this.liked = this.PostService.getPostById(_id).liked
-    this.PostService.addLike(_id);
-    console.log("from post",_id)
     console.log(this.liked)
-    this.PostService.getPostById(_id)
+    this.PostService.addLike(_id,this.liked);
+    this.liked = ! this.liked;
+
+    // console.log("from post",_id)
+    // console.log(this.liked)
+    // this.PostService.getPostById(_id)
   }
   addDislike(_id:number,idUser:number) {
 
     this.dislikes = this.PostService.getPostById(_id).dislikes;
 
     this.dislikes = this.PostService.getPostById(_id).dislikes
-    this.PostService.addLike(_id);
+    this.PostService.addDislike(_id);
     console.log("from post",_id)
     console.log(this.liked)
     this.PostService.getPostById(_id)
   }
 getLikes(_id:number){
-    return this.PostService.getPostById(_id).likes
+  //   return this.PostService.getPostById(_id).likes
+  // console.log(this.PostService.getPostById(_id))
+  return this.PostService.getLikes();
 }
   getDislikes(_id:number){
     return this.PostService.getPostById(_id).dislikes
@@ -125,6 +128,13 @@ this.likes=this.likes --;
 
       new successResult(true, result, 1, "success")
     });
+  }
+  checkUser(idPost:number):boolean{
+    // @ts-ignore
+    if(this.PostService.getPostById(idPost).user._id==this.AuthService.getUSerFromStorage()._id){
+      return true;
+    }
+    return false
   }
 
 

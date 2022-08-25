@@ -6,22 +6,12 @@ export class User {
   username: string | undefined = '';
   password: string | undefined = '';
   speciality?: string  = '';
+  // role:string='';
   picture?:string  = '';
   description?:string  = '';
   posts?:Post[];
   isLogged?:boolean=false;
-// constructor(username:string, name:string,password:string) {
-//   this.username = username;
-//   this.name = name;
-//   this.password = password
-// }
-// User() {
-//
-//   this.username="";
-//   this.name="";
-//   this.password="";
-// }
-
+isAdmin?:boolean = false;
 
   constructor( name?: string, username?: string, speciality?: string,
               picture?: string, description?: string, password?: string,posts?:Post[],isLogged?:boolean) {

@@ -25,12 +25,12 @@ talkData = talkAbout;
 
 @Input() isLogged:boolean=true;
 
-  constructor(public dialog: MatDialog,private api: AuthService,private postService:PostService) { }
+  constructor(public dialog: MatDialog,private AuthService: AuthService,private postService:PostService) { }
 
   ngOnInit(): void {
     // console.log(this.postsData[0].comments)
     console.log(this.talkData)
-    this.user = this.api.getUSerFromStorage();
+    this.user = this.AuthService.getUSerFromStorage();
     console.log("from posts", this.user)
 
   }
@@ -69,6 +69,16 @@ talkData = talkAbout;
     const searchKey = input?.value;
     console.log("from posts page",searchKey)
   this.postsData = this.postService.getPostsByKeywords(searchKey)
+
+  }
+  addSubjectToTalk(){
+    const input = document.getElementById('talk-input') as HTMLInputElement | null;
+    if(input?.value){
+      const talk = input.value;
+      this.postService.addTalk(talk);
+      console.log("talks",talk)
+    }
+    console.log(this.postService.getTalks())
 
   }
 }

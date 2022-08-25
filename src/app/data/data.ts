@@ -64,7 +64,7 @@ export const users = [
     speciality: 'generalist',
     picture: 'https://scontent.ftun10-1.fna.fbcdn.net/v/t1.6435-9/42349682_1876342722402756_6822042279629291520_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=_z9xK4DRYyYAX-ZjzjO&tn=BSDXf1nn5-zV1p6W&_nc_ht=scontent.ftun10-1.fna&oh=00_AT83_rc1lAgqt3FM4otCEudrg3FVGaVqjBwZ10y67-cTVA&oe=63196EA5',
     description:'You can switch back to English at any time. More languages coming soon.',
-
+    isAdmin:false
   },
   {
     _id: 2,
@@ -73,7 +73,9 @@ export const users = [
     password: 'title1',
     speciality: 'pediatrician',
     picture: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-    description:'You can switch back to English at any time. More languages coming soon.'
+    description:'You can switch back to English at any time. More languages coming soon.',
+    isAdmin:false
+
   },
   {
     _id: 3,
@@ -116,6 +118,8 @@ export const users = [
     speciality: 'gynecologist',
     picture: 'https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q=',
     description:'You can switch back to English at any time. More languages coming soon.',
+    isAdmin:true
+
   },
 ]
 export const posts = [{
@@ -166,6 +170,8 @@ export const posts = [{
     picture:"ilagg.jog"
   }],
   liked:false,
+  disliked:false,
+
   likes:10,
   dislikes:0
 },
@@ -216,6 +222,7 @@ export const posts = [{
     }],
     picture:"ilagg.jog",
     liked:false,
+    disliked:false,
     likes:11,
     dislikes:0
 
@@ -269,7 +276,8 @@ export const posts = [{
       picture:"ilagg.jog"
     }],
     picture:"ilddagg.jog",
-    liked:true,
+    liked:false,
+    disliked:false,
     likes:12,
     dislikes:0
   }

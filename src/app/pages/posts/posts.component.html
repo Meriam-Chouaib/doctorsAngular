@@ -36,7 +36,7 @@
 
         </ng-template>
       </div>
-      <div class="add-post">
+      <div class="add-post" >
         <button (click)="openDialogAddPost('Add post','Add',-1)" class="btn-add-post" *ngIf="isLogged">add post</button>
       </div>
     </div>
@@ -51,6 +51,7 @@
                 [_id]="item._id"
                 [likes]="item.likes"
                 [liked]="item.liked"
+
 
 
 
@@ -71,7 +72,14 @@
     <!--  <video src="https://www.youtube.com/watch?v=h9sEVtoq-o4&list=RDMM&start_radio=1&rv=osCw73O_WMo" type="video/mp4" ></video>-->
 
     <p class="rs-question">You want us to talk about :</p>
-    <input type="text" class="talk-input">
+    <div class="talk-div">
+      <input type="text" class="talk-input" id="talk-input">
+ <span class="material-symbols-outlined icon-add-talk"  (click)="addSubjectToTalk()"  >
+add
+</span>
+    </div>
+
+
 
 
 <!--    <ul *ngFor="  let item of talkData" >-->
