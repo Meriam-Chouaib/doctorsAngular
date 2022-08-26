@@ -59,6 +59,7 @@ import {StoreModule, MetaReducer} from "@ngrx/store";
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TalkAboutComponent } from './components/talk-about/talk-about.component';
+import { SecurityComponent } from './components/security/security.component';
 
 
 @NgModule({
@@ -122,6 +123,7 @@ import { TalkAboutComponent } from './components/talk-about/talk-about.component
     FooterComponent,
     PostFormComponent,
     TalkAboutComponent,
+    SecurityComponent,
 
 
   ],
