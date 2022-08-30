@@ -11,13 +11,14 @@
 <nz-comment>
   <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]=
 
-    "user.avatar"></nz-avatar>
+    "info.avatar"></nz-avatar>
   <nz-comment-content>
     <nz-form-item>
       <textarea [(ngModel)]="inputValue" nz-input  class="textarea-comment"></textarea>
     </nz-form-item>
     <nz-form-item>
-      <button nz-button nzType="primary" class="btn-add-comment"[nzLoading]="submitting" [disabled]="!inputValue" (click)="handleSubmit()">
+      <button nz-button nzType="primary" class="btn-add-comment"[nzLoading]="submitting"
+              [disabled]="!inputValue" (click)="handleSubmit()">
         +
       </button>
     </nz-form-item>

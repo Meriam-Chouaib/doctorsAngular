@@ -10,15 +10,18 @@ import { formatDistance } from 'date-fns';
 export class CommentComponent implements OnInit {
 
   @Input() subject: string = '';
-  @Input()  user: string = '';
+  @Input()  user: User = new User() ;
   @Input() date: string = '';
-  @Input() id: number = 0;
+  @Input() _id: number = 0;
+  @Input() likes: number = 0;
 
-  likes = 0;
+  //likes = 0;
   dislikes = 0;
+  dateComment = this.date;
   constructor() { }
 
   ngOnInit(): void {
+    console.log("from Comment","subject",this.subject,"user :",this.user,"id :", this._id,"date :",this.date)
   }
 
   // time = formatDistance(new Date(), new Date());

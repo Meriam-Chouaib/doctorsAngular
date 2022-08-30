@@ -1,8 +1,5 @@
 <div class="post-container">
 
-  <!--  <p><label class="label-item">Title : </label>{{title}}</p>-->
-  <!--  <p><label class="label-item">Description : </label>{{description}} </p>-->
-
   <div class="user-name-img">
     <img class="user-img" nzSrc="{{picture}}" alt="{{title}}" nz-image>
     <p class="user-name"> {{name }}</p>
@@ -17,16 +14,16 @@
 
     </div>
 
-    <div class="actions-post" >
-<!--      *ngIf="checkUser(_id)"-->
-      <button (click)="openDialogAddPost('Edit post','edit',_id)" >
+    <div class="actions-post" *ngIf="checkUser(_id)" >
+      <!--      *ngIf="checkUser(_id)"-->
+      <button (click)="openDialogAddPost('Edit post','edit',_id)">
 
       <span class="material-symbols-outlined">
       edit
       </span>
       </button>
-      <button  (click)="deletePost(_id)" nz-popconfirm nzPopconfirmTitle="Are you sure?" [nzPopconfirmShowArrow]="false">
-      <span class="material-symbols-outlined" >
+      <button (click)="deletePost(_id)" nz-popconfirm nzPopconfirmTitle="Are you sure?" [nzPopconfirmShowArrow]="false">
+      <span class="material-symbols-outlined">
         delete
         </span>
       </button>
@@ -41,8 +38,8 @@
   </div>
   <!--  <app-reactions   ></app-reactions>-->
   <div class="reactions">
-    <button (click)="addLike(_id,getIdUser())"  class=" like dislike-color" >
-        <span class="material-symbols-outlined" >
+    <button (click)="addLike(_id,getIdUser())" class=" like dislike-color">
+        <span class="material-symbols-outlined">
       thumb_up
       </span>
     </button>
@@ -57,15 +54,21 @@ comment
 
 
   </div>
+  <div *ngFor="  let item of comments">
 
-  <div class="comments-container" *ngIf="this._isShown">
-    <div class="comments">
-      <div class="comment">
-        <app-comment></app-comment>
+
+    <div class="comments-container" *ngIf="this._isShown">
+      <div class="comments">
+        <div class="comment">
+          <app-comment
+            [subject]="item.subject" [id]="item._id" [date]="item.date" [user]="item.user">
+          </app-comment>
+        </div>
       </div>
-    </div>
-    <div class="add-comment">
-      <app-add-comment></app-add-comment>
+      <div class="add-comment">
+        <app-add-comment [id]="item._id"
+        ></app-add-comment>
+      </div>
     </div>
   </div>
 

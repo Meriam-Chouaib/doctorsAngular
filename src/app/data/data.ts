@@ -137,7 +137,7 @@ export const posts = [{
   date: "05/08/2022",
   comments: [{
     _id:'1',
-    subject:'yous sjsjjsjsjs',
+    subject:'you can do many things .. you have just to keep calm',
     user:  {
       _id: '2',
       name: 'Vectoria',
@@ -147,20 +147,17 @@ export const posts = [{
       picture: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
     },
     date:'09/08/2022'
-    // _id: string;
-    // subject: string;
-    // user: User;
-    // date:Date;
+
   },{
     _id:1,
-    subject:'yous sjsjjsjsjs',
+    subject:'No problem you gonna die anyway ...',
     user:  {
       _id: '2',
-      name: 'Vectoria',
+      name: 'Mohamed',
       username: 222,
       password: 'title1',
       speciality: 'pediatric',
-      picture: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
+      picture: 'https://www.pngitem.com/pimgs/m/54-548301_thumbs-up-man-png-transparent-png.png'
     },
     date:'09/08/2022',
     // _id: string;
@@ -171,7 +168,6 @@ export const posts = [{
   }],
   liked:false,
   disliked:false,
-
   likes:10,
   dislikes:0
 },
@@ -283,3 +279,8 @@ export const posts = [{
   }
 ]
 export const talkAbout =["covid","Advices for women","take care of skin","covid","Advices for women","take care of skin"];
+export const comments = [
+  {
+
+  }
+]

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { formatDistance } from 'date-fns';
+import {User} from "../../models/User";
+import {AuthService} from "../../services/auth-service/auth.service";
 
 @Component({
   selector: 'app-add-comment',
@@ -7,16 +9,17 @@ import { formatDistance } from 'date-fns';
   styleUrls: ['./add-comment.component.scss']
 })
 export class AddCommentComponent implements OnInit {
-
-  constructor() { }
+ // @Input()  user: User = new User() ;
+  constructor(public AuthService:AuthService) { }
 
   ngOnInit(): void {
   }
   data: any[] = [];
   submitting = false;
-  user = {
-    author: 'Han Solo',
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
+user = this.AuthService.getUSerFromStorage();
+  info = {
+    author: this.user.name,
+    avatar: this.user.picture
   };
   inputValue = '';
 
@@ -29,9 +32,9 @@ export class AddCommentComponent implements OnInit {
         this.data = [
           ...this.data,
           {
-            ...this.user,
+            ...this.info,
             content,
-            // datetime: new Date(),
+             datetime: "02/12/2022",
             // displayTime: formatDistance(new Date(), new Date())
           }
         ].map(e => ({

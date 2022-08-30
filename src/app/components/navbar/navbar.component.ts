@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit {
     let userReset:User = new User();
     userReset._id=0;
     console.log(userReset)
-
-    // this.api.setUserToStorage(userReset);
+  this.authService.setUserToStorage(userReset);
+    window.location.reload();
   }
 }

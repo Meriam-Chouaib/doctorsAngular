@@ -37,12 +37,12 @@ export class AuthService {
     this.user.description = undefined;
     this.user.isAdmin = false;
 
-    console.log(this.user)
+    console.log("success from service",this.user)
 
     // @ts-ignore
     this.usersData.push(this.user);
 
-    console.log(this.usersData);
+    //console.log(this.usersData);
     // let api = `${this.endpoint}/register`;
     // return this.http.post(api, user).pipe(catchError(this.handleError));
     return this.usersData
@@ -152,5 +152,11 @@ export class AuthService {
   //
   //     });
   // }
+
+  getUserById(idUser:number){
+    let index: number = this.usersData.findIndex(i => (i._id == idUser) );
+    return this.usersData[index];
+
+  }
 
 }

@@ -12,7 +12,8 @@ import {
 import {Router} from '@angular/router';
 import {NgForm} from "@angular/forms";
 import {successResult} from "../../../helper/success-result";
-import {Post} from "../../models/Post";
+import { Post} from "../../models/Post";
+import {AuthService} from "../auth-service/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,8 @@ export class PostService {
   currentUser = {};
   post: Post = new Post();
 
-  constructor(private http: HttpClient, public router: Router) {
+
+  constructor(private http: HttpClient, public router: Router, public AuthService: AuthService) {
   }
 
   getPosts() {
@@ -46,9 +48,13 @@ export class PostService {
     this.post.title = form.value.title;
     this.post.message = form.value.message;
     this.post.picture = form.value.picture;
-    //@ts-ignore
-    this.postsData.push(this.post);
-    console.log(this.postsData)
+    // this.post = form as unknown as Post;
+    this.post.user = this.AuthService.getUSerFromStorage();
+    // this.postsData[length++] = this.post;
+  //  console.log()
+  //  this.postsData.push(this.post);
+ //   console.log(this.postsData)
+    console.log(this.post)
   }
   getPostById(idPost:number){
     let index: number = this.postsData.findIndex(i => (i._id == idPost));

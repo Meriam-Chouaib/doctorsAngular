@@ -56,7 +56,6 @@ export class PostComponent implements OnInit {
    // likes:number=this.PostService.getPostById(this._id).likes;
   ngOnInit(): void {
     console.log(this.isShown);
-    console.log(this.comments)
     this.likes=  this.PostService.getPostById(this._id).likes;
     this.dislikes=  this.PostService.getPostById(this._id).dislikes;
 
@@ -130,8 +129,7 @@ this.likes=this.likes --;
     });
   }
   checkUser(idPost:number):boolean{
-    // @ts-ignore
-    if(this.PostService.getPostById(idPost).user._id==this.AuthService.getUSerFromStorage()._id){
+    if(this.PostService.getPostById(idPost)?.user?._id==this.AuthService.getUSerFromStorage()._id){
       return true;
     }
     return false

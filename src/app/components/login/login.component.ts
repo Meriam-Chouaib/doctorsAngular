@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
     this.user = this.AuthService.getUSerFromStorage();
     console.log("user recuperé", this.user)
     this.user.isLogged = true;
+    window.location.reload();
 
 
   };

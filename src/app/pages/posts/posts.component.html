@@ -1,11 +1,11 @@
 <div class="posts-page">
 
 
-  <div class="left-side" *ngIf="this.user._id!=-1">
+  <div class="left-side" *ngIf="this.user._id!=0">
 
     <div class="user-img-name">
 
-      <img nzSrc="{{this.user.picture}}" class="user-img" nz-image>
+      <img nzSrc="{{this.user.picture}}" class="user-img" nz-image >
 
       <p>{{this.user.username}}</p>
 
@@ -23,6 +23,7 @@
       Edit informations
     </button>
   </div>
+
   <div class="container-posts">
     <div class="search-add-post-part">
       <div>
@@ -36,7 +37,7 @@
 
         </ng-template>
       </div>
-      <div class="add-post" >
+      <div class="add-post" *ngIf="this.user._id!=0">
         <button (click)="openDialogAddPost('Add post','Add',-1)" class="btn-add-post" *ngIf="isLogged">add post</button>
       </div>
     </div>
@@ -51,14 +52,12 @@
                 [_id]="item._id"
                 [likes]="item.likes"
                 [liked]="item.liked"
+                [comments]="item.comments"
 
 
 
 
       ></app-post>
-      <!--      [comments]="item.comments"
-      ,[user]="item.user"
--->
 
     </div>
 
@@ -69,7 +68,6 @@
       <h2>Add your feed </h2>
       <nz-rate [ngModel]="2.5" nzAllowHalf></nz-rate>
     </div>
-    <!--  <video src="https://www.youtube.com/watch?v=h9sEVtoq-o4&list=RDMM&start_radio=1&rv=osCw73O_WMo" type="video/mp4" ></video>-->
 
     <p class="rs-question">You want us to talk about :</p>
     <div class="talk-div">
@@ -82,14 +80,6 @@ add
 
 
 
-<!--    <ul *ngFor="  let item of talkData" >-->
-<!--      <li >-->
-<!--        {{item}}-->
-<!--        <span nz-checkbox class="material-symbols-outlined">-->
-<!--check_box_outline_blank-->
-<!--</span>-->
-<!--      </li>-->
-<!--    </ul>-->
     <div *ngFor="  let item of talkData" class="check-item">
 
 

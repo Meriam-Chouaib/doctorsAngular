@@ -1,17 +1,15 @@
-<nz-comment nzAuthor="Han Solo" >
-<!--            [nzDatetime]="time"-->
+<nz-comment nzAuthor="{{user.name}}"    [nzDatetime]="dateComment">
+
 
   <nz-avatar
     nz-comment-avatar
     class="comment-img-user"
     nzIcon="user"
-    nzSrc="http://kapitalis.com/tunisie/wp-content/uploads/2020/05/A.-L.-A..jpg"
+    nzSrc="{{user.picture}}"
   ></nz-avatar>
-<!--  <img src="http://kapitalis.com/tunisie/wp-content/uploads/2020/05/A.-L.-A..jpg">-->
   <nz-comment-content>
     <p>
-      We supply a series of design principles, practical patterns and high quality design resources (Sketch and
-      Axure), to help people create their product prototypes beautifully and efficiently.
+      {{subject}}
     </p>
   </nz-comment-content>
   <nz-comment-action>
@@ -37,4 +35,5 @@
     <span class="count dislike">{{ dislikes }}</span>
   </nz-comment-action>
   <nz-comment-action>Reply to</nz-comment-action>
+
 </nz-comment>
