@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     color: #c7bfbf;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   .user-name-img{
@@ -19,12 +19,14 @@
     margin-bottom: 16px;
     .user-img{
       object-fit: cover;
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
       border-radius: 33px;
       cursor: pointer;
     }
     .user-name{
+      font-weight: 700;
+      font-size: 15px;
       margin: 0px;
       padding-left: 12px;
     }
@@ -50,10 +52,15 @@ cursor: pointer;
       button{
         border: none;
         background: transparent;
+        color: #002b4b;
       }
     }
   }
-
+.nb-reactions{
+  .nb-reactions-text{
+    padding: 0px 0px 0px 50px;
+  }
+}
   .reactions {
     display: flex;
     justify-content: space-evenly;

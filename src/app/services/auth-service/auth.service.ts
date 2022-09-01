@@ -70,7 +70,7 @@ export class AuthService {
     let storageProfileString = localStorage.getItem("profile");
     if (storageProfileString != null) {
       this.user = JSON.parse(storageProfileString);
-      console.log("from storage", this.user)
+    //  console.log("from storage", this.user)
       return this.user;
     }
     return this.user;

@@ -16,7 +16,7 @@ export class DoctorComponent implements OnInit {
   @Input()  description:string = '';
   @Input() picture: string | null= '';
   @Input() _id: number = 0;
-  constructor(public dialog: MatDialog,private api: AuthService,) { }
+  constructor(public dialog: MatDialog, public AuthService:AuthService,) { }
 
   ngOnInit(): void {
   }
@@ -34,7 +34,7 @@ export class DoctorComponent implements OnInit {
   }
   deleteUSer(_id: number) {
     console.log("delete", _id);
-    this.api.deletUser(_id);
+    this.AuthService.deletUser(_id);
     // let index: number = this.postsData.findIndex(i => (i._id == _id));
     //
     // if (index !== -1) {
@@ -44,5 +44,7 @@ export class DoctorComponent implements OnInit {
 
 
   }
+  user = this.AuthService.getUSerFromStorage();
+
 
 }

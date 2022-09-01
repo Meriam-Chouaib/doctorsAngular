@@ -4,6 +4,7 @@ import {PostFormComponent} from "../../components/post-form/post-form.component"
 import {MatDialog} from "@angular/material/dialog";
 import {successResult} from "../../../helper/success-result";
 import {LoginComponent} from "../../components/login/login.component";
+import {AuthService} from "../../services/auth-service/auth.service";
 @Component({
   selector: 'app-doctors',
   templateUrl: './doctors.component.html',
@@ -12,12 +13,13 @@ import {LoginComponent} from "../../components/login/login.component";
 export class DoctorsComponent implements OnInit {
   usersData = users;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public AuthService : AuthService) { }
 
   ngOnInit(): void {
     this.usersData;
     console.log(this.usersData[0].picture)
   }
+  user = this.AuthService.getUSerFromStorage();
   openDialogAddDoctor(titleForm:string,btnName:string,_id:number): void {
     const dialogRef = this.dialog.open(LoginComponent, {
 

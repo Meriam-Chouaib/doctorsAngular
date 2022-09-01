@@ -9,6 +9,8 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
   background-image: url(https://chorus.stimg.co/22530745/merlin_57006531.jpg?fit=crop&crop=faces);
   background-repeat: no-repeat;
+  backdrop-filter: blur(2px);
+
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

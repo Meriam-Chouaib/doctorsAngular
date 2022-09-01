@@ -4,6 +4,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ProductsService} from "../../services/product-service/products.service";
 import{fakeData} from "../../data/data";
 import {successResult} from "../../../helper/success-result";
+import {AuthService} from "../../services/auth-service/auth.service";
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -20,7 +21,7 @@ export class ProductComponent implements OnInit {
   @Input() id: number = 0;
 
 
-  constructor(public dialog: MatDialog, public getProducts:ProductsService ) { }
+  constructor(public dialog: MatDialog, public getProducts:ProductsService , public AuthService:AuthService) { }
 
   ngOnInit(): void {
   }

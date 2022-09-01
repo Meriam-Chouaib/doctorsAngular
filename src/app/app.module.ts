@@ -61,7 +61,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TalkAboutComponent } from './components/talk-about/talk-about.component';
 import { SecurityComponent } from './components/security/security.component';
 
-
 @NgModule({
   imports: [
     BrowserModule,

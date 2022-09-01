@@ -127,10 +127,10 @@ export const posts = [{
   title: 'A question to ask 1',
   user: {
     _id: '1',
-    name: 'Emily',
-    username: 222,
-    password: 'title1',
-    picture:'https://i0.wp.com/jobstanzania.co.tz/wp-content/uploads/2022/01/problem-solving-ideas.jpg?fit=1200%2C800&ssl=1'
+    name: 'Iheb',
+    username: 'Iheb',
+    password: '123',
+    picture:'https://img.freepik.com/premium-photo/oh-my-god-portrait-astonished-handsome-man-denim-casual-shirt-looking-camera-with-big-amazed-eyes-saying-wow-shocked-by-unbelievable-news-indoor-studio-shot-isolated-yellow-background_416530-21128.jpg'
 
   },
   message: 'what can i do if something like this happen..',
@@ -154,7 +154,7 @@ export const posts = [{
     user:  {
       _id: '2',
       name: 'Mohamed',
-      username: 222,
+      username: 'Mohamed',
       password: 'title1',
       speciality: 'pediatric',
       picture: 'https://www.pngitem.com/pimgs/m/54-548301_thumbs-up-man-png-transparent-png.png'
@@ -176,10 +176,10 @@ export const posts = [{
     title: 'A question to ask 2',
     user: {
       _id: '1',
-      name: 'Emily',
-      username: 222,
-      password: 'title1',
-      picture:'https://scontent.ftun10-1.fna.fbcdn.net/v/t1.6435-9/42349682_1876342722402756_6822042279629291520_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=_z9xK4DRYyYAX-ZjzjO&tn=BSDXf1nn5-zV1p6W&_nc_ht=scontent.ftun10-1.fna&oh=00_AT83_rc1lAgqt3FM4otCEudrg3FVGaVqjBwZ10y67-cTVA&oe=63196EA5'
+      name: 'Iheb',
+      username: 'Iheb',
+      password: '123',
+      picture:'https://img.freepik.com/premium-photo/oh-my-god-portrait-astonished-handsome-man-denim-casual-shirt-looking-camera-with-big-amazed-eyes-saying-wow-shocked-by-unbelievable-news-indoor-studio-shot-isolated-yellow-background_416530-21128.jpg'
     },
     message: 'what can i do if something like this happen..',
     date: "05/08/2022",
@@ -189,7 +189,7 @@ export const posts = [{
       user:  {
         _id: '2',
         name: 'Vectoria',
-        username: 222,
+        username: 'Vectoria',
         password: 'title1',
         speciality: 'pediatric',
         picture: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
@@ -205,7 +205,7 @@ export const posts = [{
       user:  {
         _id: '2',
         name: 'Vectoria',
-        username: 222,
+        username: 'Vectoria',
         password: 'title1',
         speciality: 'pediatric',
         picture: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
@@ -228,10 +228,10 @@ export const posts = [{
     title: 'A question to ask 3',
     user: {
       _id: '1',
-      name: 'Emily',
-      username: 222,
-      password: 'title1',
-      picture:'https://scontent.ftun10-1.fna.fbcdn.net/v/t1.6435-9/42349682_1876342722402756_6822042279629291520_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=_z9xK4DRYyYAX-ZjzjO&tn=BSDXf1nn5-zV1p6W&_nc_ht=scontent.ftun10-1.fna&oh=00_AT83_rc1lAgqt3FM4otCEudrg3FVGaVqjBwZ10y67-cTVA&oe=63196EA5'
+      name: 'Iheb',
+      username: 'Iheb',
+      password: '123',
+      picture:'https://img.freepik.com/premium-photo/oh-my-god-portrait-astonished-handsome-man-denim-casual-shirt-looking-camera-with-big-amazed-eyes-saying-wow-shocked-by-unbelievable-news-indoor-studio-shot-isolated-yellow-background_416530-21128.jpg'
 
     },
     message: 'what can i do if something like this happen..',
@@ -242,7 +242,7 @@ export const posts = [{
       user:  {
         _id: '2',
         name: 'Vectoria',
-        username: 222,
+        username: 'Vectoria',
         password: 'title1',
         speciality: 'pediatric',
         picture: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
@@ -259,7 +259,7 @@ export const posts = [{
       user:  {
         _id: '2',
         name: 'Vectoria',
-        username: 222,
+        username: 'Vectoria',
         password: 'title1',
         speciality: 'pediatric',
         picture: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
@@ -275,6 +275,55 @@ export const posts = [{
     liked:false,
     disliked:false,
     likes:12,
+    dislikes:0
+  },
+  {
+    _id: 10,
+    title: 'A question to ask 1',
+    user: {
+      _id: '2',
+      name: 'Meriam',
+      username: 'Meriam',
+      password: '123',
+      picture:'https://img.freepik.com/free-photo/portrait-dark-skinned-cheerful-woman-with-curly-hair-touches-chin-gently-laughs-happily-enjoys-day-off-feels-happy-enthusiastic-hears-something-positive-wears-casual-blue-turtleneck_273609-43443.jpg'
+
+    },
+    message: 'what can i do if something like this happen..',
+    date: "05/08/2022",
+    comments: [{
+      _id:'1',
+      subject:'you can do many things .. you have just to keep calm',
+      user:  {
+        _id: '2',
+        name: 'Vectoria',
+        username: 222,
+        password: 'title1',
+        speciality: 'pediatric',
+        picture: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
+      },
+      date:'09/08/2022'
+
+    },{
+      _id:1,
+      subject:'No problem you gonna die anyway ...',
+      user:  {
+        _id: '2',
+        name: 'Mohamed',
+        username: 'Mohamed',
+        password: 'title1',
+        speciality: 'pediatric',
+        picture: 'https://www.pngitem.com/pimgs/m/54-548301_thumbs-up-man-png-transparent-png.png'
+      },
+      date:'09/08/2022',
+      // _id: string;
+      // subject: string;
+      // user: User;
+      // date:Date;
+      picture:"ilagg.jog"
+    }],
+    liked:false,
+    disliked:false,
+    likes:10,
     dislikes:0
   }
 ]

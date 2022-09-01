@@ -1,7 +1,7 @@
 <div class="doctor-container">
 
   <div class="doctor">
-    <div class="actions-post">
+    <div class="actions-post" *ngIf="user.isAdmin">
       <button (click)="openDialogAddDoctor('Edit doctor','edit',_id)" class="btn-act">
 
       <span class="material-symbols-outlined">

@@ -1,5 +1,54 @@
 .about {
   background-color: white;
+  border-radius: 20px;
+  .about-page1{
+    display: flex;
+    padding: 19px 19px;
+    align-items: center;    .about-page1-img{
+      img{
+        width: 500px;
+        height: 360px;
+        object-fit: cover;
+        border-radius: 80px;
+      }
+    }
+    .about-page1-text{
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      .about-text1 {
+        font-size: 42px;
+        line-height: normal;
+        font-family: 'Roboto';
+        text-align: center;
+        padding: 20px 35px;
+        color: #00213d;
+
+        .subtext1 {
+          color: #2da08f;
+          font-weight: 700;
+        }
+      }
+      .about-page1-text-butt{
+      border: none;
+        padding: 11px 37px;
+        background-color: #f5bc54ed;
+        color: white;
+        font-weight: 500;
+        font-size: 16px;
+      border-radius: 18px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+      .about-page1-text-butt:hover{
+background-color: #f5bc54bf;
+        transition: opacity 0.3s ease-in-out;
+
+      }
+    }
+  }
   .part1 {
     .about-text1 {
       font-size: 45px;
@@ -11,6 +60,9 @@
 
       .subtext1 {
         color: #b0c9e8;
+      }
+      .about-page1-text-butt {
+
       }
     }
 
@@ -31,7 +83,7 @@
 
     text-align: center;
     align-items: center;
-    padding: 4px 0px;
+    padding:13px 0px;
     display: flex;
     margin: 0px 39%;
 
@@ -51,8 +103,9 @@
         align-items: center;
         justify-content: center;
         .vision-mission-img {
-          height: 70px;
-          width: 70px;
+          height: 60px;
+          width: 60px;
+          object-fit: contain;
         }
         p{
           color: #002039;

@@ -35,7 +35,7 @@ export class PostService {
     return this.postsData;
   }
 
-  getPostsByKeywords(searchKey: string | undefined):({ date: string; comments: ({ date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: number } } | { date: string; subject: string; _id: number; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: number }; picture: string })[]; _id: number; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: number } } | { date: string; comments: { date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: number } }[]; _id: number; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: number }; picture: string } | { date: string; comments: ({ date: string; subject: string; _id: number; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: number }; picture: string } | { date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: number }; picture: string })[]; _id: number; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: number } })[]  {
+  getPostsByKeywords(searchKey: string | undefined):({ date: string; comments: ({ date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: number } } | { date: string; subject: string; _id: number; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string })[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; liked: boolean; likes: number } | { date: string; comments: ({ date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string } } | { date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string } })[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; picture: string; liked: boolean; likes: number } | { date: string; comments: ({ date: string; subject: string; _id: number; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string } | { date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string })[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; picture: string; liked: boolean; likes: number })[]  {
     console.log(searchKey, "from api")
     if (searchKey) {
       return this.postsData.filter(post => post.title.includes(searchKey) || post.message.includes(searchKey))
@@ -67,47 +67,53 @@ export class PostService {
     this.post.liked = this.postsData[index].liked;
     this.post.disliked = this.postsData[index].disliked;
     this.post._id = idPost;
+    this.post.user  = this.postsData[index].user as unknown as  User;
+    console.log("post from service",this.postsData[index])
 
     return this.post;
   }
   addLike(_id:number,liked:boolean){
-    console.log("fromservice",_id)
+    console.log("fromservice",_id,"liked",liked)
     this.post = this.getPostById(_id)
-
-    if( this.post.liked==true){
+    this.post.liked = liked;
+    if( liked){
 
     this.post.likes++;
-      console.log(  this.post.liked,this.post.likes)
-      this.post.liked = !liked;
-
+      console.log( "liked post:" ,this.post.liked,"likes:",this.post.likes)
     }
     else{
+      this.post.likes--;
+      console.log( "liked post:" ,this.post.liked,"likes:",this.post.likes)
       this.post.likes= this.getPostById(_id).likes -1;
 
       console.log(  this.post.liked,this.post.likes)
-      this.post.liked = true;
-      this.post.liked = !liked;
 
     }
-
-
   }
-  addDislike(_id:number){
-    console.log("fromservice",_id)
-     this.getPostById(_id).disliked = !this.getPostById(_id).disliked;
-    if(this.getPostById(_id).disliked==true){
-      this.getPostById(_id).dislikes++;
-      console.log(  this.getPostById(_id))
 
+  addDislike(_id:number,disliked:boolean){
+    console.log("fromservice",_id,"liked",disliked)
+    this.post = this.getPostById(_id)
+    this.post.liked = disliked;
+    if( disliked){
+
+      this.post.dislikes++;
+      console.log( "liked post:" ,this.post.disliked,"likes:",this.post.dislikes)
     }
     else{
-      this.getPostById(_id).dislikes --;
+      this.post.dislikes--;
+      console.log( "disliked post:" ,this.post.disliked,"dislikes:",this.post.dislikes)
+      this.post.dislikes= this.getPostById(_id).dislikes -1;
+
+      console.log(  this.post.disliked,this.post.dislikes)
+
     }
-
-
   }
   getLikes(){
     return this.post.likes;
+  }
+  getDislikes(){
+    return this.post.dislikes;
   }
 getTalks(){
     return this.talksData;

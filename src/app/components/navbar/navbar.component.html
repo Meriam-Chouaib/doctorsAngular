@@ -13,30 +13,27 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/home">Home </a>
-          </li>
+<!--          <li class="nav-item active">-->
+<!--            <a class="nav-link" href="/home">Home </a>-->
+<!--          </li>-->
 <!--          <li class="nav-item">-->
 <!--            <a class="nav-link" href="/products">products</a>-->
 <!--          </li>-->
-          <li class="nav-item">
-            <a class="nav-link" href="/posts">Posts</a>
+          <li class="nav-item nav-item-space">
+            <a class="nav-link" href="/posts">Home</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item nav-item-space">
             <a class="nav-link" href="/doctors">Doctors</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item nav-item-space">
             <a class="nav-link" href="/about">About</a>
           </li>
-          <li class="nav-item" *ngIf="this.user.isLogged">
+          <li class="nav-item nav-item-space" *ngIf="this.user.isLogged">
             <a class="nav-link" href="/about">{{this.user.username}}</a>
           </li>
-          <li class="nav-item" *ngIf="this.user.isLogged==true">
-            <img nzSrc="{{this.user.picture}}" class="user-img" nz-image>
 
-          </li>
 
-          <li class="nav-item" *ngIf="this.user.isLogged">
+          <li class="nav-item nav-items-img-logout" *ngIf="this.user.isLogged">
             <a class="nav-link btn-login" (click)="logout()">
               <span class="material-symbols-outlined">logout</span>
             </a>
@@ -47,7 +44,11 @@
           <li class="nav-item" *ngIf="!this.user.isLogged">
             <a class="nav-link btn-login" (click)="openDialogLogin('Sign up','Confirm')">Register</a>
           </li>
+          <li class="nav-item align-picture-profile" *ngIf="this.user.isLogged==true">
 
+            <a class="profile-img"><img nzSrc="{{this.user.picture}}" class="user-img" nz-image></a>
+
+          </li>
 
         </ul>
 

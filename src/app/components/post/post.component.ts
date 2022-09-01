@@ -27,6 +27,7 @@ export class PostComponent implements OnInit {
   @Input() comments: Comment [] = [];
   @Input() _id:number=0;
   @Input() liked: boolean = false;
+  @Input() disliked: boolean = false;
   @Input() user: User = new User();
 
   @Input() likes: number =  0;
@@ -72,8 +73,8 @@ return this.AuthService.getUSerFromStorage()._id;
 
     this.liked = this.PostService.getPostById(_id).liked;
     console.log(this.liked)
-    this.PostService.addLike(_id,this.liked);
-    this.liked = ! this.liked;
+    this.PostService.addLike(_id,!this.liked);
+
 
     // console.log("from post",_id)
     // console.log(this.liked)
@@ -83,19 +84,19 @@ return this.AuthService.getUSerFromStorage()._id;
 
     this.dislikes = this.PostService.getPostById(_id).dislikes;
 
-    this.dislikes = this.PostService.getPostById(_id).dislikes
-    this.PostService.addDislike(_id);
+    this.likes = this.PostService.getPostById(_id).likes
+    this.PostService.addDislike(_id,!this.disliked);
     console.log("from post",_id)
     console.log(this.liked)
     this.PostService.getPostById(_id)
   }
-getLikes(_id:number){
+getLikes(){
   //   return this.PostService.getPostById(_id).likes
   // console.log(this.PostService.getPostById(_id))
   return this.PostService.getLikes();
 }
-  getDislikes(_id:number){
-    return this.PostService.getPostById(_id).dislikes
+  getDislikes(){
+    return this.PostService.getDislikes();
   }
 getIsLiked(_id:number){
     return this.PostService.getPostById(_id).liked
@@ -129,6 +130,9 @@ this.likes=this.likes --;
     });
   }
   checkUser(idPost:number):boolean{
+    console.log(idPost,"id post")
+    console.log(this.PostService.getPostById(idPost)?.user?._id, " id user post")
+    console.log(this.AuthService.getUSerFromStorage()._id, " id user connected")
     if(this.PostService.getPostById(idPost)?.user?._id==this.AuthService.getUSerFromStorage()._id){
       return true;
     }
