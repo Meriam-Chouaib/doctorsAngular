@@ -41,7 +41,7 @@ chevron_right
 <!--    </div>-->
 
 <!--  </div>-->
-  <div class="separator"></div>
+<!--  <div class="separator"></div>-->
 <!--  <div class="part2">-->
 <!--    <div class="vision-mission">-->
 <!--      <div class="vision-mission-img-text">-->
@@ -60,4 +60,19 @@ chevron_right
 <!--      <p class="vision-mission-txt"> {{STRINGS.ABOUT.MISSION_TXT}}</p>-->
 <!--    </div>-->
 <!--  </div>-->
+  <div class="separator"></div>
+
+    <h2 class="title">Our doctors</h2>
+
+  <div class="our-doctors">
+
+
+    <div *ngFor="  let item of usersData; let i=index" class="docter-item ">
+
+      <app-doctor [name]="item.name"  [speciality]="item.speciality" [picture]="item.picture" [_id]="item._id" class="test" >
+
+      </app-doctor>
+  </div>
+
+</div>
 </div>

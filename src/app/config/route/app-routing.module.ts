@@ -8,6 +8,7 @@ import {ListProductsComponent} from "../../pages/list-products/list-products.com
 import {AboutComponent} from "../../pages/about/about.component";
 import {DoctorsComponent} from "../../pages/doctors/doctors.component";
 import {PostsComponent} from "../../pages/posts/posts.component";
+import {ProfileComponent} from "../../components/profile/profile.component";
 const appRoutes: Routes = [
 
   //when we cant to do a redirect
@@ -20,11 +21,12 @@ const appRoutes: Routes = [
   /*{path: 'addProduct', component:ProductFormComponent , canActivate:guard}, nzidou guard ki tabda page lezemha a
   *authentification*/
   {path: 'posts', component:PostsComponent },
-  {path: 'about', component:AboutComponent },
+  {path: 'about', component:AboutComponent,data: { animation: 'isRight' } },
   {path: 'doctors', component:DoctorsComponent },
 
   {path: 'home', component:HomeComponent },
   {path: 'products', component:ListProductsComponent },
+  {path: 'profile', component:ProfileComponent },
 ];
 @NgModule({
 imports: [RouterModule.forRoot(appRoutes)],

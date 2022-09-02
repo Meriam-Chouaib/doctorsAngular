@@ -10,6 +10,8 @@
         height: 360px;
         object-fit: cover;
         border-radius: 80px;
+        animation-name: fadeInLeft;
+        animation-duration: 1.5s;
       }
     }
     .about-page1-text{
@@ -24,6 +26,8 @@
         text-align: center;
         padding: 20px 35px;
         color: #00213d;
+        animation-name: fadeInRight;
+        animation-duration: 1.5s;
 
         .subtext1 {
           color: #2da08f;
@@ -128,4 +132,27 @@ background-color: #f5bc54bf;
     }
   }
 
+  .title{
+    text-align: center;
+    font-size: 38px;
+    padding: 36px 0px;
+    color: #00213d;
+  }
+  .our-doctors{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .docter-item{
+
+      .test{
+.doctor-border{
+  border: none !important;
 }
+      }
+    }
+  }
+}
+

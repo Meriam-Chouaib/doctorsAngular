@@ -11,10 +11,10 @@ import {AuthService} from "../../services/auth-service/auth.service";
   styleUrls: ['./doctors.component.scss']
 })
 export class DoctorsComponent implements OnInit {
-  usersData = users;
+
 
   constructor(public dialog: MatDialog, public AuthService : AuthService) { }
-
+  usersData = this.AuthService.getUsers();
   ngOnInit(): void {
     this.usersData;
     console.log(this.usersData[0].picture)

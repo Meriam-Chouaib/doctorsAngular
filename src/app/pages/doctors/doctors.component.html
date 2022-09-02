@@ -11,9 +11,9 @@
     <button class="btn-add-product" (click)="openDialogAddDoctor('Add doctor','Add',-1)"  >+</button>
   </div>
 </div>
-<div class="doctors">
+<div class="doctors ">
 
-  <div *ngFor="  let item of usersData; let i=index" class="docter-item">
+  <div *ngFor="  let item of usersData; let i=index" class="docter-item ">
 
   <app-doctor [name]="item.name"  [speciality]="item.speciality" [picture]="item.picture" [_id]="item._id" >
 

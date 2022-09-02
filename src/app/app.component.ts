@@ -7,6 +7,17 @@ import {ProductModel} from "./models/Product";
 import {successResult} from "../helper/success-result";
 import {Store} from "@ngrx/store";
 // import * as fromStore from '@app/state';
+import {RouterOutlet} from "@angular/router";
+import {
+  trigger,
+  transition,
+  style,
+  query,
+  group,
+  animateChild,
+  animate,
+  keyframes,
+} from '@angular/animations';
 
 
 @Component({
@@ -14,11 +25,15 @@ import {Store} from "@ngrx/store";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit{
 
   products : ProductModel[]=[]; //déclaration variable ou on va stocker le résultat initialisation à vide de type Product(interface Product existe dans products.service.ts)
   title = 'untitled';
 
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
 
   constructor(public dialog: MatDialog, public getProducts:ProductsService,
              // private readonly store: Store
@@ -48,6 +63,7 @@ export class AppComponent implements OnInit{
       }
     )
   }
+
 
 
 }

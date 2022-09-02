@@ -60,6 +60,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TalkAboutComponent } from './components/talk-about/talk-about.component';
 import { SecurityComponent } from './components/security/security.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -123,6 +124,7 @@ import { SecurityComponent } from './components/security/security.component';
     PostFormComponent,
     TalkAboutComponent,
     SecurityComponent,
+    ProfileComponent,
 
 
   ],

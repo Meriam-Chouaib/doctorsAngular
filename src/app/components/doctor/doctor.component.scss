@@ -14,9 +14,14 @@
     }
 
   }
-
-
-
+.doctor-border{
+  border-radius: 20px;
+    .name-description-doctor{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }}
 
     .doctor-img {
       border-radius: 158px;
@@ -24,6 +29,18 @@
       object-fit: cover;
       height: 150px !important;
       margin: 0 auto;
+      &:hover{
+        animation-name: rotateIn;
+        animation-duration: 1.8s;
+      }
+    }
+
+    .ant-card-meta-detail{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
     }
   }
 
@@ -35,6 +52,8 @@
 .doctor:hover{
   .actions-post{
     display: block;
+    animation-name: fadeIn;
+    animation-duration: 1.8s;
   }
 }}
 

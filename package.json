@@ -27,6 +27,7 @@
     "@ngrx/store": "^13.2.0",
     "@ngrx/store-devtools": "^13.2.0",
     "@popperjs/core": "^2.11.5",
+    "animate.css": "^4.1.1",
     "bootstrap": "^5.2.0",
     "cors": "^2.8.5",
     "ng-zorro-antd": "^13.4.0",
