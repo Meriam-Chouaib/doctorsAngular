@@ -9,12 +9,12 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input formControlName="title" matInput placeholder="title" [(ngModel)]="product.title" [value]="title" id="title">
+        <input formControlName="title" matInput placeholder="title" [(ngModel)]="product.title" [value]="title" id="title" required>
       </mat-form-field>
 
       <mat-form-field appearance="outline" color="primary">
         <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description" [(ngModel)]="product.description" id="description"></textarea>
+        <textarea matInput formControlName="description" [(ngModel)]="product.description" id="description" required></textarea>
       </mat-form-field>
 
       <mat-form-field appearance="outline" color="primary">

@@ -46,7 +46,8 @@ edit
 
     <div *ngFor="  let item of postsData; let i=index">
 
-      <app-post [title]="item.title"
+      <app-post
+        [title]="item.title"
                 [message]="item.message"
                 [name]="item.user.name"
                 [picture]="item.user.picture"

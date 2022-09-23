@@ -14,7 +14,7 @@
 
     </div>
 
-    <div class="actions-post" *ngIf="checkUser(_id)" >
+    <div class="actions-post" *ngIf="checkUser(_id)">
       <button (click)="openDialogAddPost('Edit post','edit',_id)">
       <span class="material-symbols-outlined">
       edit
@@ -28,28 +28,32 @@
     </div>
 
   </div>
-  <div class="nb-reactions">
-    <div class="nb-reactions-text"><p>{{getLikes()}} Likes</p></div>
-    <div class="nb-reactions-text"><p>{{getDislikes()}} Dislikes</p></div>
-    <div class="nb-reactions-text"><p>{{comments.length}} Comments</p></div>
-    <p></p>
-  </div>
-  <!--  <app-reactions   ></app-reactions>-->
-  <div class="reactions">
-    <button (click)="addLike(_id,getIdUser())" class=" like dislike-color">
+  <div class="reactions-center">
+
+    <div class="nb-reactions">
+      <div class="nb-reactions-text"><p>{{getLikes()}} Likes</p></div>
+      <div class="nb-reactions-text"><p>{{getDislikes()}} Dislikes</p></div>
+      <div class="nb-reactions-text"><p>{{comments.length}} Comments</p></div>
+      <p></p>
+    </div>
+    <!--  <app-reactions   ></app-reactions>-->
+    <div class="reactions">
+      <button (click)="addLike(_id,getIdUser())" class=" like dislike-color">
         <span class="material-symbols-outlined">
       thumb_up
       </span>
-    </button>
-    <button (click)="addDislike(_id,getIdUser())" class="like">
+      </button>
+      <button (click)="addDislike(_id,getIdUser())" class="like">
     <span class="material-symbols-outlined">
 thumb_down
 </span>
-    </button>
-    <span class="material-symbols-outlined" (click)="displayComments()">
+      </button>
+      <span class="material-symbols-outlined" (click)="displayComments()">
 comment
 </span>
 
+
+    </div>
 
   </div>
   <div *ngFor="  let item of comments">

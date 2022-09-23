@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     color: #c7bfbf;
-    justify-content: space-evenly;
+    justify-content: center;
   }
 
   .user-name-img{
@@ -56,11 +56,13 @@ cursor: pointer;
       }
     }
   }
-.nb-reactions{
-  .nb-reactions-text{
-    padding: 0px 0px 0px 50px;
+.reactions-center{
+  .nb-reactions{
+    .nb-reactions-text{
+      width: 30%;
+      text-align: center;
+    }
   }
-}
   .reactions {
     display: flex;
     justify-content: space-evenly;
@@ -84,6 +86,10 @@ cursor: pointer;
       color: blue;
     }
   }
+}
+
+
+
 
   .comments-container{
     position: relative;

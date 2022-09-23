@@ -61,6 +61,7 @@ export class PostFormComponent implements OnInit {
 
   cancel() {
     this.onCancel.emit();
+    //window.location.reload();
   }
 
   handleOk(form: NgForm, _id: number) {
@@ -68,13 +69,16 @@ export class PostFormComponent implements OnInit {
     console.log(_id)
     if (_id === -1) {
       this.PostService.addPost(form);
+     // window.location.reload();
     } else {
       let index: number = this.postsData.findIndex(i => (i._id == this.data._id));
       this.postsData[index].title = this.post.title;
       this.postsData[index].message = this.post.message;
       this.postsData[index].picture = this.post.picture;
+      window.location.reload();
 
     }
+
   }
   handleChange(info: NzUploadChangeParam): void {
     if (info.file.status !== 'uploading') {

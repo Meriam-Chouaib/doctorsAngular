@@ -19,7 +19,7 @@ import {AuthService} from "../auth-service/auth.service";
   providedIn: 'root'
 })
 export class PostService {
-  endpoint: string = 'http://localhost:3000';
+  BASE_URL: string = 'http://localhost:8080';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   usersData = users;
   postsData = posts;
@@ -50,11 +50,13 @@ export class PostService {
     this.post.picture = form.value.picture;
     // this.post = form as unknown as Post;
     this.post.user = this.AuthService.getUSerFromStorage();
-    // this.postsData[length++] = this.post;
+    // @ts-ignore
+     this.postsData[this.postsData.length++] = this.post ;
   //  console.log()
-  //  this.postsData.push(this.post);
+
+   //  this.postsData.push(this.post as unknown as Post);
  //   console.log(this.postsData)
-    console.log(this.post)
+    console.log("new post",this.post,"all posts",this.postsData)
   }
   getPostById(idPost:number){
     let index: number = this.postsData.findIndex(i => (i._id == idPost));
