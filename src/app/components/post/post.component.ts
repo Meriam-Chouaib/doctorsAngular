@@ -21,20 +21,21 @@ export class PostComponent implements OnInit {
   @Input()
   _isShown: boolean = false;
 
-  @Input() title: string = '';
-  @Input() message: string = '';
-  @Input() date: string = '';
-  @Input() comments: Comment [] = [];
+//@Input():Post ; or ->  @Input() title?: string = '';... les champs kol
+  @Input() title?: string = '';
+  @Input() message?: string = '';
+  @Input() date?: string="" ;
+  @Input() comments?: Comment []  = [];
   @Input() _id:number=0;
-  @Input() liked: boolean = false;
-  @Input() disliked: boolean = false;
-  @Input() user: User = new User();
+  @Input() liked?: boolean = false;
+  @Input() disliked?: boolean = false;
+  @Input() user?:User = new User();
 
-  @Input() likes: number =  0;
-  @Input() dislikes: number =  0;
+  @Input() likes?: number =  0;
+  @Input() dislikes?: number =  0;
   // @Input() user: User ;
-  @Input() name: string = '';
-  @Input() picture: string | undefined = '';
+  @Input() name?: string = '';
+  @Input() picture?: string = '';
 
   private isShownChange: any;
 
@@ -54,67 +55,61 @@ export class PostComponent implements OnInit {
 
   constructor(public dialog: MatDialog,private PostService: PostService,private AuthService:AuthService) {
   }
-   // likes:number=this.PostService.getPostById(this._id).likes;
   ngOnInit(): void {
     console.log(this.isShown);
-    this.likes=  this.PostService.getPostById(this._id).likes;
-    this.dislikes=  this.PostService.getPostById(this._id).dislikes;
+      this.PostService.getPostById(this._id).subscribe((res)=>{
+        // this.likes= res.data.likes;
+        // this.dislikes = res.data.dislikes;
+        // this.liked = res.data.liked;
+        // this.disliked = res.data.disliked;
+        // this.user._id = res?.data?.user?.id;
+        console.log(res)
+      })
+
 
   }
   getIdUser(){
-return this.AuthService.getUSerFromStorage()._id;
+return  this.AuthService.getUSerFromStorage()._id;
   }
 
   displayComments() {
     this._isShown = !this._isShown;
   }
 
-  addLike(_id:number,idUser:number) {
-
-    this.liked = this.PostService.getPostById(_id).liked;
-    console.log(this.liked)
-    this.PostService.addLike(_id,!this.liked);
-
-
-    // console.log("from post",_id)
-    // console.log(this.liked)
-    // this.PostService.getPostById(_id)
+ addLike(_id:number,idUser:number) {
+  //
+  //   this.liked = this.PostService.getPostById(_id).liked;
+  //   console.log(this.liked)
+  //   this.PostService.addLike(_id,!this.liked);
+  //
+  //
+  //   // console.log("from post",_id)
+  //   // console.log(this.liked)
+  //   // this.PostService.getPostById(_id)
   }
-  addDislike(_id:number,idUser:number) {
-
-    this.dislikes = this.PostService.getPostById(_id).dislikes;
-
-    this.likes = this.PostService.getPostById(_id).likes
-    this.PostService.addDislike(_id,!this.disliked);
-    console.log("from post",_id)
-    console.log(this.liked)
-    this.PostService.getPostById(_id)
+   addDislike(_id:number,idUser:number) {
+  //
+  //   this.dislikes = this.PostService.getPostById(_id).dislikes;
+  //
+  //   this.likes = this.PostService.getPostById(_id).likes
+  //   this.PostService.addDislike(_id,!this.disliked);
+  //   console.log("from post",_id)
+  //   console.log(this.liked)
+  //   this.PostService.getPostById(_id)
   }
 getLikes(){
-  //   return this.PostService.getPostById(_id).likes
-  // console.log(this.PostService.getPostById(_id))
-  return this.PostService.getLikes();
+
+  return this.likes;
 }
   getDislikes(){
-    return this.PostService.getDislikes();
+    return this.dislikes;
   }
-getIsLiked(_id:number){
-    return this.PostService.getPostById(_id).liked
+getIsLiked(){
+    return this.liked;
 }
-  removeLike() {
-this.likes=this.likes --;
-  }
 
   deletePost(_id: number) {
-    console.log("delete", _id);
-    let index: number = this.postsData.findIndex(i => (i._id == _id));
-
-    if (index !== -1) {
-      this.postsData.splice(_id, 1);
-      console.log(this.postsData)
-    }
-
-
+    this.PostService.deletePost(_id);
   }
 
   openDialogAddPost(titleForm: string, btnName: string, _id: number): void {
@@ -131,12 +126,14 @@ this.likes=this.likes --;
   }
   checkUser(idPost:number):boolean{
     console.log(idPost,"id post")
-    console.log(this.PostService.getPostById(idPost)?.user?._id, " id user post")
+   this.PostService.getPostById(idPost)?.subscribe((res)=>{
+     console.log( res.data.user?.id,"id user post");
+     })
     console.log(this.AuthService.getUSerFromStorage()._id, " id user connected")
-    if(this.PostService.getPostById(idPost)?.user?._id==this.AuthService.getUSerFromStorage()._id){
-      return true;
-    }
-    return false
+    // if(this.PostService.getPostById(idPost)?.getData().user?._id==this.AuthService.getUSerFromStorage()._id){
+    //   return true;
+    // }
+     return false
   }
 
 

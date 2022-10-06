@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {STRINGS} from '../../../core/enums/strings';
 import {fader, slider} from "../../config/route-animations"
 import {AuthService} from "../../services/auth-service/auth.service";
+import {User} from "../../models/User";
+import {Data} from "../../models/ApiResponse";
 
 @Component({
   selector: 'app-about',
@@ -13,11 +15,18 @@ import {AuthService} from "../../services/auth-service/auth.service";
 ]
 
 })
+
 export class AboutComponent implements OnInit {
   STRINGS=STRINGS;
 
   constructor( public AuthService : AuthService) { }
-  usersData = this.AuthService.getUsers();
+  getUsers(): any{
+    this.AuthService.getUsers().subscribe((res)=>{
+
+      return res.data;
+    });
+  }
+
 
   ngOnInit(): void {
   }

@@ -15,9 +15,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ProductFormComponent } from './components/product-form/product-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ProductsService} from "./services/product-service/products.service";
 import {HttpClient} from "@angular/common/http";
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './components/login/login.component';
@@ -26,8 +24,6 @@ import { HomeComponent } from './pages/home/home.component';
 import {MatListModule} from "@angular/material/list";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ProductComponent } from './components/product/product.component';
-import { ListProductsComponent } from './pages/list-products/list-products.component';
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import {NzInputModule} from "ng-zorro-antd/input";
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -105,12 +101,9 @@ import { ProfileComponent } from './components/profile/profile.component';
   declarations: [
     AppComponent,
     TestComponent,
-    ProductFormComponent,
     LoginComponent,
     HomeComponent,
     NavbarComponent,
-    ProductComponent,
-    ListProductsComponent,
     CarouselComponent,
     AboutComponent,
     DoctorsComponent,
@@ -129,7 +122,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
   ],
   providers: [
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},ProductsService
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}
 
   ],
   bootstrap: [AppComponent]

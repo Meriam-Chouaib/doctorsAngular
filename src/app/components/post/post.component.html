@@ -33,7 +33,7 @@
     <div class="nb-reactions">
       <div class="nb-reactions-text"><p>{{getLikes()}} Likes</p></div>
       <div class="nb-reactions-text"><p>{{getDislikes()}} Dislikes</p></div>
-      <div class="nb-reactions-text"><p>{{comments.length}} Comments</p></div>
+      <div class="nb-reactions-text"><p>{{comments?.length}} Comments</p></div>
       <p></p>
     </div>
     <!--  <app-reactions   ></app-reactions>-->
@@ -67,7 +67,7 @@ comment
           </app-comment>
         </div>
       </div>
-      <div class="add-comment" *ngIf="user._id!=0">
+      <div class="add-comment" *ngIf="user?._id!=0">
         <app-add-comment [id]="item._id"
         ></app-add-comment>
       </div>

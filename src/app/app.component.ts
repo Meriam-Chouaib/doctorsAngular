@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductFormComponent} from "./components/product-form/product-form.component";
 import {MatDialog} from "@angular/material/dialog";
-import { ProductsService} from "./services/product-service/products.service";
 import {LoginComponent} from "./components/login/login.component";
 import {ProductModel} from "./models/Product";
 import {successResult} from "../helper/success-result";
@@ -35,14 +33,13 @@ export class AppComponent implements OnInit{
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
-  constructor(public dialog: MatDialog, public getProducts:ProductsService,
+  constructor(public dialog: MatDialog
              // private readonly store: Store
   ) {} //function getProducts de type ProductsService ism service eli bch nekhdhou bih all products
  // user$ = this.store.select(LoginComponent.arguments)
   ngOnInit(): void {
 
  //   console.log(this.user$)
-    this.onGetProducts(); //nraj3ou lfonction eli bch tekhou résultat mte3 service déclaré en bas
     }
 
     openDialogLogin(): void {
@@ -54,15 +51,6 @@ export class AppComponent implements OnInit{
   }
 
 
-  onGetProducts():void{
-    this.getProducts.getProducts().subscribe( //nameService.nameFunctions.subscribe
-      (res)=> {
-          this.products = res
-        new successResult(true, this.products, 1, "success")
-
-      }
-    )
-  }
 
 
 

@@ -14,10 +14,14 @@ export class DoctorsComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog, public AuthService : AuthService) { }
-  usersData = this.AuthService.getUsers();
+  getUsers(): any{
+    this.AuthService.getUsers().subscribe((res)=>{
+
+      return res.data;
+    });
+  }
   ngOnInit(): void {
-    this.usersData;
-    console.log(this.usersData[0].picture)
+ this.getUsers();
   }
   user = this.AuthService.getUSerFromStorage();
   openDialogAddDoctor(titleForm:string,btnName:string,_id:number): void {

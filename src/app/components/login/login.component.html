@@ -59,14 +59,14 @@
 
         <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect"
                 [disabled]="!loginForm.valid" *ngIf="!this.titleMod.localeCompare('Edit informations')" type="submit"
-                (click)="signIn(loginForm)"> Confirm
+                (click)="getUserAndUpdate(user._id,loginForm)"> Confirm
         </button>
 
         <!--       ****** edit informations doctor *****-->
 
         <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect"
                 [disabled]="!loginForm.valid" *ngIf="!this.titleMod.localeCompare('Edit doctor')" type="submit"
-                (click)="EditDoctor(loginForm)"> Confirm
+                (click)="getUserAndUpdate(user._id,loginForm)"> Confirm
         </button>
 
         <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn-connect"

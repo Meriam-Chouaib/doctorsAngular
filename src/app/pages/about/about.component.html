@@ -67,7 +67,7 @@ chevron_right
   <div class="our-doctors">
 
 
-    <div *ngFor="  let item of usersData; let i=index" class="docter-item ">
+    <div *ngFor="  let item of getUsers(); let i=index" class="docter-item ">
 
       <app-doctor [name]="item.name"  [speciality]="item.speciality" [picture]="item.picture" [_id]="item._id" class="test" >
 

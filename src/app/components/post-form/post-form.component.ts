@@ -25,7 +25,7 @@ export class PostFormComponent implements OnInit {
   _id: number = 0;
 
 
-  post = new Post();
+  post :Post = new Post();
 
   postsData = this.PostService.getPosts();
   // myDate = new Date();
@@ -52,7 +52,7 @@ export class PostFormComponent implements OnInit {
     this.btnName = this.data.btnName;
     this._id = this.data._id;
 
-    this.getPost();
+    this.getPost(this._id);
   }
 
   submit() {
@@ -65,16 +65,12 @@ export class PostFormComponent implements OnInit {
   }
 
   handleOk(form: NgForm, _id: number) {
-    _id = this._id;
-    console.log(_id)
+
     if (_id === -1) {
-      this.PostService.addPost(form);
+      this.PostService.addPost(form as unknown as Post);
      // window.location.reload();
     } else {
-      let index: number = this.postsData.findIndex(i => (i._id == this.data._id));
-      this.postsData[index].title = this.post.title;
-      this.postsData[index].message = this.post.message;
-      this.postsData[index].picture = this.post.picture;
+  this.PostService.editPost(form as unknown as Post,_id);
       window.location.reload();
 
     }
@@ -92,12 +88,12 @@ export class PostFormComponent implements OnInit {
       console.log(info.file.name)
     }
   }
-  getPost() {
-    let index: number = this.PostService.getPosts().findIndex(i => (i._id == this.data._id));
-    console.log(this.PostService.getPosts()[index])
-    this.post.title = this.postsData[index].title;
-    this.post.message = this.postsData[index].message;
-    this.post.picture = this.postsData[index].picture;
+
+  getPost(idPost:number) {
+   this.PostService.getPostById(idPost).subscribe((res)=>{
+    this.post = res.data as unknown as Post;
+   });
+
   }
 
 }

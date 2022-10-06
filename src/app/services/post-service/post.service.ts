@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {talkAbout, users} from '../../data/data'
-import {posts} from '../../data/data'
+ import {talkAbout} from '../../data/data'
+ //import { users} from '../../data/data'
+// import {posts} from '../../data/data'
 import {User} from '../../models/User'
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
@@ -14,109 +15,111 @@ import {NgForm} from "@angular/forms";
 import {successResult} from "../../../helper/success-result";
 import { Post} from "../../models/Post";
 import {AuthService} from "../auth-service/auth.service";
+import {ProductModel} from "../../models/Product";
+import {ApiResponse} from "../../models/ApiResponse";
+import {PostResponse} from "../../models/PostResponse";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  BASE_URL: string = 'http://localhost:8080';
+  BASE_URL: string = 'http://localhost:8080/articles';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  usersData = users;
-  postsData = posts;
+  postsData :{}={};
   talksData = talkAbout;
   currentUser = {};
   post: Post = new Post();
 
 
+
   constructor(private http: HttpClient, public router: Router, public AuthService: AuthService) {
   }
 
-  getPosts() {
-    return this.postsData;
+  getPosts(): Observable<PostResponse> {
+    return this.http.get<PostResponse>(`${this.BASE_URL}/list`);
   }
 
-  getPostsByKeywords(searchKey: string | undefined):({ date: string; comments: ({ date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: number } } | { date: string; subject: string; _id: number; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string })[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; liked: boolean; likes: number } | { date: string; comments: ({ date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string } } | { date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string } })[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; picture: string; liked: boolean; likes: number } | { date: string; comments: ({ date: string; subject: string; _id: number; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string } | { date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string })[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; picture: string; liked: boolean; likes: number })[]  {
-    console.log(searchKey, "from api")
-    if (searchKey) {
-      return this.postsData.filter(post => post.title.includes(searchKey) || post.message.includes(searchKey))
-    }
-    return this.postsData
+  getPostsByKeywords(searchKey: string | undefined):({ date: string; comments: ({ date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: number } } | { date: string; subject: string; _id: number; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string })[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; liked: boolean; likes: number } | { date: string; comments: { date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string } }[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; picture: string; liked: boolean; likes: number } | { date: string; comments: ({ date: string; subject: string; _id: number; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string } | { date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string })[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; picture: string; liked: boolean; likes: number })[] | null
+  {
+    // console.log(searchKey, "from api")
+    // if (searchKey) {
+    //   this.getPosts().subscribe((res)=>{
+    //     this.postsData = res.data;
+    //     return this.postsData.filter(post => post.title.includes(searchKey) || post.message.includes(searchKey))
+    //
+    //   })
+    //
+    // }
+   //  return this.postsData
+    return null;
 
   }
-  addPost(form: NgForm){
-    this.post._id = this.postsData.length++;
-    this.post.title = form.value.title;
-    this.post.message = form.value.message;
-    this.post.picture = form.value.picture;
-    // this.post = form as unknown as Post;
-    this.post.user = this.AuthService.getUSerFromStorage();
-    // @ts-ignore
-     this.postsData[this.postsData.length++] = this.post ;
-  //  console.log()
+  addPost(form: Post){
+    let postAdded = new Post();
+    postAdded = form;
+    // postAdded.title = form.value.title;
+    // postAdded.message = form.value.message;
+    // postAdded.picture = form.value.picture;
+    postAdded.user = this.AuthService.getUSerFromStorage();
+    return this.http.post<PostResponse>(`${this.BASE_URL}/save`, postAdded);
 
-   //  this.postsData.push(this.post as unknown as Post);
- //   console.log(this.postsData)
-    console.log("new post",this.post,"all posts",this.postsData)
   }
+  editPost(form: Post,idPost:number){
+
+    return this.http.put<PostResponse>(`${this.BASE_URL}/update/${idPost}`, form);
+
+
+  }
+
+deletePost(idPost:number){
+  return this.http.get<PostResponse>(`${this.BASE_URL}/delete/${idPost}`);
+
+}
+
   getPostById(idPost:number){
-    let index: number = this.postsData.findIndex(i => (i._id == idPost));
-     // console.log(this.postsData[index])
-    this.post.title = this.postsData[index].title;
-    this.post.message = this.postsData[index].message;
-    this.post.picture = this.postsData[index].picture;
-    this.post.likes = this.postsData[index].likes;
-    this.post.dislikes = this.postsData[index].dislikes;
-    this.post.liked = this.postsData[index].liked;
-    this.post.disliked = this.postsData[index].disliked;
-    this.post._id = idPost;
-    this.post.user  = this.postsData[index].user as unknown as  User;
-    console.log("post from service",this.postsData[index])
 
-    return this.post;
-  }
-  addLike(_id:number,liked:boolean){
-    console.log("fromservice",_id,"liked",liked)
-    this.post = this.getPostById(_id)
-    this.post.liked = liked;
-    if( liked){
-
-    this.post.likes++;
-      console.log( "liked post:" ,this.post.liked,"likes:",this.post.likes)
-    }
-    else{
-      this.post.likes--;
-      console.log( "liked post:" ,this.post.liked,"likes:",this.post.likes)
-      this.post.likes= this.getPostById(_id).likes -1;
-
-      console.log(  this.post.liked,this.post.likes)
-
-    }
+    console.log(idPost);
+    return this.http.get<PostResponse>(`${this.BASE_URL}/${idPost}`);
   }
 
-  addDislike(_id:number,disliked:boolean){
-    console.log("fromservice",_id,"liked",disliked)
-    this.post = this.getPostById(_id)
-    this.post.liked = disliked;
-    if( disliked){
+  // addLike(_id:number,liked:boolean){
+  //   console.log("fromservice",_id,"liked",liked)
+  //   this.post = this.getPostById(_id).getData();
+  //   this.post.liked = liked;
+  //   if( liked){
+  //
+  //   this.post.likes++;
+  //     console.log( "liked post:" ,this.post.liked,"likes:",this.post.likes)
+  //   }
+  //   else{
+  //     this.post.likes--;
+  //     console.log( "liked post:" ,this.post.liked,"likes:",this.post.likes)
+  //     this.post.likes= this.getPostById(_id).likes -1;
+  //
+  //     console.log(  this.post.liked,this.post.likes)
+  //
+  //   }
+  // }
 
-      this.post.dislikes++;
-      console.log( "liked post:" ,this.post.disliked,"likes:",this.post.dislikes)
-    }
-    else{
-      this.post.dislikes--;
-      console.log( "disliked post:" ,this.post.disliked,"dislikes:",this.post.dislikes)
-      this.post.dislikes= this.getPostById(_id).dislikes -1;
+  // addDislike(_id:number,disliked:boolean){
+  //   console.log("fromservice",_id,"liked",disliked)
+  //   this.post = this.getPostById(_id)
+  //   this.post.liked = disliked;
+  //   if( disliked){
+  //
+  //     this.post.dislikes++;
+  //     console.log( "liked post:" ,this.post.disliked,"likes:",this.post.dislikes)
+  //   }
+  //   else{
+  //     this.post.dislikes--;
+  //     console.log( "disliked post:" ,this.post.disliked,"dislikes:",this.post.dislikes)
+  //     this.post.dislikes= this.getPostById(_id).dislikes -1;
+  //
+  //     console.log(  this.post.disliked,this.post.dislikes)
+  //
+  //   }
+  // }
 
-      console.log(  this.post.disliked,this.post.dislikes)
-
-    }
-  }
-  getLikes(){
-    return this.post.likes;
-  }
-  getDislikes(){
-    return this.post.dislikes;
-  }
 getTalks(){
     return this.talksData;
 }

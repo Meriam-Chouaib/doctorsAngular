@@ -6,6 +6,7 @@ import {error} from "@angular/compiler/src/util";
 import {User} from "../../models/User";
 
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {Data} from "../../models/ApiResponse";
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,8 @@ export class LoginComponent implements OnInit {
   btnName: string = "";
   titleMod: string = "";
   isLogged: boolean = false;
+
+  id:number = 0;
 
   private dialog: any;
 
@@ -31,63 +34,51 @@ export class LoginComponent implements OnInit {
   @Output() onCancel = new EventEmitter();
   @Output() sendUser: EventEmitter<any> = new EventEmitter();
 
-  private loginForm: NgForm | undefined;
+  private loginUser: User | undefined;
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any, private AuthService: AuthService) {
   }
 
   ngOnInit(): void {
 
-    this.getUserAndUpdate();
   }
 
-  getUserAndUpdate() {
-    this.titleMod = this.data.titleForm;
-    this.btnName = this.data.btnName;
-    // console.log(this.usersData)
-    // console.log(this.data._id)
-    let index: number = this.usersData.findIndex(i => (i._id == this.data._id));
-    console.log(this.data._id)
-    console.log(this.usersData[index])
-    this.user.username = this.usersData[index].username.toString();
-    this.user.speciality = this.usersData[index].speciality;
-    console.log(this.usersData)
+  getUserAndUpdate(idUSer:number,userInfo:NgForm) {
+
+this.AuthService.updateUser(userInfo as unknown as User,idUSer);
+
+    console.log("update user ",idUSer)
   }
 
   cancel() {
     this.onCancel.emit();
   }
 
-  signIn(loginForm: NgForm): any {
-    this.loginForm = loginForm;
-    this.AuthService.signIn(this.loginForm.value);
-    console.log("from login component", this.AuthService.getUSerFromStorage());
-    this.user = this.AuthService.getUSerFromStorage();
-    console.log("user recuperé", this.user)
-    this.user.isLogged = true;
-    window.location.reload();
+  signIn(loginUser: NgForm): any {
+
+  this.AuthService.signIn(loginUser).subscribe((res)=>{
+    if(res.status == 200){
+      this.AuthService.setUserToStorage(res.data as unknown as User) ;
+      this.user = this.AuthService.getUSerFromStorage();
+      window.location.reload();
+      console.log("the user connected is",this.user);
+    }
+
+  });
 
 
   };
 
-  signUp(loginForm: NgForm): any {
-    this.loginForm = loginForm;
-    this.AuthService.signUp(this.loginForm.value)
+  signUp(loginUser: NgForm): any {
+    this.loginUser = loginUser as unknown as User;
+    this.AuthService.signUp(this.loginUser).subscribe((res) => {
+
+this.user = res.data as unknown as User;
+    })
 
 
   }
 
-  EditDoctor(loginForm: NgForm) {
 
-    console.log(this.usersData)
-    console.log(this.data._id)
-    let index: number = this.usersData.findIndex(i => (i._id == this.data._id));
-    console.log(index)
-    console.log(this.usersData[index])
-    this.usersData[index].name = loginForm.value.username;
-    this.usersData[index].speciality = loginForm.value.speciality;
-
-    console.log("docter updated", this.usersData[index])
-  }
 }
 

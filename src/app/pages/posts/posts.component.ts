@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import{talkAbout} from "../../data/data";
-import {ProductFormComponent} from "../../components/product-form/product-form.component";
 import {successResult} from "../../../helper/success-result";
 import {AuthService} from "../../services/auth-service/auth.service";
 
@@ -9,6 +8,7 @@ import {PostFormComponent} from "../../components/post-form/post-form.component"
 import {User} from "../../models/User";
 import {LoginComponent} from "../../components/login/login.component";
 import {PostService} from "../../services/post-service/post.service";
+import {Post, PostInterface} from "../../models/Post";
 let edit : boolean;
 let titleForm : string;
 @Component({
@@ -20,20 +20,15 @@ let titleForm : string;
 
 export class PostsComponent implements OnInit {
   user = new User();
-postsData:any = this.postService.getPosts();
+  postsData : PostInterface[] = [];
+
 talkData = talkAbout;
 
 @Input() isLogged:boolean=true;
 
   constructor(public dialog: MatDialog,private AuthService: AuthService,private postService:PostService) { }
 
-  ngOnInit(): void {
-    // console.log(this.postsData[0].comments)
-    console.log(this.talkData)
-    this.user = this.AuthService.getUSerFromStorage();
-    console.log("from posts", this.user)
 
-  }
   openDialogAddPost(titleForm:string,btnName:string,_id:number): void {
     console.log(titleForm)
     edit = false;
@@ -68,7 +63,7 @@ talkData = talkAbout;
     const input = document.getElementById('search') as HTMLInputElement | null;
     const searchKey = input?.value;
     console.log("from posts page",searchKey)
-  this.postsData = this.postService.getPostsByKeywords(searchKey)
+ this.postService.getPostsByKeywords(searchKey);
 
   }
   addSubjectToTalk(){
@@ -79,6 +74,20 @@ talkData = talkAbout;
       console.log("talks",talk)
     }
     console.log(this.postService.getTalks())
+
+  }
+  //Post Api
+
+  onGetPost(): void{
+    this.postService.getPosts().subscribe((res)=>{
+      console.log(res.data);
+      this.postsData = res.data;
+    })
+  }
+  ngOnInit(): void {
+   this.onGetPost();
+    this.user = this.AuthService.getUSerFromStorage();
+    console.log("from posts", this.user)
 
   }
 }
