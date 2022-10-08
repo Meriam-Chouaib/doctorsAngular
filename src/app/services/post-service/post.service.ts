@@ -23,7 +23,7 @@ import {PostResponse} from "../../models/PostResponse";
   providedIn: 'root'
 })
 export class PostService {
-  BASE_URL: string = 'http://localhost:8080/articles';
+  BASE_URL: string = 'http://localhost:8080/api/articles';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   postsData :{}={};
   talksData = talkAbout;
