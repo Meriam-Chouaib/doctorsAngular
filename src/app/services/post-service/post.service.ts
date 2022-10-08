@@ -55,13 +55,9 @@ export class PostService {
 
   }
   addPost(form: Post){
-    let postAdded = new Post();
-    postAdded = form;
-    // postAdded.title = form.value.title;
-    // postAdded.message = form.value.message;
-    // postAdded.picture = form.value.picture;
-    postAdded.user = this.AuthService.getUSerFromStorage();
-    return this.http.post<PostResponse>(`${this.BASE_URL}/save`, postAdded);
+    form.user = this.AuthService.getUSerFromStorage();
+    return this.http.post<PostResponse>(`${this.BASE_URL}/save`, form);
+    console.log("post added from service")
 
   }
   editPost(form: Post,idPost:number){

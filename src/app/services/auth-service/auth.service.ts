@@ -31,14 +31,14 @@ export class AuthService {
 
   //*****User*****
 
-  signUp(loginForm: User): Observable<ApiResponse> {
+  signUp(loginForm: User|undefined): Observable<ApiResponse> {
 
     console.log("from sign up service")
     return this.http.post<ApiResponse>(`${this.BASE_URL}/save`, loginForm);
 
   }
 
-  signIn(loginForm: NgForm): Observable<ApiResponse> {
+  signIn(loginForm: User): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(`${this.BASE_URL}/auth`, loginForm );
 
   };

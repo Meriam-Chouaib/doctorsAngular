@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.titleMod = this.data.titleForm;
   }
 
   getUserAndUpdate(idUSer:number,userInfo:NgForm) {
@@ -55,8 +55,7 @@ this.AuthService.updateUser(userInfo as unknown as User,idUSer);
   }
 
   signIn(loginUser: NgForm): any {
-
-  this.AuthService.signIn(loginUser).subscribe((res)=>{
+  this.AuthService.signIn(loginUser.value).subscribe((res)=>{
     if(res.status == 200){
       this.AuthService.setUserToStorage(res.data as unknown as User) ;
       this.user = this.AuthService.getUSerFromStorage();
@@ -70,11 +69,13 @@ this.AuthService.updateUser(userInfo as unknown as User,idUSer);
   };
 
   signUp(loginUser: NgForm): any {
-    this.loginUser = loginUser as unknown as User;
-    this.AuthService.signUp(this.loginUser).subscribe((res) => {
+    this.loginUser = loginUser.value;
+    console.log(this.loginUser);
+
+   this.AuthService.signUp(this.loginUser).subscribe((res) => {
 
 this.user = res.data as unknown as User;
-    })
+     })
 
 
   }

@@ -26,7 +26,7 @@ export class PostComponent implements OnInit {
   @Input() message?: string = '';
   @Input() date?: string="" ;
   @Input() comments?: Comment []  = [];
-  @Input() _id:number=0;
+  @Input() _id:number=-1;
   @Input() liked?: boolean = false;
   @Input() disliked?: boolean = false;
   @Input() user?:User = new User();

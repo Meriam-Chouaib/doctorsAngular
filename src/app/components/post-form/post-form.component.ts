@@ -51,8 +51,10 @@ export class PostFormComponent implements OnInit {
     this.titleMod = this.data.titleForm;
     this.btnName = this.data.btnName;
     this._id = this.data._id;
+if(this._id!=-1){
+  this.getPost(this._id);
+}
 
-    this.getPost(this._id);
   }
 
   submit() {
@@ -64,14 +66,20 @@ export class PostFormComponent implements OnInit {
     //window.location.reload();
   }
 
-  handleOk(form: NgForm, _id: number) {
 
-    if (_id === -1) {
-      this.PostService.addPost(form as unknown as Post);
-     // window.location.reload();
+  handleOk(form: NgForm, _id: number) {
+    console.log(_id)
+ if (this.data._id == -1) {
+
+      this.PostService.addPost(form.value);
+      console.log("add  post",form.value,"id=",_id)
+
+      // window.location.reload();
     } else {
-  this.PostService.editPost(form as unknown as Post,_id);
-      window.location.reload();
+  this.PostService.editPost(form.value,_id);
+      console.log("edit  post",form.value,"id=",_id)
+
+      //  window.location.reload();
 
     }
 
