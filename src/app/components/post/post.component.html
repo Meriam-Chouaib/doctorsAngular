@@ -14,13 +14,13 @@
 
     </div>
 
-    <div class="actions-post" *ngIf="checkUser(_id)">
-      <button (click)="openDialogAddPost('Edit post','edit',_id)">
+    <div class="actions-post" *ngIf="checkUser(id)">
+      <button (click)="openDialogAddPost('Edit post','edit',id)">
       <span class="material-symbols-outlined">
       edit
       </span>
       </button>
-      <button (click)="deletePost(_id)" nz-popconfirm nzPopconfirmTitle="Are you sure?" [nzPopconfirmShowArrow]="false">
+      <button (click)="deletePost(id)" nz-popconfirm nzPopconfirmTitle="Are you sure?" [nzPopconfirmShowArrow]="false">
       <span class="material-symbols-outlined">
         delete
         </span>
@@ -38,12 +38,12 @@
     </div>
     <!--  <app-reactions   ></app-reactions>-->
     <div class="reactions">
-      <button (click)="addLike(_id,getIdUser())" class=" like dislike-color">
+      <button (click)="addLike(id,getIdUser())" class=" like dislike-color">
         <span class="material-symbols-outlined">
       thumb_up
       </span>
       </button>
-      <button (click)="addDislike(_id,getIdUser())" class="like">
+      <button (click)="addDislike(id,getIdUser())" class="like">
     <span class="material-symbols-outlined">
 thumb_down
 </span>

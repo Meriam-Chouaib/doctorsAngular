@@ -57,7 +57,7 @@ this.AuthService.updateUser(userInfo as unknown as User,idUSer);
   signIn(loginUser: NgForm): any {
   this.AuthService.signIn(loginUser.value).subscribe((res)=>{
     if(res.status == 200){
-      this.AuthService.setUserToStorage(res.data as unknown as User) ;
+      this.AuthService.setUserToStorage(res.data as unknown as User ) ;
       this.user = this.AuthService.getUSerFromStorage();
       window.location.reload();
       console.log("the user connected is",this.user);

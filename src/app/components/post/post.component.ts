@@ -26,7 +26,7 @@ export class PostComponent implements OnInit {
   @Input() message?: string = '';
   @Input() date?: string="" ;
   @Input() comments?: Comment []  = [];
-  @Input() _id:number=-1;
+  @Input() id:number=-1;
   @Input() liked?: boolean = false;
   @Input() disliked?: boolean = false;
   @Input() user?:User = new User();
@@ -57,7 +57,14 @@ export class PostComponent implements OnInit {
   }
   ngOnInit(): void {
     console.log(this.isShown);
-      this.PostService.getPostById(this._id).subscribe((res)=>{
+
+
+
+  }
+  getPostById(id:number):void{
+    this.id = id;
+    if(this.id!=-1){
+      this.PostService.getPostById(this.id).subscribe((res)=>{
         // this.likes= res.data.likes;
         // this.dislikes = res.data.dislikes;
         // this.liked = res.data.liked;
@@ -65,7 +72,7 @@ export class PostComponent implements OnInit {
         // this.user._id = res?.data?.user?.id;
         console.log(res)
       })
-
+    }
 
   }
   getIdUser(){
@@ -123,13 +130,15 @@ getIsLiked(){
 
       new successResult(true, result, 1, "success")
     });
+
+
   }
   checkUser(idPost:number):boolean{
-    console.log(idPost,"id post")
+   // console.log(idPost,"id post")
    this.PostService.getPostById(idPost)?.subscribe((res)=>{
-     console.log( res.data.user?.id,"id user post");
+  //   console.log( res.data.user?.id,"id user post");
      })
-    console.log(this.AuthService.getUSerFromStorage()._id, " id user connected")
+  //  console.log(this.AuthService.getUSerFromStorage()._id, " id user connected")
     // if(this.PostService.getPostById(idPost)?.getData().user?._id==this.AuthService.getUSerFromStorage()._id){
     //   return true;
     // }

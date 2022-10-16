@@ -18,7 +18,7 @@ import {ApiResponse, Data} from "../../models/ApiResponse";
   providedIn: 'root'
 })
 export class AuthService {
-  BASE_URL: string = 'http://localhost:8080/users';
+  BASE_URL: string = 'http://localhost:8080';
 
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   usersData = users;
@@ -34,24 +34,25 @@ export class AuthService {
   signUp(loginForm: User|undefined): Observable<ApiResponse> {
 
     console.log("from sign up service")
-    return this.http.post<ApiResponse>(`${this.BASE_URL}/save`, loginForm);
+   // return this.http.post<ApiResponse>(`${this.BASE_URL}/users/save`, loginForm);
+    return this.http.post<ApiResponse>(`${this.BASE_URL}/api/auth/signup`, loginForm);
 
   }
 
   signIn(loginForm: User): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(`${this.BASE_URL}/auth`, loginForm );
+    return this.http.post<ApiResponse>(`${this.BASE_URL}/api/auth/signin`, loginForm );
 
   };
 
 
 
   deletUser(_id: number) {
-    return this.http.get<ApiResponse>(`${this.BASE_URL}/delete/${_id}`);
+    return this.http.get<ApiResponse>(`${this.BASE_URL}/users/delete/${_id}`);
 
   }
 
   getUsers() {
-    return this.http.get<ApiResponse>(`${this.BASE_URL}/list`);
+    return this.http.get<ApiResponse>(`${this.BASE_URL}/users/list`);
 
   }
 

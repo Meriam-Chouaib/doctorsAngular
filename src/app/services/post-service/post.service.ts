@@ -74,47 +74,9 @@ deletePost(idPost:number){
 
   getPostById(idPost:number){
 
-    console.log(idPost);
-    return this.http.get<PostResponse>(`${this.BASE_URL}/${idPost}`);
+   // console.log(idPost);
+   return this.http.get<PostResponse>(`${this.BASE_URL}/${idPost}`);
   }
-
-  // addLike(_id:number,liked:boolean){
-  //   console.log("fromservice",_id,"liked",liked)
-  //   this.post = this.getPostById(_id).getData();
-  //   this.post.liked = liked;
-  //   if( liked){
-  //
-  //   this.post.likes++;
-  //     console.log( "liked post:" ,this.post.liked,"likes:",this.post.likes)
-  //   }
-  //   else{
-  //     this.post.likes--;
-  //     console.log( "liked post:" ,this.post.liked,"likes:",this.post.likes)
-  //     this.post.likes= this.getPostById(_id).likes -1;
-  //
-  //     console.log(  this.post.liked,this.post.likes)
-  //
-  //   }
-  // }
-
-  // addDislike(_id:number,disliked:boolean){
-  //   console.log("fromservice",_id,"liked",disliked)
-  //   this.post = this.getPostById(_id)
-  //   this.post.liked = disliked;
-  //   if( disliked){
-  //
-  //     this.post.dislikes++;
-  //     console.log( "liked post:" ,this.post.disliked,"likes:",this.post.dislikes)
-  //   }
-  //   else{
-  //     this.post.dislikes--;
-  //     console.log( "disliked post:" ,this.post.disliked,"dislikes:",this.post.dislikes)
-  //     this.post.dislikes= this.getPostById(_id).dislikes -1;
-  //
-  //     console.log(  this.post.disliked,this.post.dislikes)
-  //
-  //   }
-  // }
 
 getTalks(){
     return this.talksData;

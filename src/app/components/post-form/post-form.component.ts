@@ -25,7 +25,7 @@ export class PostFormComponent implements OnInit {
   _id: number = 0;
 
 
-  post :Post = new Post();
+  post: Post = new Post();
 
   postsData = this.PostService.getPosts();
   // myDate = new Date();
@@ -45,17 +45,6 @@ export class PostFormComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-
-    console.log(this.data)
-    this.titleMod = this.data.titleForm;
-    this.btnName = this.data.btnName;
-    this._id = this.data._id;
-if(this._id!=-1){
-  this.getPost(this._id);
-}
-
-  }
 
   submit() {
     return this.post;
@@ -69,21 +58,22 @@ if(this._id!=-1){
 
   handleOk(form: NgForm, _id: number) {
     console.log(_id)
- if (this.data._id == -1) {
+    if (this.data._id == -1) {
 
       this.PostService.addPost(form.value);
-      console.log("add  post",form.value,"id=",_id)
+      console.log("add  post", form.value, "id=", _id)
 
       // window.location.reload();
     } else {
-  this.PostService.editPost(form.value,_id);
-      console.log("edit  post",form.value,"id=",_id)
+      this.PostService.editPost(form.value, _id);
+      console.log("edit  post", form.value, "id=", _id)
 
       //  window.location.reload();
 
     }
 
   }
+
   handleChange(info: NzUploadChangeParam): void {
     if (info.file.status !== 'uploading') {
       console.log(info.file, info.fileList);
@@ -97,10 +87,26 @@ if(this._id!=-1){
     }
   }
 
-  getPost(idPost:number) {
-   this.PostService.getPostById(idPost).subscribe((res)=>{
-    this.post = res.data as unknown as Post;
-   });
+  getPost(idPost: number) {
+    this.PostService.getPostById(idPost).subscribe((res) => {
+      this.post = res.data as unknown as Post;
+    });
+
+  }
+
+  getDataForm(): void {
+    console.log(this.data)
+    this.titleMod = this.data.titleForm;
+    this.btnName = this.data.btnName;
+    this._id = this.data._id;
+  }
+
+  ngOnInit(): void {
+
+    this.getDataForm();
+    if (this._id != -1) {
+      this.getPost(this._id);
+    }
 
   }
 
