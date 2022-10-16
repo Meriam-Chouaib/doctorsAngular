@@ -11,7 +11,7 @@ const appRoutes: Routes = [
 
   //when we cant to do a redirect
   {path: ''
-    , redirectTo: '/home'
+    , redirectTo: '/posts'
     , pathMatch: 'full' },
 
 

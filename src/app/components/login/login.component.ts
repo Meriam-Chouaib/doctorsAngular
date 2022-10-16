@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   titleMod: string = "";
   isLogged: boolean = false;
 
-  id:number = 0;
+  id: number = 0;
 
   private dialog: any;
 
@@ -36,18 +36,20 @@ export class LoginComponent implements OnInit {
 
   private loginUser: User | undefined;
 
-  constructor( @Inject(MAT_DIALOG_DATA) public data: any, private AuthService: AuthService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private AuthService: AuthService) {
   }
 
   ngOnInit(): void {
     this.titleMod = this.data.titleForm;
   }
 
-  getUserAndUpdate(idUSer:number,userInfo:NgForm) {
+  getUserAndUpdate(idUSer: number, userInfo: NgForm) {
 
-this.AuthService.updateUser(userInfo as unknown as User,idUSer);
-
-    console.log("update user ",idUSer)
+    this.AuthService.updateUser(userInfo.value, idUSer);
+    if (this.titleMod == "Edit informations") {
+      this.AuthService.setUserToStorage(userInfo.value);
+    }
+    console.log("update user ", idUSer)
   }
 
   cancel() {
@@ -55,31 +57,26 @@ this.AuthService.updateUser(userInfo as unknown as User,idUSer);
   }
 
   signIn(loginUser: NgForm): any {
-  this.AuthService.signIn(loginUser.value).subscribe((res)=>{
-    if(res.status == 200){
-      this.AuthService.setUserToStorage(res.data as unknown as User ) ;
-      this.user = this.AuthService.getUSerFromStorage();
-      window.location.reload();
-      console.log("the user connected is",this.user);
-    }
+    //loginUser = loginUser.value.toJSON();
+    this.AuthService.signIn(loginUser.value).subscribe((res) => {
+      console.log(loginUser.value)
+      if (res.status == 200) {
+        this.AuthService.setUserToStorage(res.data as unknown as User);
+        this.user = this.AuthService.getUSerFromStorage();
+        window.location.reload();
+        console.log("the user connected is", this.user);
+      }
 
-  });
-
-
+    });
   };
 
   signUp(loginUser: NgForm): any {
     this.loginUser = loginUser.value;
     console.log(this.loginUser);
+    this.AuthService.signUp(this.loginUser).subscribe((res) => {
 
-   this.AuthService.signUp(this.loginUser).subscribe((res) => {
-
-this.user = res.data as unknown as User;
-     })
-
-
+      this.user = res.data as unknown as User;
+    })
   }
-
-
 }
 

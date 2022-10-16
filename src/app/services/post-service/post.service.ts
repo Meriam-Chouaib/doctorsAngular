@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
- import {talkAbout} from '../../data/data'
- //import { users} from '../../data/data'
+import {talkAbout} from '../../data/data'
+//import { users} from '../../data/data'
 // import {posts} from '../../data/data'
 import {User} from '../../models/User'
 import {Observable, throwError} from 'rxjs';
@@ -13,9 +13,8 @@ import {
 import {Router} from '@angular/router';
 import {NgForm} from "@angular/forms";
 import {successResult} from "../../../helper/success-result";
-import { Post} from "../../models/Post";
+import {Post} from "../../models/Post";
 import {AuthService} from "../auth-service/auth.service";
-import {ProductModel} from "../../models/Product";
 import {ApiResponse} from "../../models/ApiResponse";
 import {PostResponse} from "../../models/PostResponse";
 
@@ -25,11 +24,10 @@ import {PostResponse} from "../../models/PostResponse";
 export class PostService {
   BASE_URL: string = 'http://localhost:8080/api/articles';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  postsData :{}={};
+  postsData: {} = {};
   talksData = talkAbout;
   currentUser = {};
   post: Post = new Post();
-
 
 
   constructor(private http: HttpClient, public router: Router, public AuthService: AuthService) {
@@ -39,50 +37,41 @@ export class PostService {
     return this.http.get<PostResponse>(`${this.BASE_URL}/list`);
   }
 
-  getPostsByKeywords(searchKey: string | undefined):({ date: string; comments: ({ date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: number } } | { date: string; subject: string; _id: number; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string })[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; liked: boolean; likes: number } | { date: string; comments: { date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string } }[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; picture: string; liked: boolean; likes: number } | { date: string; comments: ({ date: string; subject: string; _id: number; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string } | { date: string; subject: string; _id: string; user: { speciality: string; password: string; name: string; _id: string; picture: string; username: string }; picture: string })[]; dislikes: number; _id: number; disliked: boolean; title: string; message: string; user: { password: string; name: string; _id: string; picture: string; username: string }; picture: string; liked: boolean; likes: number })[] | null
-  {
-    // console.log(searchKey, "from api")
-    // if (searchKey) {
-    //   this.getPosts().subscribe((res)=>{
-    //     this.postsData = res.data;
-    //     return this.postsData.filter(post => post.title.includes(searchKey) || post.message.includes(searchKey))
-    //
-    //   })
-    //
-    // }
-   //  return this.postsData
-    return null;
-
+  getPostsByKeywords(searchKey: string | undefined): Observable<PostResponse> {
+    return this.http.get<PostResponse>(`${this.BASE_URL}/list/${searchKey}`);
   }
-  addPost(form: Post){
+
+  addPost(form: Post) {
     form.user = this.AuthService.getUSerFromStorage();
     return this.http.post<PostResponse>(`${this.BASE_URL}/save`, form);
     console.log("post added from service")
 
   }
-  editPost(form: Post,idPost:number){
+
+  editPost(form: Post, idPost: number) {
 
     return this.http.put<PostResponse>(`${this.BASE_URL}/update/${idPost}`, form);
 
 
   }
 
-deletePost(idPost:number){
-  return this.http.get<PostResponse>(`${this.BASE_URL}/delete/${idPost}`);
+  deletePost(idPost: number) {
+    return this.http.get<PostResponse>(`${this.BASE_URL}/delete/${idPost}`);
 
-}
-
-  getPostById(idPost:number){
-
-   // console.log(idPost);
-   return this.http.get<PostResponse>(`${this.BASE_URL}/${idPost}`);
   }
 
-getTalks(){
+  getPostById(idPost: number) {
+
+    // console.log(idPost);
+    return this.http.get<PostResponse>(`${this.BASE_URL}/${idPost}`);
+  }
+
+  getTalks() {
     return this.talksData;
-}
-addTalk(talk:string){
+  }
+
+  addTalk(talk: string) {
     this.talksData.push(talk);
-}
+  }
 
 }

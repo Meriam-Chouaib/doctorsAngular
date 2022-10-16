@@ -24,16 +24,15 @@ export class PostComponent implements OnInit {
 //@Input():Post ; or ->  @Input() title?: string = '';... les champs kol
   @Input() title?: string = '';
   @Input() message?: string = '';
-  @Input() date?: string="" ;
-  @Input() comments?: Comment []  = [];
-  @Input() id:number=-1;
+  @Input() date?: string = "";
+  @Input() comments?: Comment [] = [];
+  @Input() id: number = -1;
   @Input() liked?: boolean = false;
   @Input() disliked?: boolean = false;
-  @Input() user?:User = new User();
+  @Input() user?: User = new User();
 
-  @Input() likes?: number =  0;
-  @Input() dislikes?: number =  0;
-  // @Input() user: User ;
+  @Input() likes?: number = 0;
+  @Input() dislikes?: number = 0;
   @Input() name?: string = '';
   @Input() picture?: string = '';
 
@@ -52,68 +51,56 @@ export class PostComponent implements OnInit {
   correctChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
-
-  constructor(public dialog: MatDialog,private PostService: PostService,private AuthService:AuthService) {
+  constructor(public dialog: MatDialog, private PostService: PostService, private AuthService: AuthService) {
   }
+
   ngOnInit(): void {
     console.log(this.isShown);
-
-
-
   }
-  getPostById(id:number):void{
+
+  getPostById(id: number): void {
     this.id = id;
-    if(this.id!=-1){
-      this.PostService.getPostById(this.id).subscribe((res)=>{
-        // this.likes= res.data.likes;
-        // this.dislikes = res.data.dislikes;
-        // this.liked = res.data.liked;
-        // this.disliked = res.data.disliked;
-        // this.user._id = res?.data?.user?.id;
+    if (this.id != -1) {
+      this.PostService.getPostById(this.id).subscribe((res) => {
+        this.likes = res.data.likes;
+        this.dislikes = res.data.dislikes;
+        this.liked = res.data.liked;
+        this.disliked = res.data.disliked;
+        this.user = res?.data?.user;
         console.log(res)
       })
     }
 
   }
-  getIdUser(){
-return  this.AuthService.getUSerFromStorage()._id;
+
+  getIdUser() {
+    return this.AuthService.getUSerFromStorage()._id;
   }
 
   displayComments() {
     this._isShown = !this._isShown;
   }
 
- addLike(_id:number,idUser:number) {
-  //
-  //   this.liked = this.PostService.getPostById(_id).liked;
-  //   console.log(this.liked)
-  //   this.PostService.addLike(_id,!this.liked);
-  //
-  //
-  //   // console.log("from post",_id)
-  //   // console.log(this.liked)
-  //   // this.PostService.getPostById(_id)
-  }
-   addDislike(_id:number,idUser:number) {
-  //
-  //   this.dislikes = this.PostService.getPostById(_id).dislikes;
-  //
-  //   this.likes = this.PostService.getPostById(_id).likes
-  //   this.PostService.addDislike(_id,!this.disliked);
-  //   console.log("from post",_id)
-  //   console.log(this.liked)
-  //   this.PostService.getPostById(_id)
-  }
-getLikes(){
+  addLike(_id: number, idUser: number) {
 
-  return this.likes;
-}
-  getDislikes(){
+  }
+
+  addDislike(_id: number, idUser: number) {
+
+  }
+
+  getLikes() {
+
+    return this.likes;
+  }
+
+  getDislikes() {
     return this.dislikes;
   }
-getIsLiked(){
+
+  getIsLiked() {
     return this.liked;
-}
+  }
 
   deletePost(_id: number) {
     this.PostService.deletePost(_id);
@@ -130,19 +117,15 @@ getIsLiked(){
 
       new successResult(true, result, 1, "success")
     });
-
-
   }
-  checkUser(idPost:number):boolean{
-   // console.log(idPost,"id post")
-   this.PostService.getPostById(idPost)?.subscribe((res)=>{
-  //   console.log( res.data.user?.id,"id user post");
-     })
-  //  console.log(this.AuthService.getUSerFromStorage()._id, " id user connected")
-    // if(this.PostService.getPostById(idPost)?.getData().user?._id==this.AuthService.getUSerFromStorage()._id){
-    //   return true;
-    // }
-     return false
+
+  checkUser(idPost: number): boolean {
+    let response = false;
+    this.PostService.getPostById(idPost)?.subscribe((res) => {
+      if (res.data?.user?._id == this.AuthService.getUSerFromStorage()._id)
+        response = true;
+    })
+    return response;
   }
 
 
