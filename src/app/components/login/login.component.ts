@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   private dialog: any;
 
-  user = new User();
+  user = this.AuthService.getUSerFromStorage();
 
   usersData = this.AuthService.getUsers();
 
@@ -58,17 +58,39 @@ export class LoginComponent implements OnInit {
 
   signIn(loginUser: NgForm): any {
     //loginUser = loginUser.value.toJSON();
-    this.AuthService.signIn(loginUser.value).subscribe((res) => {
-      console.log(loginUser.value)
-      if (res.status == 200) {
-        this.AuthService.setUserToStorage(res.data as unknown as User);
-        this.user = this.AuthService.getUSerFromStorage();
-        window.location.reload();
-        console.log("the user connected is", this.user);
-      }
+    this.user = loginUser.value;
+
+    this.AuthService.signIn(this.user).subscribe((res) => {
+      this.AuthService.getUserById(res.id).subscribe((res)=>{
+        // this.user = res.data as unknown as User ;
+        // console.log("before putting to storage",this.user)
+        // this.AuthService.setUserToStorage(this.user);
+        console.log("result of getting the user by id",res);
+
+      })
+
+      this.user.isLogged = true;
+      localStorage.setItem('profile1', JSON.stringify(this.user))
+
+
+
+        this.AuthService.setUserToStorage(this.user);
+         this.user = this.AuthService.getUSerFromStorage();
+         console.log("the user connected is", this.user);
+
 
     });
   };
+
+  getUserById(id:number){
+    this.AuthService.getUserById(id).subscribe((res)=>{
+      // this.user = res.data as unknown as User ;
+      // console.log("before putting to storage",this.user)
+      // this.AuthService.setUserToStorage(this.user);
+      console.log("result of getting the user by id",res);
+
+    })
+  }
 
   signUp(loginUser: NgForm): any {
     this.loginUser = loginUser.value;

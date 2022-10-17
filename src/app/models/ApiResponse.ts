@@ -9,7 +9,7 @@
   }
 
   export interface Data {
-    id:          number;
+    _id:          number;
     name:        string;
     username:    string;
     password:    string;

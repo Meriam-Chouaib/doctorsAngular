@@ -21,7 +21,7 @@ let titleForm: string;
 
 
 export class PostsComponent implements OnInit {
-  user = new User();
+  user = this.AuthService.getUSerFromStorage();
   postsData: PostInterface[] = [];
 
   talkData = talkAbout;

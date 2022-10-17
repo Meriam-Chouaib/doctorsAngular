@@ -47,6 +47,7 @@ export class NavbarComponent implements OnInit {
     console.log("logout")
     let userReset:User = new User();
     userReset._id=0;
+    userReset.isLogged = false;
     console.log(userReset)
   this.authService.setUserToStorage(userReset);
     window.location.reload();

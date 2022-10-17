@@ -39,8 +39,8 @@ export class AuthService {
 
   }
 
-  signIn(loginForm: User): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(`${this.BASE_URL}/api/auth/signin`, loginForm );
+  signIn(loginForm: User): Observable<any> {
+    return this.http.post<any>(`${this.BASE_URL}/api/auth/signin`, loginForm );
 
   };
 
@@ -64,7 +64,7 @@ export class AuthService {
 
 
   getUserById(idUser:number){
-    return this.http.get<ApiResponse>(`${this.BASE_URL}/${idUser}`);
+    return this.http.get<ApiResponse>(`${this.BASE_URL}/api/users/${idUser}`);
 
   }
   getUSerFromStorage() {
@@ -78,8 +78,8 @@ export class AuthService {
     return this.user;
   }
 
-  setUserToStorage(loginForm: User) {
-    this.user = loginForm;
+  setUserToStorage(user: User) {
+    this.user = user;
     localStorage.setItem("profile", JSON.stringify(this.user));
   }
 
