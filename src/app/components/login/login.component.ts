@@ -60,17 +60,22 @@ export class LoginComponent implements OnInit {
     //loginUser = loginUser.value.toJSON();
     this.user = loginUser.value;
 
+
     this.AuthService.signIn(this.user).subscribe((res) => {
+
+      this.AuthService.setUserToStorage(this.user);
       this.AuthService.getUserById(res.id).subscribe((res)=>{
         // this.user = res.data as unknown as User ;
         // console.log("before putting to storage",this.user)
         // this.AuthService.setUserToStorage(this.user);
         console.log("result of getting the user by id",res);
+        this.user = res.data as unknown as User;
+        this.user.isLogged = true;
 
       })
 
-      this.user.isLogged = true;
-      localStorage.setItem('profile1', JSON.stringify(this.user))
+
+
 
 
 
