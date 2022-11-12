@@ -40,6 +40,7 @@ export class AuthService {
   }
 
   signIn(loginForm: User): Observable<any> {
+    console.log("from api",loginForm)
     return this.http.post<any>(`${this.BASE_URL}/api/auth/signin`, loginForm );
 
   };
@@ -52,7 +53,7 @@ export class AuthService {
   }
 
   getUsers() {
-    return this.http.get<ApiResponse>(`${this.BASE_URL}/users/list`);
+    return this.http.get<ApiResponse>(`${this.BASE_URL}/api/users/list`);
 
   }
 
@@ -112,5 +113,11 @@ export class AuthService {
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(msg);
+  }
+
+  //get doctors
+  getDoctors() {
+    return this.http.get<ApiResponse>(`${this.BASE_URL}/api/users/doctors`);
+
   }
 }

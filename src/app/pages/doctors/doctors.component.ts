@@ -5,23 +5,27 @@ import {MatDialog} from "@angular/material/dialog";
 import {successResult} from "../../../helper/success-result";
 import {LoginComponent} from "../../components/login/login.component";
 import {AuthService} from "../../services/auth-service/auth.service";
+import {UserInterface} from "../../models/User";
 @Component({
   selector: 'app-doctors',
   templateUrl: './doctors.component.html',
   styleUrls: ['./doctors.component.scss']
 })
 export class DoctorsComponent implements OnInit {
+  doctorsData: UserInterface[] = [];
 
 
   constructor(public dialog: MatDialog, public AuthService : AuthService) { }
-  getUsers(): any{
-    this.AuthService.getUsers().subscribe((res)=>{
+  getDoctors(): void{
 
-      return res.data;
+    this.AuthService.getDoctors().subscribe((res)=>{
+
+      this.doctorsData = res.data as unknown as UserInterface [];
     });
   }
   ngOnInit(): void {
- this.getUsers();
+ this.getDoctors();
+    console.log(this.doctorsData)
   }
   user = this.AuthService.getUSerFromStorage();
   openDialogAddDoctor(titleForm:string,btnName:string,_id:number): void {

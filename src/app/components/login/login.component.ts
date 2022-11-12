@@ -59,40 +59,39 @@ export class LoginComponent implements OnInit {
   signIn(loginUser: NgForm): any {
     //loginUser = loginUser.value.toJSON();
     this.user = loginUser.value;
-
+    console.log(this.user)
 
     this.AuthService.signIn(this.user).subscribe((res) => {
-
-      this.AuthService.setUserToStorage(this.user);
-      this.AuthService.getUserById(res.id).subscribe((res)=>{
-        // this.user = res.data as unknown as User ;
-        // console.log("before putting to storage",this.user)
-        // this.AuthService.setUserToStorage(this.user);
-        console.log("result of getting the user by id",res);
-        this.user = res.data as unknown as User;
-        this.user.isLogged = true;
-
-      })
-
-
-
-
-
-
-        this.AuthService.setUserToStorage(this.user);
-         this.user = this.AuthService.getUSerFromStorage();
-         console.log("the user connected is", this.user);
-
-
+       console.log("result of api is ",res);
+      console.log(res.headers.get('Authorization'));
+    //   this.AuthService.setUserToStorage(this.user);
+    //   this.AuthService.getUserById(res.id).subscribe((res) => {
+    //     // this.user = res.data as unknown as User ;
+    //     // console.log("before putting to storage",this.user)
+    //     // this.AuthService.setUserToStorage(this.user);
+    //     console.log("result of getting the user by id", res);
+    //     this.user = res.data as unknown as User;
+    //     this.user.isLogged = true;
+    //     this.AuthService.setUserToStorage(this.user);
+    //     console.log("the user connected is", this.user);
+    //
+    //   })
+    //
+    //
+    //
+    //
+    //
+    //
+    //
     });
   };
 
-  getUserById(id:number){
-    this.AuthService.getUserById(id).subscribe((res)=>{
+  getUserById(id: number) {
+    this.AuthService.getUserById(id).subscribe((res) => {
       // this.user = res.data as unknown as User ;
       // console.log("before putting to storage",this.user)
       // this.AuthService.setUserToStorage(this.user);
-      console.log("result of getting the user by id",res);
+      console.log("result of getting the user by id", res);
 
     })
   }

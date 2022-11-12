@@ -13,9 +13,9 @@
 </div>
 <div class="doctors ">
 
-  <div *ngFor="  let item of getUsers(); let i=index" class="docter-item ">
+  <div *ngFor="  let item of doctorsData; let i=index" class="docter-item ">
 
-  <app-doctor [name]="item.name"  [speciality]="item.speciality" [picture]="item.picture" [_id]="item._id" >
+  <app-doctor [name]="item.name"  [speciality]="item.speciality" [picture]="item.picture" [_id]="item._id" [username]="item.username" >
 
   </app-doctor>
   </div>

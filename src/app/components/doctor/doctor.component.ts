@@ -11,7 +11,9 @@ import {AuthService} from "../../services/auth-service/auth.service";
   styleUrls: ['./doctor.component.scss']
 })
 export class DoctorComponent implements OnInit {
+  space : string = ' ';
   @Input() name: string = '';
+  @Input() username: string = '';
   @Input()  speciality:string = '';
   @Input()  description:string = '';
   @Input() picture: string | null= '';

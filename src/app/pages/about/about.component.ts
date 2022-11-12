@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {STRINGS} from '../../../core/enums/strings';
 import {fader, slider} from "../../config/route-animations"
 import {AuthService} from "../../services/auth-service/auth.service";
-import {User} from "../../models/User";
+import {User, UserInterface} from "../../models/User";
 import {Data} from "../../models/ApiResponse";
 
 @Component({
@@ -18,17 +18,20 @@ import {Data} from "../../models/ApiResponse";
 
 export class AboutComponent implements OnInit {
   STRINGS=STRINGS;
+  doctorsData: UserInterface[] = [];
 
   constructor( public AuthService : AuthService) { }
-  getUsers(): any{
-    this.AuthService.getUsers().subscribe((res)=>{
+  getDoctors(): void{
 
-      return res.data;
+    this.AuthService.getDoctors().subscribe((res)=>{
+
+      this.doctorsData = res.data as unknown as UserInterface [];
     });
   }
 
 
   ngOnInit(): void {
+    this.getDoctors();
   }
 
 }

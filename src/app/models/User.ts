@@ -27,3 +27,18 @@ isAdmin?:boolean = false;
 
   }
 }
+export interface UserInterface {
+
+  _id: number;
+  name: string;
+  username: string;
+  password: string ;
+  speciality: string;
+  // role:string='';
+  picture:string ;
+  description?:string ;
+  posts?:Post[];
+  isLogged?:boolean;
+  isAdmin?:boolean ;
+
+}
