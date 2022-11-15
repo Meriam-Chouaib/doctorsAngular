@@ -62,27 +62,21 @@ export class LoginComponent implements OnInit {
     console.log(this.user)
 
     this.AuthService.signIn(this.user).subscribe((res) => {
+
        console.log("result of api is ",res);
-      console.log(res.headers.get('Authorization'));
-    //   this.AuthService.setUserToStorage(this.user);
-    //   this.AuthService.getUserById(res.id).subscribe((res) => {
-    //     // this.user = res.data as unknown as User ;
-    //     // console.log("before putting to storage",this.user)
-    //     // this.AuthService.setUserToStorage(this.user);
-    //     console.log("result of getting the user by id", res);
-    //     this.user = res.data as unknown as User;
-    //     this.user.isLogged = true;
-    //     this.AuthService.setUserToStorage(this.user);
-    //     console.log("the user connected is", this.user);
-    //
-    //   })
-    //
-    //
-    //
-    //
-    //
-    //
-    //
+      console.log("id user", res.id,"the role is",res.roles[0]);
+     // console.log(res.headers.get('Authorization'));
+       this.AuthService.getUserById(res.id).subscribe((res) => {
+     //
+       console.log("result of getting the user by id", res);
+        this.user = res.data as unknown as User;
+      this.user.isLogged = true;
+      this.AuthService.setUserToStorage(this.user);
+         console.log("the user connected is", this.user);
+     //
+      })
+
+
     });
   };
 

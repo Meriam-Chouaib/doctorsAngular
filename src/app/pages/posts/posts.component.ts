@@ -102,6 +102,7 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
    this.onGetPosts();
     this.onGetUser()
+    console.log("test commande")
 
 
   }
