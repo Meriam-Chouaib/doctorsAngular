@@ -94,7 +94,7 @@ export class PostsComponent implements OnInit {
   onGetUser(): void {
     if (this.user._id != 0) {
       this.user = this.AuthService.getUSerFromStorage();
-      console.log(this.user)
+      console.log("the user connected is",this.user);
     }
 
   }

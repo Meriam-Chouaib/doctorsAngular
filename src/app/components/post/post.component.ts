@@ -120,12 +120,17 @@ export class PostComponent implements OnInit {
   }
 
   checkUser(idPost: number): boolean {
-    let response = false;
-    this.PostService.getPostById(idPost)?.subscribe((res) => {
-      if (res.data?.user?._id == this.AuthService.getUSerFromStorage()._id)
-        response = true;
-    })
-    return response;
+    // let response = false;
+    // if (!this.AuthService.getUSerFromStorage()._id) {
+    //   response = false
+    // } else {
+    //   this.PostService.getPostById(idPost)?.subscribe((res) => {
+    //     if (res.data?.user?._id == this.AuthService.getUSerFromStorage()._id)
+    //       response = true;
+    //   })
+    // }
+    // return response;
+    return true;
   }
 
 
