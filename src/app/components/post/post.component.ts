@@ -17,7 +17,7 @@ import {PostService} from "../../services/post-service/post.service";
 
 export class PostComponent implements OnInit {
   postsData = this.PostService.getPosts();
-
+ testUser :boolean = false;
   @Input()
   _isShown: boolean = false;
 
@@ -56,6 +56,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.isShown);
+     this.testUser = this.checkUser(this.id);
   }
 
   getPostById(id: number): void {
@@ -103,11 +104,15 @@ export class PostComponent implements OnInit {
   }
 
   deletePost(_id: number) {
-    this.PostService.deletePost(_id);
+    console.log(_id);
+    this.PostService.deletePost(_id).subscribe((res)=>{
+      console.log(res)
+      window.location.reload();
+    });
   }
 
   openDialogAddPost(titleForm: string, btnName: string, _id: number): void {
-
+    console.log("dialog open")
     const dialogRef = this.dialog.open(PostFormComponent, {
 
       data: {titleForm: titleForm, btnName: btnName, _id: _id}
@@ -119,18 +124,19 @@ export class PostComponent implements OnInit {
     });
   }
 
-  checkUser(idPost: number): boolean {
-    // let response = false;
-    // if (!this.AuthService.getUSerFromStorage()._id) {
-    //   response = false
-    // } else {
-    //   this.PostService.getPostById(idPost)?.subscribe((res) => {
-    //     if (res.data?.user?._id == this.AuthService.getUSerFromStorage()._id)
-    //       response = true;
-    //   })
-    // }
-    // return response;
-    return true;
+  checkUser(idPost: number) : boolean {
+     let response = false;
+    if (!this.AuthService.getUSerFromStorage()._id) {
+      this.testUser = false
+    } else {
+      this.PostService.getPostById(idPost)?.subscribe((res) => {
+        if (res.data?.user?._id == this.AuthService.getUSerFromStorage()._id)
+          this.testUser = true;
+         console.log("user id",res.data.user._id,"user from storage",this.AuthService.getUSerFromStorage()._id,"testuser",this.testUser)
+      })
+    }
+    return response;
+
   }
 
 

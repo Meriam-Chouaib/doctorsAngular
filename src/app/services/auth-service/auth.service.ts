@@ -59,7 +59,7 @@ export class AuthService {
 
   updateUser(loginForm: User,idUser:number) {
 
-      this.http.put<ApiResponse>(`${this.BASE_URL}/update/${idUser}`, loginForm);
+    return  this.http.put<ApiResponse>(`${this.BASE_URL}/update/${idUser}`, loginForm);
 
   }
 

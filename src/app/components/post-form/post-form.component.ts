@@ -22,7 +22,7 @@ export class PostFormComponent implements OnInit {
   item: Post | undefined;
   btnName: string = "";
   titleMod: string = "";
-  _id: number = 0;
+ // _id: number = 0;
 
 
   post: Post = new Post();
@@ -31,6 +31,7 @@ export class PostFormComponent implements OnInit {
   // myDate = new Date();
 
   @Input() title: string = '';
+  @Input() _id: number = 0;
   @Input() message: string = '';
   @Input() picture: string = '';
   @Input() modelTitle: string = '';
@@ -58,14 +59,21 @@ export class PostFormComponent implements OnInit {
 
   handleOk(form: NgForm, _id: number) {
     console.log(_id)
+
     if (this.data._id == -1) {
 
-      this.PostService.addPost(form.value);
+
+      this.PostService.addPost(form.value).subscribe((res)=>{
+        window.location.reload();
+      });
       console.log("add  post", form.value, "id=", _id)
 
       // window.location.reload();
     } else {
-      this.PostService.editPost(form.value, _id);
+
+      this.PostService.editPost(form.value, _id).subscribe((res)=>{
+        console.log("response api update",res);
+      });
       console.log("edit  post", form.value, "id=", _id)
 
       //  window.location.reload();
@@ -74,18 +82,18 @@ export class PostFormComponent implements OnInit {
 
   }
 
-  handleChange(info: NzUploadChangeParam): void {
-    if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === 'done') {
-      console.log(info.file.name)
-      // this.msg.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
-      //  this.msg.error(`${info.file.name} file upload failed.`);
-      console.log(info.file.name)
-    }
-  }
+  // handleChange(info: NzUploadChangeParam): void {
+  //   if (info.file.status !== 'uploading') {
+  //     console.log(info.file, info.fileList);
+  //   }
+  //   if (info.file.status === 'done') {
+  //     console.log(info.file.name)
+  //     // this.msg.success(`${info.file.name} file uploaded successfully`);
+  //   } else if (info.file.status === 'error') {
+  //     //  this.msg.error(`${info.file.name} file upload failed.`);
+  //     console.log(info.file.name)
+  //   }
+  // }
 
   getPost(idPost: number) {
     this.PostService.getPostById(idPost).subscribe((res) => {
@@ -105,7 +113,7 @@ export class PostFormComponent implements OnInit {
 
     this.getDataForm();
     if (this._id != -1) {
-      this.getPost(this._id);
+    this.getPost(this._id);
     }
 
   }

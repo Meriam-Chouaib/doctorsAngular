@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   user = this.AuthService.getUSerFromStorage();
 
-  usersData = this.AuthService.getUsers();
+  
 
   @Input() name: string = '';
   @Input() username: string = '';
@@ -40,12 +40,17 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.titleMod = this.data.titleForm;
+
   }
 
   getUserAndUpdate(idUSer: number, userInfo: NgForm) {
 
-    this.AuthService.updateUser(userInfo.value, idUSer);
+    this.AuthService.updateUser(userInfo.value, idUSer).subscribe((res)=>{
+      console.log(res)
+    })
+
     if (this.titleMod == "Edit informations") {
       this.AuthService.setUserToStorage(userInfo.value);
     }
@@ -76,8 +81,10 @@ export class LoginComponent implements OnInit {
      //
       })
 
+      window.location.reload();
 
     });
+
   };
 
   getUserById(id: number) {
@@ -96,6 +103,8 @@ export class LoginComponent implements OnInit {
     this.AuthService.signUp(this.loginUser).subscribe((res) => {
 
       this.user = res.data as unknown as User;
+      window.location.reload();
+
     })
   }
 }

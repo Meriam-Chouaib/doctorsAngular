@@ -48,7 +48,9 @@
       }
     }
     .actions-post{
+      align-items: flex-start;
 cursor: pointer;
+      display: flex;
       button{
         border: none;
         background: transparent;
@@ -103,3 +105,4 @@ cursor: pointer;
   }
 
 }
+

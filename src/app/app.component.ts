@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent} from "./components/login/login.component";
 import {successResult} from "../helper/success-result";
@@ -37,6 +37,16 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
 
     }
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    if (window.pageYOffset > 550) {
+      let element = document.getElementById('Header-doctor');
+      element?.classList.add('sticky');
+    } else {
+      let element = document.getElementById('Header-doctor');
+      element?.classList.remove('sticky');
+    }
+  }
 
 
 

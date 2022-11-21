@@ -52,6 +52,7 @@ export class PostsComponent implements OnInit {
     const dialogRef = this.dialog.open(LoginComponent, {
 
       data: {titleForm: titleForm, btnName: btnName}
+
     });
     dialogRef.componentInstance.user = this.user;
 

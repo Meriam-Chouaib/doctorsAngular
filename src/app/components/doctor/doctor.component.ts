@@ -36,7 +36,9 @@ export class DoctorComponent implements OnInit {
   }
   deleteUSer(_id: number) {
     console.log("delete", _id);
-    this.AuthService.deletUser(_id);
+    this.AuthService.deletUser(_id).subscribe((res)=>{
+      console.log(res)
+    });
 
   }
   user = this.AuthService.getUSerFromStorage();

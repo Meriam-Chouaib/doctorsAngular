@@ -5,8 +5,8 @@
 
     <div class="user-img-name">
 
-      <img nzSrc="{{this.user.picture}}" class="user-img" alt="{{this.user.name}}"  nz-image>
-<!--      <img nzSrc="https://image.shutterstock.com/image-photo/young-handsome-man-beard-wearing-260nw-1768126784.jpg" class="user-img" alt="{{this.user.name}}"  nz-image>-->
+      <img nzSrc="{{this.user.picture}}" class="user-img" alt="{{this.user.name}}" nz-image>
+      <!--      <img nzSrc="https://image.shutterstock.com/image-photo/young-handsome-man-beard-wearing-260nw-1768126784.jpg" class="user-img" alt="{{this.user.name}}"  nz-image>-->
 
       <p>{{this.user.username}}</p>
 
@@ -23,7 +23,7 @@
     <button class="edit-informations" (click)="openDialogLogin('Edit informations','Confirm')">
       <span class="material-symbols-outlined edit-informations-icon">
 edit
-</span>    </button>
+</span></button>
   </div>
 
   <div class="container-posts">
@@ -49,14 +49,14 @@ edit
 
       <app-post
         [title]="item?.title "
-                [message]="item?.message"
-                [name]="item?.user?.name"
-                [picture]="item?.user?.picture"
-                [date]="item?.date"
-                [id]="item.id"
-                [likes]="item?.likes"
-                [liked]="item?.liked"
-                [comments]="item?.comments"
+        [message]="item?.message"
+        [name]="item?.user?.name"
+        [picture]="item?.user?.picture"
+        [date]="item?.date"
+        [id]="item.id"
+        [likes]="item?.likes"
+        [liked]="item?.liked"
+        [comments]="item?.comments"
 
       ></app-post>
 

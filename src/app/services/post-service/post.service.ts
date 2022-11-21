@@ -44,7 +44,9 @@ export class PostService {
 
   addPost(form: Post) {
     form.user = this.AuthService.getUSerFromStorage();
+    console.log("form before sending to the api",form);
     return this.http.post<PostResponse>(`${this.BASE_URL}/save`, form);
+
     console.log("post added from service")
 
   }
