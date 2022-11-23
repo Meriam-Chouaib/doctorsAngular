@@ -16,7 +16,7 @@ import {PostService} from "../../services/post-service/post.service";
 })
 
 export class PostComponent implements OnInit {
-  postsData = this.PostService.getPosts();
+
  testUser :boolean = false;
   @Input()
   _isShown: boolean = false;
@@ -80,6 +80,7 @@ export class PostComponent implements OnInit {
 
   displayComments() {
     this._isShown = !this._isShown;
+    console.log(this._isShown)
   }
 
   addLike(_id: number, idUser: number) {
